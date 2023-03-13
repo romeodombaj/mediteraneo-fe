@@ -1,0 +1,15 @@
+.itemWrapper {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  z-index: 0;
+}
+
+.itemImage {
+  object-fit: cover;
+  width: 300px;
+  height: 400px;
+}
+
+.itemImage:hover {
+  opacity: 0.4;
+}
