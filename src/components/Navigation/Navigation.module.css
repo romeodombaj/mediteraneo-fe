@@ -1,0 +1,38 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.771);
+  z-index: 100;
+}
+
+.wrapper {
+  position: fixed;
+  background-color: rgb(225, 225, 225);
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  margin: auto;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.27);
+  border-radius: 1rem;
+}
+
+.category-element {
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 80%;
+  border: 1px solid black;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  background-color: rgb(222, 123, 123);
+}

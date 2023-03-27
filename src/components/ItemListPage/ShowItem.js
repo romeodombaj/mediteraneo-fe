@@ -1,5 +1,5 @@
 import styles from "./ShowItem.module.css";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Item from "./Item";
 
 const ShowItem = (props) => {
@@ -8,6 +8,8 @@ const ShowItem = (props) => {
   const onSelectItem = () => {
     setOnSelected(true);
   };
+
+
 
   const onCloseItem = () => {
     setOnSelected(false);
@@ -18,11 +20,12 @@ const ShowItem = (props) => {
       {onSelected && (
         <Item itemInfo={props.itemInfo} onClose={onCloseItem}></Item>
       )}
-      <div className={styles.itemWrapper}>
+      <div className={styles.wrapper}>
         <h2>{props.itemInfo.name}</h2>
+        <div></div>
         <img
-          src={props.itemInfo.picture}
-          className={styles.itemImage}
+          src={props.itemInfo.images[0].src}
+          className={styles.image}
           onClick={onSelectItem}
         ></img>
         <div></div>
