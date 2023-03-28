@@ -7,6 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 import logoImg from "../../assets/logo.png";
 import { useParams } from "react-router-dom";
+import Cart from "../Cart/Cart";
 
 const fetchLinks = [
   {
@@ -30,27 +31,34 @@ const fetchLinks = [
 ];
 
 const ItemList = (props) => {
-  const [navIsActive, setNavIsActive] = useState(false);
   const [itemList, setItemList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams().categoryID;
 
   useEffect(() => {
+    setIsLoading(true);
+    console.log("before " + isLoading);
     fetch(fetchLinks[params].link)
       .then((response) => response.json())
-      .then((posts) => setItemList(posts));
+      .then((posts) => setItemList(posts))
+      .then(setIsLoading(false));
+    console.log("before " + isLoading);
   }, [useParams().categoryID]);
 
   return (
     <Fragment>
-      {navIsActive && <Navigation></Navigation>}
-      <Link to="/">
-        <img className={styles.logo} src={logoImg}></img>
-      </Link>
-      <NavBar></NavBar>
-      {itemList.map((item) => {
-        return <ShowItem key={item.id} itemInfo={item}></ShowItem>;
-      })}
+      {isLoading && <h1>LOADIG</h1>}
+      {!isLoading && (
+        <Fragment>
+          <Link to="/">
+            <img className={styles.logo} src={logoImg}></img>
+          </Link>
+          {itemList.map((item) => {
+            return <ShowItem key={item.id} itemInfo={item}></ShowItem>;
+          })}
+        </Fragment>
+      )}
     </Fragment>
   );
 };
