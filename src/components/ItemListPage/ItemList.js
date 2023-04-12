@@ -1,13 +1,10 @@
-import { useState, Fragment, useEffect, useCallback } from "react";
+import { useState, Fragment, useEffect, useContext } from "react";
 import styles from "./ItemList.module.css";
 import ShowItem from "./ShowItem";
-import ItemDummyImage from "../../assets/ruc2.jpg";
-import NavBar from "../Navigation/NavBar";
-import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 import logoImg from "../../assets/logo.png";
 import { useParams } from "react-router-dom";
-import Cart from "../Cart/Cart";
+import CartContext from "../store/cart-context";
 
 const fetchLinks = [
   {
@@ -34,20 +31,25 @@ const ItemList = (props) => {
   const [itemList, setItemList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const cartCtx = useContext(CartContext);
+
   const params = useParams().categoryID;
+
+  const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
 
   useEffect(() => {
     setIsLoading(true);
-    console.log("before " + isLoading);
     fetch(fetchLinks[params].link)
       .then((response) => response.json())
       .then((posts) => setItemList(posts))
       .then(setIsLoading(false));
-    console.log("before " + isLoading);
-  }, [useParams().categoryID]);
+  }, [useParams().categoryID, cartCtx.items.length]);
 
   return (
     <Fragment>
+      <h1>{amoutOfItemsInCart}</h1>
       {isLoading && <h1>LOADIG</h1>}
       {!isLoading && (
         <Fragment>

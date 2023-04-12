@@ -21,9 +21,26 @@
   }
 }
 
-.image-wrapper {
-  width: 70%;
+.information-wrapper {
   position: relative;
-  overflow: hidden;
-  box-shadow: 2px 2px 20px rgba(62, 62, 62, 0.642);
+  width: 30%;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.add-button {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  border: 0;
+  background-color: rgba(216, 70, 70, 0.649);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.555);
+}
+
+.add-button:hover {
+  background-color: rgba(221, 64, 64, 1);
+}
+
+.add-button:active {
+  background-color: rgba(221, 64, 64, 0.8);
 }

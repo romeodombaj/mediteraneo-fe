@@ -1,26 +1,19 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import styles from "./Cart.module.css";
-
-const dummy_itemList = [
-  {
-    id: 0,
-    name: "item1",
-  },
-  {
-    id: 1,
-    name: "item2",
-  },
-];
+import CartContext from "../store/cart-context";
 
 const Cart = (props) => {
+  const cartCtx = useContext(CartContext);
+
   return (
     <Fragment>
       <div className={styles.backdrop} onClick={props.onClose}></div>
       <div className={styles.wrapper}>
-        {dummy_itemList.map((item) => {
+        {cartCtx.items.map((item) => {
           return (
             <div className={styles.item} key={item.id}>
-              {item.name}
+              <div>{item.name}</div>
+              <div>22.21</div>
             </div>
           );
         })}

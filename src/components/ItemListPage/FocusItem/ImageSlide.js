@@ -12,16 +12,12 @@ const ImageSlide = (props) => {
     setImageChange(true);
 
     if (displayedImageIndex === imageArray.length - 1) {
-      //animation image
       setAnimationImageIndex(0);
-      //display image
       setTimeout(() => {
         setDisplayedImageIndex(0);
       }, 190);
     } else {
-      //animation image
       setAnimationImageIndex((prevState) => prevState + 1);
-      //display image
       setTimeout(() => {
         setDisplayedImageIndex((prevState) => prevState + 1);
       }, 190);

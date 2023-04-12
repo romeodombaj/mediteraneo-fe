@@ -17,13 +17,6 @@
   box-shadow: 2px 2px 20px rgba(62, 62, 62, 0.642);
 }
 
-.information-wrapper {
-  position: relative;
-  width: 30%;
-  margin: 1rem;
-  padding: 1rem;
-}
-
 .itemImage {
   object-fit: cover;
   width: 100%;

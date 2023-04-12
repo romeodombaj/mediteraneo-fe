@@ -22,6 +22,7 @@
   align-items: center;
   box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.27);
   border-radius: 1rem;
+  animation: slide-in 0.1s;
 }
 
 .category-element {
@@ -35,4 +36,13 @@
   color: black;
   text-align: center;
   background-color: rgb(222, 123, 123);
+}
+
+@keyframes slide-in {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 25%;
+  }
 }

@@ -20,13 +20,50 @@ const ShowItem = (props) => {
       )}
       <div className={styles.wrapper}>
         <h2>{props.itemInfo.name}</h2>
-        <div></div>
-        <img
-          src={props.itemInfo.images[0].src}
-          className={styles.image}
-          onClick={onSelectItem}
-        ></img>
-        <div></div>
+        <div>
+          <div className={styles[`focus-image`]}>
+            <img
+              src={props.itemInfo.images[0].src}
+              className={styles.image}
+              onClick={onSelectItem}
+            ></img>
+          </div>
+          <div className={styles[`middle-image`]}>
+            <img
+              src={props.itemInfo.images[0].src}
+              className={styles.image}
+              onClick={onSelectItem}
+            ></img>
+            <img
+              src={props.itemInfo.images[0].src}
+              className={styles.image}
+              onClick={onSelectItem}
+            ></img>
+          </div>
+          <div className={`${styles[`middle-image`]} ${styles[`back-image`]}`}>
+            <img
+              src={props.itemInfo.images[0].src}
+              className={styles.image}
+              onClick={onSelectItem}
+            ></img>
+            <img
+              src={props.itemInfo.images[0].src}
+              className={styles.image}
+              onClick={onSelectItem}
+            ></img>
+          </div>
+
+          {/*props.itemInfo.images.map((image) => {
+            return (
+              <img
+                key={image.id}
+                src={image.src}
+                className={styles.image}
+                onClick={onSelectItem}
+              ></img>
+            );
+          })*/}
+        </div>
       </div>
     </Fragment>
   );
