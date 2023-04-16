@@ -1,0 +1,117 @@
+.logo {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  width: 60px;
+  height: auto;
+}
+
+.head-section {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.head-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.image-wrapper:before {
+  content: "";
+  position: absolute;
+  left: 25%;
+  width: 30%;
+  height: 50vh;
+  background-color: rgba(197, 161, 117, 0.27);
+  z-index: 200;
+}
+
+.image-wrapper:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  width: 20%;
+  height: 50vh;
+  background-color: rgba(0, 0, 0, 0.27);
+  z-index: 50;
+}
+
+.head-image {
+  width: 50%;
+  object-fit: cover;
+  height: 50vh;
+  transition: 0.3s;
+}
+
+.title {
+  position: absolute;
+  font-size: xx-large;
+  color: white;
+  font-weight: bold;
+  left: 50%;
+  z-index: 80;
+}
+
+.head-animated1 {
+  width: 100%;
+  height: 100vh;
+  opacity: 0.1;
+}
+.head-animated2 {
+  width: 90%;
+  height: 90vh;
+  opacity: 0.2;
+}
+.head-animated3 {
+  width: 80%;
+  height: 80vh;
+  opacity: 0.3;
+}
+.head-animated4 {
+  width: 70%;
+  height: 70vh;
+  opacity: 0.4;
+}
+.head-animated5 {
+  width: 60%;
+  height: 60vh;
+  opacity: 0.5;
+}
+
+.head-stop {
+  position: absolute;
+  top: 81vh;
+}
+
+.undersection {
+  width: 100%;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  height: 5vh;
+}
+
+@keyframes header {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}

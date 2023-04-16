@@ -1,10 +1,9 @@
-import { useState, Fragment, useEffect, useContext } from "react";
+import { useState, Fragment, useEffect, useContext, useRef } from "react";
 import styles from "./ItemList.module.css";
 import ShowItem from "./ShowItem";
-import { Link } from "react-router-dom";
-import logoImg from "../../assets/logo.png";
 import { useParams } from "react-router-dom";
 import CartContext from "../store/cart-context";
+import ItemListHeader from "./ItemListHeader";
 
 const fetchLinks = [
   {
@@ -32,7 +31,6 @@ const ItemList = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const cartCtx = useContext(CartContext);
-
   const params = useParams().categoryID;
 
   const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
@@ -49,15 +47,13 @@ const ItemList = (props) => {
 
   return (
     <Fragment>
-      <h1>{amoutOfItemsInCart}</h1>
       {isLoading && <h1>LOADIG</h1>}
       {!isLoading && (
         <Fragment>
-          <Link to="/">
-            <img className={styles.logo} src={logoImg}></img>
-          </Link>
+          <ItemListHeader />
+          <h1 className={styles.temp}>{amoutOfItemsInCart}</h1>
           {itemList.map((item) => {
-            return <ShowItem key={item.id} itemInfo={item}></ShowItem>;
+            return <ShowItem key={item.id} itemInfo={item} />;
           })}
         </Fragment>
       )}
