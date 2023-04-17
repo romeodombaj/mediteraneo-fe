@@ -1,0 +1,62 @@
+.logo {
+  opacity: 100%;
+  width: 100px;
+  height: auto;
+  margin: auto;
+  animation: fade-in 2s;
+}
+
+.logo-section {
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.scroll-text {
+  position: absolute;
+  font-size: small;
+  width: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 8%;
+}
+
+.scroll-arrow {
+  position: absolute;
+  height: 5%;
+  width: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 1%;
+  animation: jumpy 2s infinite;
+}
+
+.scroll-me-wrapper {
+  animation: fade-in 2s;
+}
+
+@keyframes jumpy {
+  0% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -30%);
+  }
+
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

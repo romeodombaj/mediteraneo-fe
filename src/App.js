@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import styles from "./App.module.css";
 
 import ItemList from "./components/ItemListPage/ItemList";
 import FrontPage from "./components/FrontPage/FrontPage";

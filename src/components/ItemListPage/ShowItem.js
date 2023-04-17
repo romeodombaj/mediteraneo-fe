@@ -19,16 +19,14 @@ const ShowItem = (props) => {
         <Item itemInfo={props.itemInfo} onClose={onCloseItem}></Item>
       )}
       <div className={styles.wrapper}>
-        <h2>{props.itemInfo.name}</h2>
         <div>
-          <div className={styles[`item-image`]}>
-            <img
-              src={props.itemInfo.images[0].src}
-              className={styles.image}
-              onClick={onSelectItem}
-            ></img>
-          </div>
+          <img
+            src={props.itemInfo.images[0].src}
+            className={styles.image}
+            onClick={onSelectItem}
+          />
         </div>
+        <h2>{props.itemInfo.name}</h2>
       </div>
     </Fragment>
   );

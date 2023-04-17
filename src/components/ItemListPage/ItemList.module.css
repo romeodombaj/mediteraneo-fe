@@ -1,3 +1,39 @@
+.item-grid {
+  margin: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 0;
+  column-gap: 0;
+  padding: 0;
+  scroll-snap-type: y mandatory;
+  overflow-x: scroll;
+}
+
+.main-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation-place {
+  width: 3%;
+  height: 100vh;
+  margin-left: 5%;
+  transition: 0.3s;
+}
+
+.navigation-place:hover {
+  width: 30%;
+}
+
+.navigation-wrapper {
+  width: 20%;
+  right: 5%;
+  position: fixed;
+  top: 50vh;
+}
+
 .temp {
   background-color: aqua;
 }

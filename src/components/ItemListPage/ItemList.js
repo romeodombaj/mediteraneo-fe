@@ -51,10 +51,19 @@ const ItemList = (props) => {
       {!isLoading && (
         <Fragment>
           <ItemListHeader />
-          <h1 className={styles.temp}>{amoutOfItemsInCart}</h1>
-          {itemList.map((item) => {
-            return <ShowItem key={item.id} itemInfo={item} />;
-          })}
+          <div className={styles[`main-wrapper`]}>
+            <div className={styles[`item-grid`]}>
+              {itemList.map((item) => {
+                return <ShowItem key={item.id} itemInfo={item} />;
+              })}
+            </div>
+            <div className={styles[`navigation-place`]} />
+            <div className={styles[`navigation-wrapper`]}>
+              <div>POSTELJINA</div>
+              <div>KUHINJA</div>
+              <div>RUČNICI</div>
+            </div>
+          </div>
         </Fragment>
       )}
     </Fragment>
