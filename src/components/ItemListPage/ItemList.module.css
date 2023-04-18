@@ -8,31 +8,16 @@
   padding: 0;
   scroll-snap-type: y mandatory;
   overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .main-wrapper {
   position: relative;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
-.navigation-place {
-  width: 3%;
-  height: 100vh;
-  margin-left: 5%;
-  transition: 0.3s;
-}
-
-.navigation-place:hover {
-  width: 30%;
-}
-
-.navigation-wrapper {
-  width: 20%;
-  right: 5%;
-  position: fixed;
-  top: 50vh;
-}
 
 .temp {
   background-color: aqua;

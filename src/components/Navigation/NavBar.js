@@ -1,7 +1,7 @@
 import styles from "./NavBar.module.css";
 import menuIcon from "../../assets/menu.png";
 import cartIcon from "../../assets/cart.png";
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useState, useContext, useEffect } from "react";
 import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
 import CartContext from "../store/cart-context";
@@ -9,14 +9,20 @@ import CartContext from "../store/cart-context";
 const NavBar = () => {
   const [isNavigating, setIsNavigating] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [menuIconState, setMenuIconState] = useState(``);
 
   const CartCtx = useContext(CartContext);
+
+  const changeNavigationStateHandler = () => {
+    setIsNavigating((prevState) => !prevState);
+  };
 
   const openNavigationHandler = () => {
     setIsNavigating(true);
   };
 
   const closeNavigationHandler = () => {
+    setMenuIconState(``);
     setIsNavigating(false);
   };
 
@@ -27,6 +33,10 @@ const NavBar = () => {
   const closeCartHandler = () => {
     setCartIsOpen(false);
   };
+
+  useEffect(() => {
+    isNavigating ? setMenuIconState(`menu-icon-open`) : setMenuIconState(``);
+  }, [isNavigating]);
 
   return (
     <Fragment>
@@ -39,8 +49,8 @@ const NavBar = () => {
           src={cartIcon}
         ></img>
         <img
-          onClick={openNavigationHandler}
-          className={styles.navItem}
+          onClick={changeNavigationStateHandler}
+          className={`${styles.navItem} ${styles[menuIconState]}`}
           src={menuIcon}
         ></img>
       </div>

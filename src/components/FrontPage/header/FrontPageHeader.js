@@ -26,6 +26,12 @@ const FrontPageHeader = () => {
           <div className={styles[`scroll-me-wrapper`]}>
             <div className={styles[`scroll-text`]}>Scroll down</div>
             <img src={arrowDown} className={styles[`scroll-arrow`]} />
+            <img
+              src={arrowDown}
+              className={`${styles[`scroll-arrow`]} ${
+                styles[`scroll-arrow-delayed`]
+              }`}
+            />
           </div>
         )}
       </div>

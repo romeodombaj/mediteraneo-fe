@@ -26,12 +26,16 @@
 
 .scroll-arrow {
   position: absolute;
-  height: 5%;
+  height: 6%;
   width: auto;
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 1%;
   animation: jumpy 2s infinite;
+}
+
+.scroll-arrow-delayed {
+  animation-delay: 100ms;
 }
 
 .scroll-me-wrapper {

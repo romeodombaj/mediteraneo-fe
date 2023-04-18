@@ -1,9 +1,32 @@
-import { useState, Fragment, useEffect, useContext, useRef } from "react";
+import { useState, Fragment, useEffect, useContext } from "react";
 import styles from "./ItemList.module.css";
 import ShowItem from "./ShowItem";
 import { useParams } from "react-router-dom";
 import CartContext from "../store/cart-context";
 import ItemListHeader from "./ItemListHeader";
+
+// dummy_images
+import rucniciImg from "../../assets/ruc0.jpeg";
+import kuhinjaImg from "../../assets/ruc1.jpg";
+import posteljinaImg from "../../assets/ruc2.jpg";
+
+const dummy_categories = [
+  {
+    id: 0,
+    title: "Ručnici",
+    image: rucniciImg,
+  },
+  {
+    id: 1,
+    title: "Posteljina",
+    image: posteljinaImg,
+  },
+  {
+    id: 2,
+    title: "Kuhinja",
+    image: kuhinjaImg,
+  },
+];
 
 const fetchLinks = [
   {
@@ -56,12 +79,6 @@ const ItemList = (props) => {
               {itemList.map((item) => {
                 return <ShowItem key={item.id} itemInfo={item} />;
               })}
-            </div>
-            <div className={styles[`navigation-place`]} />
-            <div className={styles[`navigation-wrapper`]}>
-              <div>POSTELJINA</div>
-              <div>KUHINJA</div>
-              <div>RUČNICI</div>
             </div>
           </div>
         </Fragment>

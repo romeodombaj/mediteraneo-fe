@@ -28,4 +28,9 @@
   margin-right: 1rem;
   width: 20px;
   height: 20px;
+  transition: 0.1s;
+}
+
+.menu-icon-open {
+  transform: rotate(90deg);
 }
