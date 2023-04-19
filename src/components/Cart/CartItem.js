@@ -3,15 +3,19 @@ import styles from "./CartItem.module.css";
 import { Fragment } from "react";
 
 const CartItem = (props) => {
-  const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(22.21);
 
   const onIncreaseHandler = () => {
-    setQuantity((prev) => prev + 1);
+    const tempItem = {
+      ...props.item,
+      quantity: 1,
+    };
+
+    props.addItem(tempItem);
   };
 
   const onDecreaseHandler = () => {
-    if (quantity > 0) setQuantity((prev) => prev - 1);
+    props.removeItem(props.item.id);
   };
 
   return (
@@ -25,11 +29,11 @@ const CartItem = (props) => {
         <div className={styles[`total-wrapper`]}>
           <div className={styles[`quantity-wrapper`]}>
             <button onClick={onIncreaseHandler}>+</button>
-            <div>{quantity}</div>
+            <div>{props.item.quantity}</div>
             <button onClick={onDecreaseHandler}>-</button>
           </div>
           <div className={styles[`price-wrapper`]}>
-            <div>{(totalPrice * quantity).toFixed(2)}€</div>
+            <div>{(totalPrice * props.item.quantity).toFixed(2)}€</div>
           </div>
         </div>
       </div>

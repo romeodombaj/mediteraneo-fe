@@ -7,6 +7,14 @@ import CartItem from "./CartItem";
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
 
+  const increaseItem = (item) => {
+    cartCtx.addItem(item);
+  };
+
+  const decreaseItem = (id) => {
+    cartCtx.removeItem(id);
+  };
+
   const portalElement = document.getElementById("overlays");
 
   return (
@@ -17,10 +25,19 @@ const Cart = (props) => {
           <div className={styles.wrapper}>
             <div className={styles[`item-wrapper`]}>
               {cartCtx.items.map((item) => {
-                return <CartItem item={item} />;
+                return (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    addItem={increaseItem}
+                    removeItem={decreaseItem}
+                  />
+                );
               })}
             </div>
-            <div className={styles.price}>$32.22</div>
+            <div className={styles.price}>
+              ${cartCtx.totalAmount.toFixed(2)}
+            </div>
             <div className={styles.actions}>
               <div className={styles[`action-button`]}>ORDER</div>
               <div className={styles[`action-button`]} onClick={props.onClose}>

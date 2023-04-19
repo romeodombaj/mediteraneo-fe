@@ -8,8 +8,10 @@ const Item = (props) => {
 
   const addItemToCartHandler = () => {
     cartCtx.addItem({
-      ...props.itemInfo,
-      amount: 1,
+      id: props.itemInfo.id,
+      name: props.itemInfo.name,
+      price: 22.21,
+      quantity: 1,
     });
   };
 
@@ -18,7 +20,7 @@ const Item = (props) => {
       <div type="button" onClick={props.onClose}>
         ex
       </div>
-      <ImageSlide itemInfo={props.itemInfo}></ImageSlide>
+      <ImageSlide itemInfo={props.itemInfo} />
       <div className={styles[`information-wrapper`]}>
         <h1>{props.itemInfo.name}</h1>
         <p>{props.itemInfo.description}</p>
