@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 
 const Navigation = (props) => {
-  const categorySelectionHandler = (event) => {
-    props.onClose();
+  const portalElement = document.getElementById("overlays");
+
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   };
 
-  const portalElement = document.getElementById("overlays");
+  const categorySelectionHandler = (event) => {
+    props.onClose();
+    goToTop();
+  };
 
   return (
     <Fragment>

@@ -45,25 +45,6 @@
   z-index: 200;
 }
 
-.item {
-  position: relative;
-  width: 90%;
-  min-height: 50px;
-  z-index: 120;
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
-
-.item-divider {
-  background-color: black;
-  border-radius: 2rem;
-  height: 1px;
-  width: 80%;
-}
 
 .price {
   justify-content: end;

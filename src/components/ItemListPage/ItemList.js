@@ -1,9 +1,9 @@
 import { useState, Fragment, useEffect, useContext } from "react";
 import styles from "./ItemList.module.css";
-import ShowItem from "./ShowItem";
 import { useParams } from "react-router-dom";
 import CartContext from "../store/cart-context";
-import ItemListHeader from "./ItemListHeader";
+import ItemListHeader from "./Header/ItemListHeader";
+import ItemListMain from "./Main/ItemListMain";
 
 // dummy_images
 import rucniciImg from "../../assets/ruc0.jpeg";
@@ -73,14 +73,8 @@ const ItemList = (props) => {
       {isLoading && <h1>LOADIG</h1>}
       {!isLoading && (
         <Fragment>
-          <ItemListHeader />
-          <div className={styles[`main-wrapper`]}>
-            <div className={styles[`item-grid`]}>
-              {itemList.map((item) => {
-                return <ShowItem key={item.id} itemInfo={item} />;
-              })}
-            </div>
-          </div>
+          <ItemListHeader categoryInfo={fetchLinks[params]} />
+          <ItemListMain itemInfo={itemList} />
         </Fragment>
       )}
     </Fragment>

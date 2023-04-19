@@ -1,6 +1,6 @@
 import styles from "./ShowItem.module.css";
 import { Fragment, useState, useEffect } from "react";
-import Item from "./FocusItem/Item";
+import Item from "../FocusItem/Item";
 
 const ShowItem = (props) => {
   const [onSelected, setOnSelected] = useState(false);
