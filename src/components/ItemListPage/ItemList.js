@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import CartContext from "../store/cart-context";
 import ItemListHeader from "./Header/ItemListHeader";
 import ItemListMain from "./Main/ItemListMain";
+import CategoryContext from "../store/category-context";
 
 // dummy_images
 import rucniciImg from "../../assets/ruc0.jpeg";
@@ -49,12 +50,14 @@ const fetchLinks = [
   },
 ];
 
-const ItemList = (props) => {
+const ItemList = () => {
   const [itemList, setItemList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const cartCtx = useContext(CartContext);
+  const categoryCtx = useContext(CategoryContext);
   const params = useParams().categoryID;
+  const currentCategory = categoryCtx.getCategory(parseInt(params));
 
   const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
@@ -62,7 +65,9 @@ const ItemList = (props) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(fetchLinks[params].link)
+    fetch(
+      `https://mediteraneo.eu/wp-json/wc/v3/products?category=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+    )
       .then((response) => response.json())
       .then((posts) => setItemList(posts))
       .then(setIsLoading(false));
@@ -73,7 +78,7 @@ const ItemList = (props) => {
       {isLoading && <h1>LOADIG</h1>}
       {!isLoading && (
         <Fragment>
-          <ItemListHeader categoryInfo={fetchLinks[params]} />
+          <ItemListHeader category={currentCategory} />
           <ItemListMain itemInfo={itemList} />
         </Fragment>
       )}

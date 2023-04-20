@@ -1,6 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import styles from "./FrontPageCategories.module.css";
 import { Link } from "react-router-dom";
+import CategoryContext from "../../store/category-context";
 
 // temp category images
 import towels from "../../../assets/ruc0.jpeg";
@@ -73,37 +74,45 @@ const category_info = [
 ];
 
 const FrontPageCategories = () => {
+  const categoryCtx = useContext(CategoryContext);
+
   return (
     <Fragment>
       <div className={styles[`category-section`]}>
-        {category_info.map((category) => {
-          return (
-            <Link
-              key={category.id}
-              to={`/${category.id}`}
-              state={{ category: category.id }}
-              className={styles[`category-element`]}
-            >
-              <div className={styles[`info-container`]}>
-                <div className={styles[`category-title`]}>{category.name}</div>
-                {category.subcategory.map((subcategory) => {
-                  return (
-                    <div
-                      key={subcategory.id}
-                      className={styles[`category-text`]}
-                    >
-                      {subcategory.name}
+        {categoryCtx.categories &&
+          categoryCtx.categories.map((category) => {
+            if (category.display === "default") {
+              return (
+                <Link
+                  key={category.id}
+                  to={`/${category.id}`}
+                  state={{ category: category.id }}
+                  className={styles[`category-element`]}
+                >
+                  <div className={styles[`info-container`]}>
+                    <div className={styles[`category-title`]}>
+                      {category.name}
                     </div>
-                  );
-                })}
-              </div>
-              <img
-                src={category.image}
-                className={styles[`category-image`]}
-              ></img>
-            </Link>
-          );
-        })}
+                    {categoryCtx.categories.map((subcategory) => {
+                      if (subcategory.parent === category.id)
+                        return (
+                          <div
+                            key={subcategory.id}
+                            className={styles[`category-text`]}
+                          >
+                            {subcategory.name}
+                          </div>
+                        );
+                    })}
+                  </div>
+                  <img
+                    src={category.image.src}
+                    className={styles[`category-image`]}
+                  ></img>
+                </Link>
+              );
+            }
+          })}
       </div>
     </Fragment>
   );

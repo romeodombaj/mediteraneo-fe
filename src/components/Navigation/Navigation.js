@@ -9,7 +9,7 @@ const Navigation = (props) => {
   const goToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "instant",
+      behavior: "smooth",
     });
   };
 
@@ -28,7 +28,7 @@ const Navigation = (props) => {
             className={`${styles[`category-box`]} ${styles[`first-category`]}`}
           >
             <Link
-              to={`/0`}
+              to={`/189`}
               onClick={categorySelectionHandler}
               className={styles[`category-element`]}
             >
@@ -39,7 +39,7 @@ const Navigation = (props) => {
             className={`${styles[`category-box`]} ${styles[`second-category`]}`}
           >
             <Link
-              to={`/1`}
+              to={`/190`}
               onClick={categorySelectionHandler}
               className={styles[`category-element`]}
             >
@@ -50,7 +50,7 @@ const Navigation = (props) => {
             className={`${styles[`category-box`]} ${styles[`third-category`]}`}
           >
             <Link
-              to={`/2`}
+              to={`/191`}
               onClick={categorySelectionHandler}
               className={styles[`category-element`]}
             >

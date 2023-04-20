@@ -12,5 +12,4 @@ const ItemListMain = (props) => {
     </div>
   );
 };
-
 export default ItemListMain;

@@ -1,14 +1,15 @@
 import styles from "./ItemListHeader.module.css";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import logoImg from "../../../assets/logo.png";
 import dummy_headImage from "../../../assets/ruc2.jpg";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
+import CategoryContext from "../../store/category-context";
 
 const ItemListHeader = (props) => {
   const [headerAnimationTrigger, setHeaderAnimationTrigger] = useState(``);
   const [headerStop, setHeaderStop] = useState(``);
-  
+
   const [newRef, inView] = useInView();
   const [newRef2, inView2] = useInView();
   const [newRef3, inView3] = useInView();
@@ -25,7 +26,6 @@ const ItemListHeader = (props) => {
   };
 
   useEffect(() => {
-    console.log(inView);
     if (inView2 == true) {
       headerUpAnimation();
     }
@@ -54,7 +54,9 @@ const ItemListHeader = (props) => {
     <Fragment>
       <div className={styles[`head-section`]}>
         <div className={`${styles[`head-wrapper`]} ${styles[`${headerStop}`]}`}>
-          <div className={styles.title}>{props.categoryInfo.name}</div>
+          <div className={styles.title}>
+            {props.category && props.category.name}
+          </div>
           <div className={styles[`image-wrapper`]}>
             <img
               src={dummy_headImage}
