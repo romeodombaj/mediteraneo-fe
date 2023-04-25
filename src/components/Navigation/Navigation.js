@@ -1,19 +1,25 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import CategoryContext from "../store/category-context";
 
 const Navigation = (props) => {
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState();
+
   const portalElement = document.getElementById("overlays");
   const categoryCtx = useContext(CategoryContext);
+  let subcategoryList = [];
 
   const goToTop = () => {
-    props.onClose();
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  const subcategorySelection = (event) => {
+    setSelectedCategoryIndex(event.target.getAttribute("value"));
   };
 
   const categorySelectionHandler = (event) => {
@@ -32,27 +38,37 @@ const Navigation = (props) => {
                   return (
                     <Link
                       to={`/${category.id}`}
-                      onClick={goToTop}
+                      onClick={categorySelectionHandler}
                       className={styles[`category-element`]}
                       key={category.id}
+                      value={category.id}
+                      onMouseEnter={subcategorySelection}
                     >
                       {category.name}
-                      <div className={styles[`subcategory-wrapper`]}>
-                        {categoryCtx.categories.map((subcategory) => {
-                          if (subcategory.parent === category.id) {
-                            return (
-                              <div className={styles[`subcategory-element`]}>
-                                {subcategory.name}
-                              </div>
-                            );
-                          }
-                        })}
-                      </div>
                     </Link>
                   );
                 }
               })}
           </div>
+          {selectedCategoryIndex && (
+            <div className={styles[`subcategory-wrapper`]}>
+              {categoryCtx.categories &&
+                categoryCtx.categories.map((subcategory) => {
+                  if (subcategory.parent === parseInt(selectedCategoryIndex)) {
+                    return (
+                      <Link
+                        to={`/${subcategory.id}`}
+                        className={styles[`subcategory-element`]}
+                        key={subcategory.id}
+                        onClick={categorySelectionHandler}
+                      >
+                        {subcategory.name}
+                      </Link>
+                    );
+                  }
+                })}
+            </div>
+          )}
         </Fragment>,
         portalElement
       )}

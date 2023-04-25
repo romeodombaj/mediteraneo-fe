@@ -9,7 +9,7 @@
 }
 
 .wrapper {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -19,8 +19,10 @@
   right: 0;
   top: 0;
   background-color: aliceblue;
-  z-index: 100;
+  z-index: 90;
   animation: slide-in 0.5s;
+  background-color: rgb(255, 249, 241);
+  box-shadow: -2px 0px 10px rgba(44, 44, 44, 0.297);
 }
 
 @keyframes slide-in {
@@ -40,7 +42,10 @@
   margin-top: 2rem;
   font-weight: bold;
   font-size: xx-large;
-  z-index: 100;
+  width: 100%;
+  z-index: 91;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .subcategory-wrapper {
@@ -49,24 +54,38 @@
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  width: 0%;
+  width: 20%;
   align-items: center;
   right: 20%;
   top: 0;
-  background-color: rgb(41, 128, 204);
+  background-color: rgb(201, 196, 188);
   transition: 0.5s;
-  z-index: 100;
-  opacity: 0;
+  z-index: 80;
+  opacity: 1;
+  animation: slide-in 0.5s;
 }
 
 .subcategory-element {
-  opacity: 0;
-  transition: 0.5s;
-  transition-delay: 0.5s;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: bold;
+  font-size: xx-large;
+  width: 100%;
+  z-index: 91;
+}
+
+.category-element:hover {
+  background-color: rgb(243, 237, 230);
+}
+
+.subcategory-element:hover {
+  background-color: rgb(207, 203, 195);
 }
 
 .category-element:hover .subcategory-wrapper {
-  width: 10%;
+  right: 20%;
   opacity: 1;
 }
 
