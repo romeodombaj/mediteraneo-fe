@@ -1,12 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
+import CategoryContext from "../store/category-context";
 
 const Navigation = (props) => {
   const portalElement = document.getElementById("overlays");
+  const categoryCtx = useContext(CategoryContext);
 
   const goToTop = () => {
+    props.onClose();
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -21,43 +24,36 @@ const Navigation = (props) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <div>
-          <div onClick={props.onClose} className={styles.backdrop} />
-
-          <div
-            className={`${styles[`category-box`]} ${styles[`first-category`]}`}
-          >
-            <Link
-              to={`/189`}
-              onClick={categorySelectionHandler}
-              className={styles[`category-element`]}
-            >
-              RUČNICI
-            </Link>
+        <Fragment>
+          <div className={styles.wrapper}>
+            {categoryCtx.categories &&
+              categoryCtx.categories.map((category) => {
+                if (category.display === "default") {
+                  return (
+                    <Link
+                      to={`/${category.id}`}
+                      onClick={goToTop}
+                      className={styles[`category-element`]}
+                      key={category.id}
+                    >
+                      {category.name}
+                      <div className={styles[`subcategory-wrapper`]}>
+                        {categoryCtx.categories.map((subcategory) => {
+                          if (subcategory.parent === category.id) {
+                            return (
+                              <div className={styles[`subcategory-element`]}>
+                                {subcategory.name}
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
+                    </Link>
+                  );
+                }
+              })}
           </div>
-          <div
-            className={`${styles[`category-box`]} ${styles[`second-category`]}`}
-          >
-            <Link
-              to={`/190`}
-              onClick={categorySelectionHandler}
-              className={styles[`category-element`]}
-            >
-              POSTELJINA
-            </Link>
-          </div>
-          <div
-            className={`${styles[`category-box`]} ${styles[`third-category`]}`}
-          >
-            <Link
-              to={`/191`}
-              onClick={categorySelectionHandler}
-              className={styles[`category-element`]}
-            >
-              KUHINJSKI <br /> ELEMENTI
-            </Link>
-          </div>
-        </div>,
+        </Fragment>,
         portalElement
       )}
     </Fragment>

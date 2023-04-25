@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
 import CartContext from "../store/cart-context";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
   const [menuIconState, setMenuIconState] = useState(``);
@@ -36,6 +36,7 @@ const NavBar = () => {
 
   useEffect(() => {
     isNavigating ? setMenuIconState(`menu-icon-open`) : setMenuIconState(``);
+    props.nav(isNavigating);
   }, [isNavigating]);
 
   return (

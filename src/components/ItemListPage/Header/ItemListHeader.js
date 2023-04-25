@@ -59,7 +59,7 @@ const ItemListHeader = (props) => {
           </div>
           <div className={styles[`image-wrapper`]}>
             <img
-              src={dummy_headImage}
+              src={props.category && props.category.image.src}
               className={`${styles[`head-image`]} ${
                 styles[`${headerAnimationTrigger}`]
               }`}
@@ -73,8 +73,9 @@ const ItemListHeader = (props) => {
       <h2 ref={newRef4} className={styles.undersection}></h2>
       <h2 ref={newRef5} className={styles.undersection}></h2>
       <h2 ref={newRef6} className={styles.stopsection}></h2>
+
       <Link to="/">
-        <img ref={newRef2} className={styles.logo} src={logoImg}></img>
+        <img ref={newRef2} className={styles.logo} src={logoImg} />
       </Link>
     </Fragment>
   );

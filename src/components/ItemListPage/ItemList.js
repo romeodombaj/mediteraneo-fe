@@ -77,10 +77,10 @@ const ItemList = () => {
     <Fragment>
       {isLoading && <h1>LOADIG</h1>}
       {!isLoading && (
-        <Fragment>
+        <div className={styles.wrapper}>
           <ItemListHeader category={currentCategory} />
           <ItemListMain itemInfo={itemList} />
-        </Fragment>
+        </div>
       )}
     </Fragment>
   );
