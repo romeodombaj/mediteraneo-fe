@@ -1,9 +1,11 @@
 .logo {
+  position: fixed;
   opacity: 100%;
   width: 100px;
   height: auto;
   margin: auto;
   animation: fade-in 2s;
+  transition: 1s;
 }
 
 .logo-section {
@@ -13,6 +15,21 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.logo-placement {
+  height: 100vh;
+  width: 100%;
+}
+
+.logo-stop {
+  height: 1vh;
+  width: 100%;
+}
+
+.stop {
+  position: absolute;
+  top: 142vh;
 }
 
 .scroll-text {

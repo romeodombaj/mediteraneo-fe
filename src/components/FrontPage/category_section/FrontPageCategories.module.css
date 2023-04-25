@@ -1,8 +1,10 @@
 .category-section {
+  position: relative;
   height: 100vh;
   background-color: white;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .category-element {
@@ -14,6 +16,19 @@
   overflow: hidden;
   z-index: 0;
   position: relative;
+  transform: translateY(120%);
+}
+
+.category-trigger {
+  position: absolute;
+  top: 75vh;
+  height: 1vh;
+  width: 100%;
+  z-index: 0;
+}
+
+.in-animation {
+  transform: translateY(0);
 }
 
 .info-container {
@@ -64,4 +79,13 @@
 
 .category-element:hover .info-container {
   opacity: 1;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

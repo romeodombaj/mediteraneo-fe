@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState, useContext } from "react";
 import styles from "./FrontPageCategories.module.css";
 import { Link } from "react-router-dom";
 import CategoryContext from "../../store/category-context";
+import { useInView } from "react-intersection-observer";
 
 // temp category images
 import towels from "../../../assets/ruc0.jpeg";
@@ -74,7 +75,15 @@ const category_info = [
 ];
 
 const FrontPageCategories = () => {
+  const [inAnimation, triggerInAnimation] = useInView();
+  const [animationClass, setAnimationClass] = useState(``);
   const categoryCtx = useContext(CategoryContext);
+
+  useEffect(() => {
+    if (triggerInAnimation) {
+      setAnimationClass(`in-animation`);
+    }
+  }, [triggerInAnimation]);
 
   return (
     <Fragment>
@@ -87,7 +96,9 @@ const FrontPageCategories = () => {
                   key={category.id}
                   to={`/${category.id}`}
                   state={{ category: category.id }}
-                  className={styles[`category-element`]}
+                  className={`${styles[`category-element`]} ${
+                    styles[animationClass]
+                  }`}
                 >
                   <div className={styles[`info-container`]}>
                     <div className={styles[`category-title`]}>
@@ -113,6 +124,7 @@ const FrontPageCategories = () => {
               );
             }
           })}
+        <div ref={inAnimation} className={styles[`category-trigger`]}></div>
       </div>
     </Fragment>
   );
