@@ -18,15 +18,23 @@ const ShowItem = (props) => {
       {onSelected && (
         <Item itemInfo={props.itemInfo} onClose={onCloseItem}></Item>
       )}
-      <div className={styles.wrapper}>
-        <div>
+      <div className={styles[`wrapper`]}>
+        <div className={styles[`image-wrapper`]}>
           <img
             src={props.itemInfo.images[0].src}
             className={styles.image}
             onClick={onSelectItem}
           />
         </div>
-        <h2>{props.itemInfo.name}</h2>
+        <div className={styles.info}>
+          <div className={styles[`main-info`]}>
+            <div className={styles.name}>{props.itemInfo.name}</div>
+            <div className={styles.price}>{props.itemInfo.price}</div>
+          </div>
+          <div className={styles.description}>
+            Lorem ipsum, lorem ipsum, lorem ipsum...
+          </div>
+        </div>
       </div>
     </Fragment>
   );

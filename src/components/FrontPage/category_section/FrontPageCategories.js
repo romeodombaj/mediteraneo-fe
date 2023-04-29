@@ -82,6 +82,8 @@ const FrontPageCategories = () => {
   useEffect(() => {
     if (triggerInAnimation) {
       setAnimationClass(`in-animation`);
+    } else {
+      setAnimationClass(``);
     }
   }, [triggerInAnimation]);
 

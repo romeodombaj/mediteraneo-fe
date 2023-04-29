@@ -2,13 +2,14 @@ import styles from "./FrontPage.module.css";
 import { Fragment, useContext } from "react";
 import FrontPageHeader from "./header/FrontPageHeader";
 import FrontPageCategories from "./category_section/FrontPageCategories";
-import AboutUs from "./story/AboutUs";
+
+import img from "../../assets/ruc0.jpeg";
+import arrow from "../../assets/arrow.png";
 
 const FrontPage = () => {
   return (
     <Fragment>
       <FrontPageHeader />
-      <AboutUs />
       <FrontPageCategories />
     </Fragment>
   );
