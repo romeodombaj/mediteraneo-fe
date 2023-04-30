@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import CategoryProvider from "./components/store/CategoryProvider";
+import LoadingProvider from "./components/store/LoadingProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CategoryProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </CategoryProvider>
+    <LoadingProvider>
+      <CategoryProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CategoryProvider>
+    </LoadingProvider>
   </React.StrictMode>
 );
 

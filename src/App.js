@@ -9,23 +9,47 @@ import FrontPage from "./components/FrontPage/FrontPage";
 import NavBar from "./components/Navigation/NavBar";
 import CartProvider from "./components/store/CartProvider";
 import PageLoad from "./components/Loader/PageLoad";
+import LoadingContext from "./components/store/loading-context";
+import SubPageLoad from "./components/Loader/SubPageLoad";
 
 const App = () => {
   const categoryCtx = useContext(CategoryContext);
-  const [isLoading, setIsLoading] = useState(true);
+  const loadCtx = useContext(LoadingContext);
+  const [mainIsLoading, setMainIsLoading] = useState(true);
+  const [productIsLoading, setProductIsLoading] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const [navBodyAnimation, setNavBodyAnimation] = useState(``);
 
   useEffect(() => {
     categoryCtx.fetchCategories();
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
   }, []);
 
   useEffect(() => {
-    console.log(isNavigating);
+    if (loadCtx.mainLoaded) {
+      setTimeout(() => {
+        setMainIsLoading(false);
+      }, 500);
+    }
+  }, [loadCtx.mainLoaded]);
+
+  // product loading
+  useEffect(() => {
+    if (loadCtx.productLoaded) {
+      setTimeout(() => {
+        setProductIsLoading(false);
+      }, 250);
+    }
+  }, [loadCtx.productLoaded]);
+
+  useEffect(() => {
+    if (loadCtx.productIsLoading) {
+      setProductIsLoading(true);
+    }
+  }, [loadCtx.productIsLoading]);
+
+  //
+
+  useEffect(() => {
     if (isNavigating) {
       setNavBodyAnimation(`nav-active`);
     } else {
@@ -35,7 +59,8 @@ const App = () => {
 
   return (
     <CartProvider>
-      {isLoading && <PageLoad />}
+      {mainIsLoading && <PageLoad />}
+      {productIsLoading && <SubPageLoad />}
 
       <div className="App">
         <NavBar nav={setIsNavigating} />

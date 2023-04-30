@@ -5,6 +5,7 @@ import CartContext from "../store/cart-context";
 import ItemListHeader from "./Header/ItemListHeader";
 import ItemListMain from "./Main/ItemListMain";
 import CategoryContext from "../store/category-context";
+import LoadingContext from "../store/loading-context";
 
 // dummy_images
 import rucniciImg from "../../assets/ruc0.jpeg";
@@ -56,7 +57,10 @@ const ItemList = () => {
 
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
+  const loadCtx = useContext(LoadingContext);
+
   const params = useParams().categoryID;
+
   const currentCategory = categoryCtx.getCategory(parseInt(params));
 
   const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
@@ -64,24 +68,30 @@ const ItemList = () => {
   }, 0);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch(
-      `https://mediteraneo.eu/wp-json/wc/v3/products?category=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
-    )
-      .then((response) => response.json())
-      .then((posts) => setItemList(posts))
-      .then(setIsLoading(false));
-  }, [useParams().categoryID, cartCtx.items.length]);
+    loadCtx.setParams(params);
+    loadCtx.onProductLoad();
+    setItemList([]);
+
+    if (categoryCtx.categories) {
+      fetch(
+        `https://mediteraneo.eu/wp-json/wc/v3/products?category=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+      )
+        .then((response) => response.json())
+        .then((posts) => setItemList(posts))
+        .then(() => {
+          if (itemList) {
+            loadCtx.onProductLoaded();
+          }
+        });
+    }
+  }, [params, cartCtx.items.length, categoryCtx.categories]);
 
   return (
     <Fragment>
-      {isLoading && <h1>LOADIG</h1>}
-      {!isLoading && (
-        <div className={styles.wrapper}>
-          <ItemListHeader category={currentCategory} />
-          <ItemListMain itemInfo={itemList} />
-        </div>
-      )}
+      <div className={styles.wrapper}>
+        <ItemListHeader category={currentCategory} />
+        <ItemListMain itemInfo={itemList} />
+      </div>
     </Fragment>
   );
 };
