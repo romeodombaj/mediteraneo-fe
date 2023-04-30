@@ -1,0 +1,19 @@
+.name {
+  color: black;
+  text-align: left;
+  margin-top: 0.3rem;
+  font-size: 1em;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.name:hover {
+  scale: 1.05;
+}
+
+@media only screen and (max-width: 768px) {
+  .name {
+    text-align: center;
+  }
+}

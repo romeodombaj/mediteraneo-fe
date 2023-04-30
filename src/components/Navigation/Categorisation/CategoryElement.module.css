@@ -1,0 +1,24 @@
+.wrapper {
+  width: 70%;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.name {
+  color: black;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.25em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.name:hover {
+  scale: 1.05;
+}
+
+@media only screen and (max-width: 768px) {
+  .name {
+    text-align: center;
+  }
+}

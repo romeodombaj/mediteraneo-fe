@@ -4,6 +4,9 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import ReactDOM from "react-dom";
 import CategoryContext from "../store/category-context";
 import LoadingContext from "../store/loading-context";
+import CategoryElement from "./Categorisation/CategoryElement";
+
+import logo from "../../assets/logo.png";
 
 const Navigation = (props) => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState();
@@ -49,42 +52,32 @@ const Navigation = (props) => {
       {ReactDOM.createPortal(
         <Fragment>
           <div className={styles.wrapper}>
-            {categoryCtx.categories &&
-              categoryCtx.categories.map((category) => {
-                if (category.display === "default") {
-                  return (
-                    <div
-                      onClick={categorySelectionHandler}
-                      className={styles[`category-element`]}
-                      key={category.id}
-                      value={category.id}
-                      onMouseEnter={subcategorySelection}
-                    >
-                      {category.name}
-                    </div>
-                  );
-                }
-              })}
-          </div>
-          {selectedCategoryIndex && (
-            <div className={styles[`subcategory-wrapper`]}>
+            <div>
+              <img src={logo} className={styles.logo}></img>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles[`category-wrapper`]}>
               {categoryCtx.categories &&
-                categoryCtx.categories.map((subcategory) => {
-                  if (subcategory.parent === parseInt(selectedCategoryIndex)) {
+                categoryCtx.categories.map((category) => {
+                  if (category.display === "default") {
                     return (
-                      <div
-                        className={styles[`subcategory-element`]}
-                        key={subcategory.id}
-                        onClick={categorySelectionHandler}
-                        value={subcategory.id}
-                      >
-                        {subcategory.name}
-                      </div>
+                      <CategoryElement
+                        categories={categoryCtx.categories}
+                        key={category.id}
+                        category={category}
+                        onSelected={categorySelectionHandler}
+                      />
                     );
                   }
                 })}
             </div>
-          )}
+            <hr className={styles.hr} />
+            <div className={styles[`other-info`]}>
+              <div>Kontakt</div>
+              <div>O nama</div>
+              <div>Lorem ipsum</div>
+            </div>
+          </div>
         </Fragment>,
         portalElement
       )}

@@ -8,21 +8,52 @@
   z-index: 190;
 }
 
+.hr {
+  border: 2px;
+}
+
 .wrapper {
   position: fixed;
+  width: 20%;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  background-color: rgb(255, 249, 241);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 90;
+}
+
+.category-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 20%;
+  width: 70%;
   justify-content: center;
-  align-items: center;
-  right: 0;
-  top: 0;
-  background-color: aliceblue;
   z-index: 90;
   animation: slide-in 0.5s;
-  background-color: rgb(255, 249, 241);
-  box-shadow: -2px 0px 10px rgba(44, 44, 44, 0.297);
+}
+
+.logo {
+  position: relative;
+  height: 10vh;
+  margin: auto;
+  margin-top: 10vh;
+  transition: 0.3s;
+  animation: slide-in 0.5s;
+}
+
+.logo:hover {
+  scale: 1.1;
+}
+
+.other-info {
+  width: 70%;
+  margin-bottom: 3rem;
+  animation: slide-in 0.5s;
+  text-align: left;
 }
 
 @keyframes slide-in {
@@ -35,66 +66,18 @@
   }
 }
 
-.category-element {
-  text-decoration: none;
-  color: black;
-  text-align: center;
-  margin-top: 2rem;
-  font-weight: bold;
-  font-size: xx-large;
-  width: 100%;
-  z-index: 91;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.subcategory-wrapper {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  width: 10%;
-  align-items: center;
-  right: 20%;
-  top: 0;
-  background-color: rgb(201, 196, 188);
-  transition: 0.5s;
-  z-index: 80;
-  opacity: 1;
-  animation: slide-in 0.5s;
-}
-
-.subcategory-element {
-  text-decoration: none;
-  color: black;
-  text-align: center;
-  margin-top: 2rem;
-  font-weight: bold;
-  font-size: xx-large;
-  width: 100%;
-  z-index: 91;
-}
-
-.category-element:hover {
-  background-color: rgb(243, 237, 230);
-}
-
-.subcategory-element:hover {
-  background-color: rgb(207, 203, 195);
-}
-
-.category-element:hover .subcategory-wrapper {
-  right: 20%;
-  opacity: 1;
-}
-
-.category-element:hover .subcategory-element {
-  opacity: 1;
-}
-
 @media only screen and (max-width: 768px) {
   .wrapper {
     width: 100%;
+  }
+
+  .category-wrapper {
+    align-items: center;
+    width: 100%;
+  }
+
+  .other-info {
+    width: 100%;
+    text-align: center;
   }
 }
