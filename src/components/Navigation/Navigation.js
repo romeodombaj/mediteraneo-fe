@@ -51,6 +51,7 @@ const Navigation = (props) => {
     <Fragment>
       {ReactDOM.createPortal(
         <Fragment>
+          <div className={styles.backdrop} onClick={props.onClose}></div>
           <div className={styles.wrapper}>
             <div>
               <img src={logo} className={styles.logo}></img>

@@ -1,0 +1,26 @@
+.wrapper {
+  width: 13%;
+  height: 80%;
+  background-color: rgb(180, 168, 143);
+  padding: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.image {
+  height: 80%;
+  width: 90%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.title {
+}
+
+.wrapper:hover {
+  scale: 1.1;
+}

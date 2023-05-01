@@ -2,24 +2,21 @@
   position: fixed;
   right: 10%;
   top: 5%;
-  background-color: rgb(228, 229, 232);
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   min-width: 5%;
   border-radius: 2rem;
   padding: 1rem;
-  z-index: 100;
+  z-index: 220;
   transition: 0.2s;
   opacity: 0.6;
-  scale: 0.9;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0);
+  scale: 1;
 }
 
-.navbarWrapper:hover {
-  scale: 1;
-  opacity: 1;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.33);
+.navItem:hover {
+  scale: 1.2;
+  cursor: pointer;
 }
 
 .navItem {
@@ -28,7 +25,7 @@
   margin-right: 1rem;
   width: 20px;
   height: 20px;
-  transition: 0.1s;
+  transition: 0.3s;
 }
 
 .menu-icon-open {
