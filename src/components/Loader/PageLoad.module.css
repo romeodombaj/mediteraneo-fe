@@ -6,43 +6,45 @@
   top: 0;
   background-color: rgb(167, 197, 223);
   z-index: 600;
+  animation-fill-mode: forwards;
 }
 
 .content-wrapper {
-  position: relative;
-  height: 100vh;
-  width: 100%;
+  position: absolute;
   animation: in-anim 1.5s;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .out {
   animation: out-anim 0.5s;
 }
 
+.info-wrapper {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .title {
-  position: absolute;
-  height: 20vh;
-  top: 50vh;
-  left: 38%;
   font-weight: bold;
-  font-size: x-large;
+  font-size: 5vw;
 }
 
 .logo {
-  position: absolute;
   height: 20vh;
-  top: 30vh;
-  left: 40%;
 }
 
 .spinner {
-  position: absolute;
-  height: 20vh;
-  top: 60vh;
-  left: 45%;
-  width: 64px;
-  height: 64px;
-  border: 8px solid;
+  margin-top: 3rem;
+  width: 1rem;
+  height: 1rem;
+  border: 0.3rem solid;
   border-color: #97a6ed transparent #97a6ed transparent;
   border-radius: 50%;
   animation: spin-anim 1.2s linear infinite;

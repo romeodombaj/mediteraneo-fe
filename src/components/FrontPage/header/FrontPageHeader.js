@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import styles from "./FrontPageHeader.module.css";
-import { useInView } from "react-intersection-observer";
+import LoadingContext from "../../store/loading-context";
 
 // temp images
 import logo from "../../../assets/logo.png";
@@ -8,9 +8,21 @@ import arrowDown from "../../../assets/arrow_down.png";
 import TEMPimage from "../../../assets/kitchen main.png";
 
 const FrontPageHeader = () => {
+  const [inAnimation, setInAnimation] = useState(`in-wrapper`);
+
+  const loadingCtx = useContext(LoadingContext);
+
+  useEffect(() => {
+    if (loadingCtx.mainLoaded) {
+      setTimeout(() => {
+        setInAnimation(``);
+      }, [1000]);
+    }
+  }, [loadingCtx.mainLoaded]);
+
   return (
     <Fragment>
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${styles[inAnimation]}`}>
         <div className={styles.background}></div>
         <div className={styles[`image-wrapper`]}>
           <img className={styles.image} src={TEMPimage}></img>

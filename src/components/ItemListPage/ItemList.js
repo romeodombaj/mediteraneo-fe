@@ -77,7 +77,7 @@ const ItemList = () => {
         `https://mediteraneo.eu/wp-json/wc/v3/products?category=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
       )
         .then((response) => response.json())
-        .then((posts) => setItemList(posts))
+        .then((ctgList) => setItemList(ctgList))
         .then(() => {
           if (itemList) {
             loadCtx.onProductLoaded();
@@ -89,8 +89,16 @@ const ItemList = () => {
   return (
     <Fragment>
       <div className={styles.wrapper}>
-        <ItemListHeader category={currentCategory} />
-        <ItemListMain itemInfo={itemList} />
+        {categoryCtx.categories && (
+          <Fragment>
+            <ItemListHeader category={currentCategory} />
+            <ItemListMain
+              itemInfo={itemList}
+              params={loadCtx.params}
+              categories={categoryCtx.categories}
+            />
+          </Fragment>
+        )}
       </div>
     </Fragment>
   );

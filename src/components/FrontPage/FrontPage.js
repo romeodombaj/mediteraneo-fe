@@ -9,6 +9,7 @@ import PopularProductsSection from "./main/PopularSection/PopularProductsSection
 import CategoriesSection from "./main/CategoriesSection/CategoriesSection";
 
 const FrontPage = () => {
+
   return (
     <Fragment>
       <div className={styles.wrapper}>

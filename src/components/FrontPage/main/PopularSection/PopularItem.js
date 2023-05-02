@@ -2,15 +2,15 @@ import styles from "./PopularItem.module.css";
 
 //temp
 
-import tempImg from "../../../../assets/ruc0.jpeg";
-
-const PopularItem = () => {
+const PopularItem = (props) => {
   return (
     <div className={styles.wrapper}>
-      <img src={tempImg} className={styles.image} />
+      <img src={props.item.images[0].src} className={styles.image} />
       <div>
-        <div className={styles.title}>Lorem</div>
-        <div className={styles.description}>Lorem ipsum, ipsum lorem lo...</div>
+        <div className={styles.title}>{props.item.name}</div>
+        <div className={styles.description}>
+          {props.item.description.substring(0, 32)}...
+        </div>
       </div>
     </div>
   );

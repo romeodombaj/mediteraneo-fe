@@ -53,7 +53,7 @@ const Navigation = (props) => {
         <Fragment>
           <div className={styles.backdrop} onClick={props.onClose}></div>
           <div className={styles.wrapper}>
-            <div>
+            <div className={styles[`logo-wrapper`]}>
               <img src={logo} className={styles.logo}></img>
             </div>
             <hr className={styles.hr} />
@@ -74,9 +74,9 @@ const Navigation = (props) => {
             </div>
             <hr className={styles.hr} />
             <div className={styles[`other-info`]}>
-              <div>Kontakt</div>
-              <div>O nama</div>
-              <div>Lorem ipsum</div>
+              <div className={styles[`other-text`]}>Kontakt</div>
+              <div className={styles[`other-text`]}>O nama</div>
+              <div className={styles[`other-text`]}>Lorem ipsum</div>
             </div>
           </div>
         </Fragment>,

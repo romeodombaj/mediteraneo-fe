@@ -12,13 +12,17 @@
 }
 
 .image {
-  height: 80%;
-  width: 90%;
+  min-height: 80%;
+  min-width: 90%;
+  max-height: 80%;
+  max-width: 90%;
   overflow: hidden;
   object-fit: cover;
 }
 
 .title {
+  min-height: 20%;
+  max-height: 20%;
 }
 
 .wrapper:hover {

@@ -1,3 +1,10 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .item-grid {
   margin: auto;
   width: 80%;
@@ -8,11 +15,15 @@
   padding-top: 3rem;
 }
 
-.wrapper {
-  position: relative;
+.subcategory-selection {
+  margin: 1rem;
+  border-radius: 2rem;
+  background-color: aliceblue;
+  padding: 1rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-around;
+  width: 60%;
 }
 
 @media only screen and (max-width: 768px) {

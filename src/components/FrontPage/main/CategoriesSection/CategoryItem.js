@@ -4,11 +4,11 @@ import styles from "./CategoryItem.module.css";
 
 import tempImg from "../../../../assets/ruc1.jpg";
 
-const CategoryItem = () => {
+const CategoryItem = (props) => {
   return (
     <div className={styles.wrapper}>
-      <img className={styles.image} src={tempImg} />
-      <div className={styles.title}>Lorem</div>
+      <img className={styles.image} src={props.category.image.src} />
+      <div className={styles.title}>{props.category.name}</div>
     </div>
   );
 };

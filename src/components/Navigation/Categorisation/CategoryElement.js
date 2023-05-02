@@ -15,7 +15,7 @@ const CategoryElement = (props) => {
       >
         {props.category.name}
       </div>
-      {props.categories.map((subcategory) => {
+      {/*props.categories.map((subcategory) => {
         if (subcategory.parent === props.category.id)
           return (
             <SubcategoryElement
@@ -24,7 +24,7 @@ const CategoryElement = (props) => {
               onSelected={props.onSelected}
             />
           );
-      })}
+      })*/}
     </div>
   );
 };
