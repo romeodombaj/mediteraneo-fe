@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
   text-align: center;
+  padding-left: 1rem;
 }
 
 .title-wrapper {
@@ -10,8 +11,8 @@
 
 .title {
   position: relative;
-  width: 80%;
-  font-size: 1.5em;
+  width: 60%;
+  font-size: 4vw;
   color: #f6ffeb;
   z-index: 100;
 }
@@ -21,14 +22,14 @@
   top: 0;
   left: 0;
   background-color: #0a433c;
-  width: 80%;
-  height: 2rem;
+  width: 60%;
+  height: 5vw;
   z-index: 90;
   transform: skewX(-20deg);
 }
 
 .description {
-  font-size: 0.4em;
+  font-size: 1.5vw;
   width: 60%;
   text-align: left;
   color: gray;
@@ -37,8 +38,8 @@
 
 .price-wrapper {
   position: relative;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 4vw;
+  margin-bottom: 2vw;
   height: 2rem;
   display: flex;
   align-items: center;
@@ -46,19 +47,18 @@
 
 .price {
   position: relative;
-  width: 5rem;
   text-align: center;
   z-index: 100;
   color: #f6ffeb;
+  font-size: 3vw;
+  padding-left: 1vw;
 }
 
 .price-background {
   position: absolute;
-  top: 0;
-  left: 0;
   background-color: #0a433c;
-  width: 5rem;
-  height: 2rem;
+  width: 14vw;
+  height: 5vw;
   z-index: 90;
   transform: skewX(-10deg);
 }

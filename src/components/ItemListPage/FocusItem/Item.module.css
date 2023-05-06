@@ -23,8 +23,8 @@
 }
 
 .back-button {
-  height: 2rem;
-  width: 2rem;
+  height: 3vw;
+  aspect-ratio: 1;
   transform: rotate(90deg);
   cursor: pointer;
   transition: 0.3s;
@@ -38,7 +38,7 @@
   width: 90%;
   text-align: left;
   color: gray;
-  font-size: 0.5em;
+  font-size: 1.5vw;
   margin-left: 1rem;
   font-style: italic;
 }

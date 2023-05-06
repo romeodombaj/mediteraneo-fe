@@ -35,7 +35,9 @@ const Item = (props) => {
         </div>
 
         <ItemInfo itemInfo={props.itemInfo} />
-        <ItemSelection itemInfo={props.itemInfo} />
+        {props.itemInfo.attributes[0] && (
+          <ItemSelection itemInfo={props.itemInfo} />
+        )}
 
         <ToBasketSection addToCart={addItemToCartHandler} />
       </div>

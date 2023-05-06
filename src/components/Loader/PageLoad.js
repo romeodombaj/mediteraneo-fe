@@ -19,7 +19,7 @@ const PageLoad = () => {
 
   return (
     <div className={`${styles.wrapper} ${styles[outAnimation]}`}>
-      <img className={styles[`background-img`]} src={background}></img>
+      <img className={styles[`background-image`]} src={background}></img>
       <div className={styles[`content-wrapper`]}>
         <img src={logo} className={styles.logo}></img>
         <div className={styles.title}>MEDITERANEO</div>

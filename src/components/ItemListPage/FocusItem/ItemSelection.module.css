@@ -22,13 +22,13 @@
 }
 
 .color-wrap {
-  border: 2px solid black;
-  font-size: 0.7em;
-  padding: 0.8rem;
+  border: 5px solid black;
+  padding: 2vw;
   text-align: left;
   display: block;
   transition: 0.1s;
   cursor: pointer;
+  filter: brightness(70%);
 }
 
 .color-wrap:active {
@@ -48,21 +48,23 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  transform: translateX(-25%);
   background-color: #f9f9f9;
-  min-width: 60px;
+  min-width: 8vw;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 0.3rem 0.5rem;
+  padding: 1vw 1vw;
   z-index: 1;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .dropdown {
+  background-color: #f9f9f9;
   border: 2px solid rgba(0, 0, 0, 0.377);
   padding-left: 1rem;
   padding-right: 1rem;
   transition: 0.2s;
+  width: 8vw;
+  height: 4vw;
   cursor: pointer;
 }
 
