@@ -5,6 +5,7 @@ import LoadingContext from "../store/loading-context";
 // temp
 
 import logo from "../../assets/logo.png";
+import background from "../../assets/background colors.jpg";
 
 const PageLoad = () => {
   const [outAnimation, setOutAnimation] = useState(``);
@@ -18,6 +19,7 @@ const PageLoad = () => {
 
   return (
     <div className={`${styles.wrapper} ${styles[outAnimation]}`}>
+      <img className={styles[`background-img`]} src={background}></img>
       <div className={styles[`content-wrapper`]}>
         <img src={logo} className={styles.logo}></img>
         <div className={styles.title}>MEDITERANEO</div>

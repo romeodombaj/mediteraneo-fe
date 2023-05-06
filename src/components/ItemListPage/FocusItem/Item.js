@@ -1,9 +1,12 @@
 import styles from "./Item.module.css";
-import ImageSlide from "./ImageSlide";
-import { useContext } from "react";
+
+import { Fragment, useContext } from "react";
 import CartContext from "../../store/cart-context";
 import ItemInfo from "./ItemInfo";
 import ItemSelection from "./ItemSelection";
+import ImagePortfolioSection from "./ImagePortfolioSction";
+import ToBasketSection from "./ToBasketSection";
+import arrowOut from "../../../assets/arrow_down.png";
 
 const Item = (props) => {
   const cartCtx = useContext(CartContext);
@@ -18,18 +21,23 @@ const Item = (props) => {
   };
 
   return (
-    <div className={styles.itemWrapper}>
-      <div type="button" onClick={props.onClose}>
-        ex
-      </div>
-      <ImageSlide itemInfo={props.itemInfo} />
+    <div className={styles.wrapper}>
+      <ImagePortfolioSection item={props.itemInfo} />
+
       <div className={styles[`information-wrapper`]}>
+        <div className={styles[`position-wrapper`]}>
+          <img
+            onClick={props.onClose}
+            src={arrowOut}
+            className={styles[`back-button`]}
+          ></img>
+          <div className={styles.path}>Product /product</div>
+        </div>
+
         <ItemInfo itemInfo={props.itemInfo} />
         <ItemSelection itemInfo={props.itemInfo} />
 
-        <button onClick={addItemToCartHandler} className={styles[`add-button`]}>
-          ADD ITEM
-        </button>
+        <ToBasketSection addToCart={addItemToCartHandler} />
       </div>
     </div>
   );

@@ -1,0 +1,64 @@
+.wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.title-wrapper {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  position: relative;
+  width: 80%;
+  font-size: 1.5em;
+  color: #f6ffeb;
+  z-index: 100;
+}
+
+.title-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0a433c;
+  width: 80%;
+  height: 2rem;
+  z-index: 90;
+  transform: skewX(-20deg);
+}
+
+.description {
+  font-size: 0.4em;
+  width: 60%;
+  text-align: left;
+  color: gray;
+  margin-bottom: 0.7rem;
+}
+
+.price-wrapper {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  position: relative;
+  width: 5rem;
+  text-align: center;
+  z-index: 100;
+  color: #f6ffeb;
+}
+
+.price-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0a433c;
+  width: 5rem;
+  height: 2rem;
+  z-index: 90;
+  transform: skewX(-10deg);
+}

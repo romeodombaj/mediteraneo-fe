@@ -5,21 +5,27 @@ const ItemSelection = (props) => {
   return (
     <Fragment>
       <div className={styles[`selector`]}>
-        {props.itemInfo.attributes[0].options.map((size) => {
-          return <div>{size}</div>;
-        })}
+        {props.itemInfo.attributes[0].options &&
+          props.itemInfo.attributes[0].options.map((color) => {
+            return (
+              <div
+                style={{ backgroundColor: color }}
+                className={styles[`color-wrap`]}
+              ></div>
+            );
+          })}
       </div>
 
       <div className={styles[`selector`]}>
-        {props.itemInfo.attributes[1].options.map((color) => {
-          return <div>{color}</div>;
-        })}
-      </div>
-
-      <div className={styles[`quantity`]}>
-        <div> + </div>
-        <input className={styles[`quantity-input`]} value="1" />
-        <div> - </div>
+        <div className={styles.dropdown}>
+          SIZE
+          <div className={styles[`dropdown-content`]}>
+            {props.itemInfo.attributes[1].options &&
+              props.itemInfo.attributes[1].options.map((size) => {
+                return <div className={styles[`size`]}>{size}</div>;
+              })}
+          </div>
+        </div>
       </div>
     </Fragment>
   );

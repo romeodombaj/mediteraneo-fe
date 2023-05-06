@@ -6,9 +6,15 @@ const ItemListMain = (props) => {
   return (
     <div className={styles[`wrapper`]}>
       <div className={styles[`subcategory-selection`]}>
+        <div className={styles[`selection-marker`]}></div>
+
         {props.categories.map((subcategory) => {
           if (subcategory.parent === parseInt(props.params))
-            return <div key={subcategory.id}>{subcategory.name}</div>;
+            return (
+              <div className={styles[`subcategory-name`]} key={subcategory.id}>
+                {subcategory.name}
+              </div>
+            );
         })}
       </div>
       <div className={styles[`item-grid`]}>

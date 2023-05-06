@@ -50,6 +50,13 @@
   animation: spin-anim 1.2s linear infinite;
 }
 
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px) contrast(120%) brightness(70%) grayscale(80%);
+}
+
 @keyframes spin-anim {
   0% {
     transform: rotate(0deg);
