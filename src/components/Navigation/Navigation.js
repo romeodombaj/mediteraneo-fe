@@ -1,10 +1,10 @@
 import React, { Fragment, useContext, useState } from "react";
 import styles from "./Navigation.module.css";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import CategoryContext from "../store/category-context";
-import LoadingContext from "../store/loading-context";
 import CategoryElement from "./Categorisation/CategoryElement";
+import NavigationContext from "../store/navigation-context";
 
 import logo from "../../assets/logo.png";
 
@@ -13,16 +13,7 @@ const Navigation = (props) => {
   const portalElement = document.getElementById("overlays");
 
   const categoryCtx = useContext(CategoryContext);
-  const loadCtx = useContext(LoadingContext);
-  const navigate = useNavigate();
-
-  // scrolls to top of the page
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const navCtx = useContext(NavigationContext);
 
   //opening specific subcategory list
   const subcategorySelection = (event) => {
@@ -32,19 +23,7 @@ const Navigation = (props) => {
   // link to new page
   const categorySelectionHandler = (event) => {
     const selectedCatId = event.target.getAttribute("value");
-
-    if (!(selectedCatId === loadCtx.params)) {
-      loadCtx.setParams(selectedCatId);
-      loadCtx.onProductLoad();
-      setTimeout(() => {
-        navigate(`/${selectedCatId}`);
-        goToTop();
-        props.onClose();
-      }, 250);
-    } else {
-      goToTop();
-      props.onClose();
-    }
+    navCtx.loadCategory(selectedCatId);
   };
 
   return (
@@ -54,7 +33,12 @@ const Navigation = (props) => {
           <div className={styles.backdrop} onClick={props.onClose}></div>
           <div className={styles.wrapper}>
             <div className={styles[`logo-wrapper`]}>
-              <img src={logo} className={styles.logo}></img>
+              <img
+                value={""}
+                onClick={categorySelectionHandler}
+                src={logo}
+                className={styles.logo}
+              ></img>
             </div>
             <hr className={styles.hr} />
             <div className={styles[`category-wrapper`]}>

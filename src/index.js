@@ -5,14 +5,16 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import CategoryProvider from "./components/store/CategoryProvider";
 import LoadingProvider from "./components/store/LoadingProvider";
-
+import NavigationProvider from "./components/store/NavigationProvider";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <LoadingProvider>
       <CategoryProvider>
         <BrowserRouter>
-          <App />
+          <NavigationProvider>
+            <App />
+          </NavigationProvider>
         </BrowserRouter>
       </CategoryProvider>
     </LoadingProvider>

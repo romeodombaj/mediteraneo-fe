@@ -1,23 +1,24 @@
 import styles from "./ItemListMain.module.css";
 import ShowItem from "./ShowItem";
-import CategoryContext from "../../store/category-context";
+import ListActions from "./ListActions";
+import { useState, useEffect } from "react";
 
 const ItemListMain = (props) => {
+  const [gridStyle, setGridStyle] = useState(``);
+
+  useEffect(() => {
+    console.log(gridStyle);
+
+    if (props.gridStyle === "0") {
+      setGridStyle(``);
+    } else {
+      setGridStyle(`small-grid`);
+    }
+  }, [props.gridStyle]);
+
   return (
     <div className={styles[`wrapper`]}>
-      <div className={styles[`subcategory-selection`]}>
-        <div className={styles[`selection-marker`]}></div>
-
-        {props.categories.map((subcategory) => {
-          if (subcategory.parent === parseInt(props.params))
-            return (
-              <div className={styles[`subcategory-name`]} key={subcategory.id}>
-                {subcategory.name}
-              </div>
-            );
-        })}
-      </div>
-      <div className={styles[`item-grid`]}>
+      <div className={`${styles[`item-grid`]} ${styles[gridStyle]}`}>
         {props.itemInfo.map((item) => {
           return <ShowItem key={item.id} itemInfo={item} />;
         })}

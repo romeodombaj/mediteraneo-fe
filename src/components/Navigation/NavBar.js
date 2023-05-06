@@ -4,26 +4,16 @@ import cartIcon from "../../assets/cart.png";
 import { Fragment, useState, useContext, useEffect } from "react";
 import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
-import CartContext from "../store/cart-context";
+import NavigationContext from "../store/navigation-context";
 
 const NavBar = (props) => {
-  const [isNavigating, setIsNavigating] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
   const [menuIconState, setMenuIconState] = useState(``);
 
-  const CartCtx = useContext(CartContext);
+  const navCtx = useContext(NavigationContext);
 
   const changeNavigationStateHandler = () => {
-    setIsNavigating((prevState) => !prevState);
-  };
-
-  const openNavigationHandler = () => {
-    setIsNavigating(true);
-  };
-
-  const closeNavigationHandler = () => {
-    setMenuIconState(``);
-    setIsNavigating(false);
+    navCtx.changeNavigationState();
   };
 
   const openCartHandler = () => {
@@ -35,13 +25,17 @@ const NavBar = (props) => {
   };
 
   useEffect(() => {
-    isNavigating ? setMenuIconState(`menu-icon-open`) : setMenuIconState(``);
-    props.nav(isNavigating);
-  }, [isNavigating]);
+    navCtx.isNavigating
+      ? setMenuIconState(`menu-icon-open`)
+      : setMenuIconState(``);
+    props.nav(navCtx.isNavigating);
+  }, [navCtx.isNavigating]);
 
   return (
     <Fragment>
-      {isNavigating && <Navigation onClose={closeNavigationHandler} />}
+      {navCtx.isNavigating && (
+        <Navigation onClose={changeNavigationStateHandler} />
+      )}
       {cartIsOpen && <Cart onClose={closeCartHandler}></Cart>}
       <div className={styles.navbarWrapper}>
         <img

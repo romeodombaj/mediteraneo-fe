@@ -3,7 +3,7 @@ import { useContext } from "react";
 import CategoryItem from "./CategoryItem";
 import CategoryContext from "../../../store/category-context";
 
-const CategoriesSection = () => {
+const CategoriesSection = (props) => {
   const categoryCtx = useContext(CategoryContext);
 
   return (
@@ -12,7 +12,13 @@ const CategoriesSection = () => {
         {categoryCtx.categories &&
           categoryCtx.categories.map((category) => {
             if (category.display === "default")
-              return <CategoryItem key={category.id} category={category} />;
+              return (
+                <CategoryItem
+                  load={props.load}
+                  key={category.id}
+                  category={category}
+                />
+              );
           })}
       </div>
 

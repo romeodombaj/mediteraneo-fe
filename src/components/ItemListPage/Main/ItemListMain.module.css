@@ -12,7 +12,11 @@
   grid-template-columns: auto auto auto auto;
   overflow-x: hidden;
   column-gap: 1rem;
-  padding-top: 3rem;
+  row-gap: 2rem;
+}
+
+.small-grid {
+  grid-template-columns: auto auto;
 }
 
 .subcategory-selection {
@@ -30,12 +34,20 @@
   .item-grid {
     grid-template-columns: auto auto auto;
   }
+
+  .small-grid {
+    grid-template-columns: auto auto;
+  }
 }
 
 @media only screen and (max-width: 480px) {
   .item-grid {
     grid-template-columns: auto auto;
     width: 100%;
+  }
+
+  .small-grid {
+    grid-template-columns: auto;
   }
 }
 

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import tempImg from "../../../../assets/towels.jpg";
 
-const PopularProductsSection = () => {
+const PopularProductsSection = (props) => {
   const [popularProductsList, setPopularProductsList] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const PopularProductsSection = () => {
       <div className={styles[`items-wrapper`]}>
         {popularProductsList &&
           popularProductsList.map((item) => {
-            return <PopularItem key={item.id} item={item} />;
+            return <PopularItem load={props.load} key={item.id} item={item} />;
           })}
       </div>
       <img className={styles.image} src={tempImg} />
