@@ -7,7 +7,6 @@ const ItemInfo = (props) => {
     <div className={styles.wrapper}>
       <div className={styles[`title-wrapper`]}>
         <div className={styles.title}>{props.itemInfo.name}</div>
-        <div className={styles[`title-background`]} />
       </div>
 
       <div className={styles.description}>
@@ -16,7 +15,6 @@ const ItemInfo = (props) => {
 
       <div className={styles[`price-wrapper`]}>
         <div className={styles.price}>€ {props.itemInfo.price} </div>
-        <div className={styles[`price-background`]} />
       </div>
     </div>
   );

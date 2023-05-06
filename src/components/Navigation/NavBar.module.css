@@ -1,32 +1,84 @@
-.navbarWrapper {
+.wrapper {
   position: fixed;
-  right: 5%;
-  top: 5%;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-right: 1rem;
+  width: 90%;
+  z-index: 220;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-wrapper {
+  background-color: #0a433c00;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  transition: 0.5s;
+  transform: skewX(-10deg);
+  border-radius: 0.15rem;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 2em;
+  opacity: 0.6;
+  transition: 0.3s;
+  transform: skewX(10deg);
+}
+
+.title-wrapper:hover .title {
+  opacity: 1;
+  scale: 1.1;
+  color: #d6dfd3;
+}
+
+.title-wrapper:hover {
+  background-color: #0a433c;
+}
+
+/*  nav actions  */
+
+.action-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border-radius: 2rem;
-  padding: 1rem;
-  z-index: 220;
-  transition: 0.2s;
 }
 
-.navItem:hover {
-  scale: 1.2;
+.nav-item-wrapper {
+  background-color: #0a433c00;
+  aspect-ratio: 1;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  padding: 1rem;
+  transition: 0.3s;
+  transform: skewX(-10deg);
   cursor: pointer;
+  border-radius: 0.15rem;
+}
+
+.nav-item-wrapper:hover {
+  background-color: #0a433c;
+}
+
+.nav-item-wrapper:hover .navItem {
+  scale: 1.2;
   opacity: 1;
+  filter: invert(80%);
 }
 
 .navItem {
-  margin: 0;
-  margin-left: 0.7rem;
-  margin-right: 0.7rem;
-  width: 3vh;
+  margin: auto;
+  height: 2rem;
   aspect-ratio: 1;
   transition: 0.3s;
   opacity: 0.6;
+  transform: skewX(10deg);
 }
 
 .menu-icon-open {
-  transform: rotate(90deg);
+  transform: rotate(90deg) skewY(-10deg);
 }

@@ -16,6 +16,10 @@ const NavBar = (props) => {
     navCtx.changeNavigationState();
   };
 
+  const goHome = () => {
+    navCtx.loadCategory();
+  };
+
   const openCartHandler = () => {
     setCartIsOpen(true);
   };
@@ -37,17 +41,26 @@ const NavBar = (props) => {
         <Navigation onClose={changeNavigationStateHandler} />
       )}
       {cartIsOpen && <Cart onClose={closeCartHandler}></Cart>}
-      <div className={styles.navbarWrapper}>
-        <img
-          onClick={openCartHandler}
-          className={styles.navItem}
-          src={cartIcon}
-        ></img>
-        <img
-          onClick={changeNavigationStateHandler}
-          className={`${styles.navItem} ${styles[menuIconState]}`}
-          src={menuIcon}
-        ></img>
+      <div className={styles.wrapper}>
+        <div onClick={goHome} className={styles[`title-wrapper`]}>
+          <div className={styles.title}>Mediteraneo</div>
+        </div>
+
+        <div className={styles[`action-wrapper`]}>
+          <div onClick={openCartHandler} className={styles[`nav-item-wrapper`]}>
+            <img className={styles.navItem} src={cartIcon}></img>
+          </div>
+
+          <div
+            onClick={changeNavigationStateHandler}
+            className={styles[`nav-item-wrapper`]}
+          >
+            <img
+              className={`${styles.navItem} ${styles[menuIconState]}`}
+              src={menuIcon}
+            ></img>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

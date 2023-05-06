@@ -12,6 +12,8 @@
   overflow-y: scroll;
 }
 
+
+
 .position-wrapper {
   position: relative;
   width: 100%;
@@ -55,7 +57,7 @@
 .information-wrapper {
   position: relative;
   margin-top: 5%;
-  width: 70%;
+  width: 30%;
   height: 80vh;
   margin-left: auto;
   margin-right: auto;

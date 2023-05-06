@@ -9,16 +9,10 @@ import NavigationContext from "../store/navigation-context";
 import logo from "../../assets/logo.png";
 
 const Navigation = (props) => {
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState();
   const portalElement = document.getElementById("overlays");
 
   const categoryCtx = useContext(CategoryContext);
   const navCtx = useContext(NavigationContext);
-
-  //opening specific subcategory list
-  const subcategorySelection = (event) => {
-    setSelectedCategoryIndex(event.target.getAttribute("value"));
-  };
 
   // link to new page
   const categorySelectionHandler = (event) => {
@@ -34,7 +28,6 @@ const Navigation = (props) => {
           <div className={styles.wrapper}>
             <div className={styles[`logo-wrapper`]}>
               <img
-                value={""}
                 onClick={categorySelectionHandler}
                 src={logo}
                 className={styles.logo}

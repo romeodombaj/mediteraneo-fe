@@ -6,7 +6,8 @@
   height: 100vh;
   background-color: rgb(253, 236, 199);
   z-index: 500;
-  transition: 0.25s;
+  transition-property: opacity, width, height, top;
+  transition-duration: 0.25s;
   animation: in-anim 0.25s;
 }
 
@@ -22,22 +23,24 @@
 }
 
 .out {
-  height: 30vh;
+  top: 7rem;
+  height: 15rem;
+  width: 85%;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .image-wrapper {
-  position: absolute;
-  width: inherit;
-  height: inherit;
-  top: 0;
-  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: inherit;
   overflow: hidden;
 }
 
 .image {
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   filter: brightness(90%) contrast(120%) blur(2px);
 }

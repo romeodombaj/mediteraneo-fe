@@ -1,35 +1,30 @@
 .wrapper {
   width: 100%;
-  text-align: center;
   padding-left: 1rem;
 }
 
 .title-wrapper {
+  width: fit-content;
+  padding: 0.5rem;
+  padding-right: 2rem;
   position: relative;
   margin-bottom: 0.5rem;
+  padding-left: 2rem;
+  transform: skewX(-20deg);
+  background-color: #0a433c;
 }
 
 .title {
   position: relative;
-  width: 60%;
-  font-size: 4vw;
+  font-size: 2em;
   color: #f6ffeb;
   z-index: 100;
-}
-
-.title-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #0a433c;
-  width: 60%;
-  height: 5vw;
-  z-index: 90;
-  transform: skewX(-20deg);
+  transform: skewX(20deg);
+  text-align: left;
 }
 
 .description {
-  font-size: 1.5vw;
+  font-size: 1em;
   width: 60%;
   text-align: left;
   color: gray;
@@ -38,27 +33,19 @@
 
 .price-wrapper {
   position: relative;
-  margin-top: 4vw;
-  margin-bottom: 2vw;
-  height: 2rem;
-  display: flex;
-  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  width: fit-content;
+  background-color: #0a433c;
+  transform: skewX(-10deg);
 }
 
 .price {
   position: relative;
-  text-align: center;
+  text-align: left;
   z-index: 100;
   color: #f6ffeb;
-  font-size: 3vw;
-  padding-left: 1vw;
-}
-
-.price-background {
-  position: absolute;
-  background-color: #0a433c;
-  width: 14vw;
-  height: 5vw;
-  z-index: 90;
-  transform: skewX(-10deg);
+  font-size: 1.5em;
+  transform: skewX(10deg);
 }
