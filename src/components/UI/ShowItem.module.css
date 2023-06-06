@@ -1,0 +1,56 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 60vh;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(100, 100, 100);
+  border-radius: 0.1rem;
+  z-index: 50;
+  box-shadow: 0px 0px 50px rgba(128, 128, 128, 0);
+  transition: 0.2s;
+}
+
+.content-wrapper {
+  width: 90%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+}
+
+.price {
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 90%;
+  margin: auto;
+}
+
+.open-indicator {
+  text-align: right;
+  color: rgb(165, 165, 165);
+  float: right;
+  opacity: 0;
+  font-size: 0.8em;
+}
+
+.wrapper:hover {
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0px 0px 50px rgba(128, 128, 128, 0.402);
+  z-index: 60;
+}
+
+.wrapper:hover .open-indicator {
+  opacity: 1;
+}

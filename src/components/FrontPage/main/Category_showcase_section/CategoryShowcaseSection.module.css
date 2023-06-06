@@ -1,0 +1,18 @@
+.wrapper {
+  width: 80%;
+  margin: auto;
+  margin-top: 5rem;
+  height: 120vh;
+}
+
+.title {
+  color: gray;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 0.1rem;
+  row-gap: 1rem;
+  margin-top: 2rem;
+}

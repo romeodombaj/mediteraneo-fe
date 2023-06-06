@@ -8,30 +8,17 @@ import arrowDown from "../../../assets/arrow_down.png";
 import TEMPimage from "../../../assets/kitchen main.png";
 
 const FrontPageHeader = () => {
-  const [inAnimation, setInAnimation] = useState(`in-wrapper`);
-
-  const loadingCtx = useContext(LoadingContext);
-
-  useEffect(() => {
-    if (loadingCtx.mainLoaded) {
-      setTimeout(() => {
-        setInAnimation(``);
-      }, [1000]);
-    }
-  }, [loadingCtx.mainLoaded]);
-
   return (
-    <Fragment>
-      <div className={`${styles.wrapper} ${styles[inAnimation]}`}>
-        <div className={styles.background}></div>
-        <div className={styles[`image-wrapper`]}>
-          <img className={styles.image} src={TEMPimage}></img>
+    <div className={styles.wrapper}>
+      <img className={styles[`background-image`]} src={TEMPimage} />
+      <div className={styles[`info-wrapper`]}>
+        <div className={styles[`head-text`]}>
+          RAZNOLIKE OPCIJE KOJE ĆE ZADOVOLJITI <br /> VAŠE POTREBE I
+          PREFERENCIJE
         </div>
-        <div className={styles[`title-wrapper`]}>
-          <div className={styles.title}>Mediteraneo</div>
-        </div>
+        <div className={styles.button}>POGLEDAJTE PONUDU</div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

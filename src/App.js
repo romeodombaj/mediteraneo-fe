@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import styles from "./App.module.css";
 import { useEffect, useContext, useState } from "react";
@@ -16,6 +15,7 @@ const App = () => {
   const categoryCtx = useContext(CategoryContext);
   const loadCtx = useContext(LoadingContext);
   const [mainIsLoading, setMainIsLoading] = useState(true);
+  const [mainLoaded, setMainLoaded] = useState(false);
   const [productIsLoading, setProductIsLoading] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const [navBodyAnimation, setNavBodyAnimation] = useState(``);
@@ -28,6 +28,9 @@ const App = () => {
     if (loadCtx.mainLoaded) {
       setTimeout(() => {
         setMainIsLoading(false);
+        setTimeout(() => {
+          setMainLoaded(true);
+        }, 800);
       }, 500);
     }
   }, [loadCtx.mainLoaded]);
@@ -63,7 +66,7 @@ const App = () => {
       {productIsLoading && <SubPageLoad />}
 
       <div className="App">
-        <NavBar nav={setIsNavigating} />
+        {mainLoaded && <NavBar nav={setIsNavigating} />}
         <div className={`${styles[`nav-state`]} ${styles[navBodyAnimation]}`}>
           <Routes>
             <Route path="/" element={<FrontPage />} />

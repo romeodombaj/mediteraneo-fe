@@ -1,78 +1,31 @@
 .wrapper {
-  position: relative;
   width: 100%;
-  height: 70vh;
-  transition: 0.5s;
-}
-
-.in-wrapper {
   height: 100vh;
-  scale: 1;
 }
 
-.background {
-  position: absolute;
-  top: 10%;
-  left: 15%;
-  width: 55%;
-  height: 70%;
-  background-color: #2b7280;
-}
-
-.image-wrapper {
-  position: absolute;
-  top: 15%;
-  left: 25%;
-  width: 55%;
-  height: 70%;
-}
-
-.image-wrapper::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-  content: "";
-  display: block;
-  width: 100%;
+.background-image {
   height: 100%;
-  background-color: #16898d;
-  transition: 0.3s;
-  z-index: 60;
-}
-
-.image {
   width: 100%;
-  height: 100%;
   object-fit: cover;
-  transition: 0.3s;
-  z-index: 50;
 }
 
-.title-wrapper {
+.info-wrapper {
   position: absolute;
-  top: 50%;
-  left: 20%;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.head-text {
+  line-height: 1.5rem;
+}
+
+.button {
   padding: 1rem;
-  padding-right: 2rem;
-  background-color: #0a433c;
-  z-index: 70;
-}
-
-.title {
-  font-size: 7vw;
-  color: #d6dfd3;
-  transition: 0.3s;
-}
-
-.wrapper:hover .title {
-  scale: 1.02;
-}
-
-.wrapper:hover .image-wrapper::after {
-  transform: translateX(1%);
-}
-
-.wrapper:hover .image {
-  transform: translateX(1%);
+  border: 1px solid white;
+  margin: auto;
+  margin-top: 2rem;
+  width: fit-content;
 }

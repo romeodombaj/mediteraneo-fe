@@ -1,15 +1,28 @@
 import styles from "./PageLoad.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, Fragment } from "react";
 import LoadingContext from "../store/loading-context";
+//import styles from "../FrontPage/header/FrontPageHeader.module.css";
 
 // temp
 
 import logo from "../../assets/logo.png";
 import background from "../../assets/background colors.jpg";
+import TEMPimage from "../../assets/kitchen main.png";
 
 const PageLoad = () => {
   const [outAnimation, setOutAnimation] = useState(``);
   const loadCtx = useContext(LoadingContext);
+  const [inAnimation, setInAnimation] = useState(`in-wrapper`);
+
+  const loadingCtx = useContext(LoadingContext);
+
+  useEffect(() => {
+    if (loadingCtx.mainLoaded) {
+      setTimeout(() => {
+        setInAnimation(``);
+      }, [1000]);
+    }
+  }, [loadingCtx.mainLoaded]);
 
   useEffect(() => {
     if (loadCtx.mainLoaded) {
@@ -28,5 +41,20 @@ const PageLoad = () => {
     </div>
   );
 };
+
+/*<Fragment>
+      <div className={`${styles.wrapper} ${styles[inAnimation]}`}>
+        <div className={styles.background}></div>
+        <div className={styles[`image-wrapper`]}>
+          <img className={styles.image} src={TEMPimage}></img>
+        </div>
+        <div className={styles[`title-wrapper`]}>
+          <div className={styles.title}>Mediteraneo</div>
+        </div>
+      </div>
+      <div className={styles[`spinner-wrapper`]}>
+        <div className={styles.spinner}></div>
+      </div>
+    </Fragment>*/
 
 export default PageLoad;

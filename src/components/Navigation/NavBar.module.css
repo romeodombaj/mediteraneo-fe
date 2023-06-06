@@ -10,6 +10,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  animation: load-in 1s;
 }
 
 .title-wrapper {
@@ -57,7 +58,6 @@
   transition: 0.3s;
   transform: skewX(-10deg);
   cursor: pointer;
-  border-radius: 0.15rem;
 }
 
 .nav-item-wrapper:hover {
@@ -81,4 +81,14 @@
 
 .menu-icon-open {
   transform: rotate(90deg) skewY(-10deg);
+}
+
+@keyframes load-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

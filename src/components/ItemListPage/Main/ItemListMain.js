@@ -1,5 +1,5 @@
 import styles from "./ItemListMain.module.css";
-import ShowItem from "./ShowItem";
+import ShowItem from "../../UI/ShowItem";
 import ListActions from "./ListActions";
 import { useState, useEffect } from "react";
 
@@ -20,7 +20,7 @@ const ItemListMain = (props) => {
     <div className={styles[`wrapper`]}>
       <div className={`${styles[`item-grid`]} ${styles[gridStyle]}`}>
         {props.itemInfo.map((item) => {
-          return <ShowItem key={item.id} itemInfo={item} />;
+          return <ShowItem key={item.id} item={item} />;
         })}
       </div>
     </div>
