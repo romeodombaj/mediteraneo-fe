@@ -48,12 +48,12 @@ const NavBar = (props) => {
 
         <div className={styles[`action-wrapper`]}>
           <div onClick={openCartHandler} className={styles[`nav-item-wrapper`]}>
-            <img className={styles.navItem} src={cartIcon}></img>
+            <img className={styles.navItem} src={cartIcon} />
           </div>
 
           <div
             onClick={changeNavigationStateHandler}
-            className={styles[`nav-item-wrapper`]}
+            className={`${styles[`nav-item-wrapper`]} ${styles.menu}`}
           >
             <img
               className={`${styles.navItem} ${styles[menuIconState]}`}

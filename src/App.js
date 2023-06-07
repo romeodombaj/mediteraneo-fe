@@ -52,14 +52,6 @@ const App = () => {
 
   //
 
-  useEffect(() => {
-    if (isNavigating) {
-      setNavBodyAnimation(`nav-active`);
-    } else {
-      setNavBodyAnimation(``);
-    }
-  }, [isNavigating]);
-
   return (
     <CartProvider>
       {mainIsLoading && <PageLoad />}

@@ -36,6 +36,13 @@ const ListActions = (props) => {
           })}
         </div>
       </div>
+
+      <div className={styles[`sort-wrapper`]}>Boja</div>
+      <div className={styles[`sort-wrapper`]}>Vrsta</div>
+      <div className={styles[`sort-wrapper`]}>Veličina</div>
+      <div className={styles[`sort-wrapper`]}>Materijal</div>
+      <div className={styles[`sort-wrapper`]}>Cijena</div>
+
       <div className={styles[`grid-wrapper`]}>
         <div
           value={0}

@@ -11,8 +11,9 @@ const ItemListHeader = (props) => {
         {props.category && (
           <Fragment>
             <img className={styles.image} src={props.category.image.src}></img>
-            <div className={styles[`title-wrapper`]}>
+            <div className={styles[`info-wrapper`]}>
               <div className={styles.title}>{props.category.name}</div>
+              <div className={styles.description}>{props.category.name}</div>
             </div>
           </Fragment>
         )}

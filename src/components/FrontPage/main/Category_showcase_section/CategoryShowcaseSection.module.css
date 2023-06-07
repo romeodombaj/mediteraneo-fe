@@ -16,3 +16,19 @@
   row-gap: 1rem;
   margin-top: 2rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .grid {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .grid {
+    grid-template-columns: auto;
+  }
+}

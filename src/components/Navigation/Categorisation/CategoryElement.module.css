@@ -1,22 +1,12 @@
 .wrapper {
   width: 100%;
-  height: 5vh;
+  height: 2rem;
 }
 
 .name {
   color: black;
   text-align: left;
-  font-size: 1vw;
+  font-size: 0.8em;
   cursor: pointer;
   transition: 0.3s;
-}
-
-.name:hover {
-  scale: 1.05;
-}
-
-@media only screen and (max-width: 768px) {
-  .name {
-    text-align: center;
-  }
 }

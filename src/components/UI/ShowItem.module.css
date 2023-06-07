@@ -3,7 +3,7 @@
   width: 100%;
   overflow: hidden;
   height: 60vh;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(245, 245, 245);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,4 +53,10 @@
 
 .wrapper:hover .open-indicator {
   opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  .open-indicator {
+    opacity: 1;
+  }
 }
