@@ -53,7 +53,7 @@ const NavBar = (props) => {
 
           <div
             onClick={changeNavigationStateHandler}
-            className={`${styles[`nav-item-wrapper`]} ${styles.menu}`}
+            className={`${styles[`nav-item-wrapper`]}`}
           >
             <img
               className={`${styles.navItem} ${styles[menuIconState]}`}

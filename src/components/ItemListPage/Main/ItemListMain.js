@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 const ItemListMain = (props) => {
   const [gridStyle, setGridStyle] = useState(``);
+  const [itemCount, setItemCount] = useState(0);
 
   useEffect(() => {
     console.log(gridStyle);

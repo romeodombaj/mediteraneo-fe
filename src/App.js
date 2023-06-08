@@ -24,6 +24,8 @@ const App = () => {
     categoryCtx.fetchCategories();
   }, []);
 
+  // LOADING EFFECTS
+
   useEffect(() => {
     if (loadCtx.mainLoaded) {
       setTimeout(() => {
@@ -35,6 +37,7 @@ const App = () => {
     }
   }, [loadCtx.mainLoaded]);
 
+  /*
   // product loading
   useEffect(() => {
     if (loadCtx.productLoaded) {
@@ -49,13 +52,13 @@ const App = () => {
       setProductIsLoading(true);
     }
   }, [loadCtx.productIsLoading]);
-
+*/
   //
 
   return (
     <CartProvider>
-      {mainIsLoading && <PageLoad />}
-      {productIsLoading && <SubPageLoad />}
+      {/*mainIsLoading && <PageLoad />*/}
+      {/*productIsLoading && <SubPageLoad />*/}
 
       <div className="App">
         {mainLoaded && <NavBar nav={setIsNavigating} />}

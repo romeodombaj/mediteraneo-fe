@@ -1,0 +1,44 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  background-color: rgb(246, 246, 246);
+  cursor: pointer;
+}
+
+.arrow {
+  width: 1.5rem;
+  aspect-ratio: 1;
+}
+
+.info-wrapper {
+  height: 3rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  color: rgb(94, 94, 94);
+}
+
+.options-wrapper {
+  position: absolute;
+  top: 3rem;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+  text-align: center;
+  padding-top: 0.5rem;
+  background-color: white;
+}
+
+.option {
+  cursor: pointer;
+  height: 2rem;
+}
+
+.wrapper:hover .options-wrapper {
+  display: flex;
+}

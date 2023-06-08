@@ -1,5 +1,6 @@
+import Dropdown from "../../UI/Dropdown";
 import styles from "./ListActions.module.css";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 const ListActions = (props) => {
   const [sortingOption, setSortingOption] = useState("Price Up");
@@ -18,7 +19,7 @@ const ListActions = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles[`sort-wrapper`]}>
+      {/*<div className={styles[`sort-wrapper`]}>
         <div>{sortingOption}</div>
 
         <div className={styles[`dropdown-options`]}>
@@ -35,15 +36,16 @@ const ListActions = (props) => {
             );
           })}
         </div>
-      </div>
+      </div>*/}
 
-      <div className={styles[`sort-wrapper`]}>Boja</div>
-      <div className={styles[`sort-wrapper`]}>Vrsta</div>
-      <div className={styles[`sort-wrapper`]}>Veličina</div>
-      <div className={styles[`sort-wrapper`]}>Materijal</div>
-      <div className={styles[`sort-wrapper`]}>Cijena</div>
+      <Dropdown title="Razvrstaj" options={["opt1", "opt2", "opt3"]} />
+      <Dropdown title="Boja" options={["opt1", "opt2", "opt3"]} />
+      <Dropdown title="Vrsta" options={["opt1", "opt2", "opt3"]} />
+      <Dropdown title="Cijena" options={["opt1", "opt2", "opt3"]} />
+      <Dropdown title="Materijal" options={["opt1", "opt2", "opt3"]} />
+      <Dropdown title="Veličina" options={["opt1", "opt2", "opt3"]} />
 
-      <div className={styles[`grid-wrapper`]}>
+      {/*<div className={styles[`grid-wrapper`]}>
         <div
           value={0}
           onClick={changeGridStyleValue}
@@ -58,7 +60,7 @@ const ListActions = (props) => {
         >
           SMALL
         </div>
-      </div>
+        </div>*/}
     </div>
   );
 };

@@ -6,7 +6,7 @@
   padding-right: 1rem;
   width: 90%;
   display: flex;
-  z-index: 210;
+  z-index: 190;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -77,11 +77,6 @@
   transition: 0.3s;
   opacity: 0.6;
   transform: skewX(10deg);
-  z-index: 300;
-}
-
-.menu {
-  z-index: 300;
 }
 
 .menu-icon-open {

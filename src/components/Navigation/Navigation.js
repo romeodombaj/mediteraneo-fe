@@ -7,6 +7,8 @@ import CategoryElement from "./Categorisation/CategoryElement";
 import NavigationContext from "../store/navigation-context";
 
 import logo from "../../assets/logo.png";
+import exit from "../../assets/x.svg";
+import InfoModal from "../UI/InfoModal";
 
 const Navigation = (props) => {
   const portalElement = document.getElementById("overlays");
@@ -14,18 +16,29 @@ const Navigation = (props) => {
   const categoryCtx = useContext(CategoryContext);
   const navCtx = useContext(NavigationContext);
 
+  const [policyIsOpen, setPolicyIsOpen] = useState(false);
+
   // link to new page
   const categorySelectionHandler = (event) => {
     const selectedCatId = event.target.getAttribute("value");
     navCtx.loadCategory(selectedCatId);
   };
 
+  const politicsHandler = () => {
+    setPolicyIsOpen(true);
+  };
+
   return (
     <Fragment>
+      {policyIsOpen && <InfoModal />}
       {ReactDOM.createPortal(
         <Fragment>
           <div className={styles.backdrop} onClick={props.onClose}></div>
           <div className={styles.wrapper}>
+            <div className={styles[`exit-actions`]} onClick={props.onClose}>
+              <img src={exit} className={styles[`exit-icon`]} />
+              <div className={styles[`exit-text`]}>MENU</div>
+            </div>
             <div className={styles[`content-wrapper`]}>
               <div className={styles[`category-wrapper`]}>
                 {categoryCtx.categories &&
@@ -57,7 +70,10 @@ const Navigation = (props) => {
                   <div className={styles[`other-text`]}>FAQ</div>
                 </div>
                 <div className={styles[`right-column`]}>
-                  <div className={styles[`other-text`]}>
+                  <div
+                    onClick={politicsHandler}
+                    className={styles[`other-text`]}
+                  >
                     Politika privatnosti
                   </div>
                   <div className={styles[`other-text`]}>Načini plaćanja</div>

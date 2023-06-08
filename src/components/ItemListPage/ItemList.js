@@ -118,6 +118,7 @@ const ItemList = () => {
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} />
+            <div className={styles.count}>55 proizvoda </div>
             <ListActions val={changeSortingValue} sty={changeGridStyleValue} />
             <ItemListMain
               gridStyle={gridStyleValue}
