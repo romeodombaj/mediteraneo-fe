@@ -16,10 +16,10 @@ const CategoryProvider = (props) => {
       .then(loadCtx.onMainLoaded);
   };
 
-  const getCategory = (id) => {
+  const getCategory = (slug) => {
     if (categoryList) {
       const categoryIndex = categoryList.findIndex(
-        (category) => category.id === id
+        (category) => category.slug == slug
       );
       return categoryList[categoryIndex];
     }

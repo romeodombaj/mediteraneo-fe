@@ -1,6 +1,6 @@
 import { useState, Fragment, useEffect, useContext } from "react";
 import styles from "./ItemList.module.css";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import CartContext from "../store/cart-context";
 import ItemListHeader from "./Header/ItemListHeader";
 import ItemListMain from "./Main/ItemListMain";
@@ -12,6 +12,7 @@ import ListActions from "./Main/ListActions";
 import rucniciImg from "../../assets/ruc0.jpeg";
 import kuhinjaImg from "../../assets/ruc1.jpg";
 import posteljinaImg from "../../assets/ruc2.jpg";
+import NavigationContext from "../store/navigation-context";
 
 const dummy_categories = [
   {
@@ -61,17 +62,17 @@ const ItemList = () => {
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
   const loadCtx = useContext(LoadingContext);
+  const navCtx = useContext(NavigationContext);
 
   const params = useParams().categoryID;
 
-  const currentCategory = categoryCtx.getCategory(parseInt(params));
+  const currentCategory = categoryCtx.getCategory(params);
 
   const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
 
   const changeGridStyleValue = (val) => {
-    console.log("hej");
     setGridStyleValue(val);
   };
 
@@ -86,7 +87,7 @@ const ItemList = () => {
 
     if (categoryCtx.categories) {
       fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products?category=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+        `https://mediteraneo.eu/wp-json/wc/v3/products?category/slug=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
       )
         .then((response) => response.json())
         .then((ctgList) => setItemList(ctgList))
@@ -114,6 +115,7 @@ const ItemList = () => {
 
   return (
     <Fragment>
+      <Outlet context={itemList[1]} />
       <div className={styles.wrapper}>
         {categoryCtx.categories && (
           <Fragment>

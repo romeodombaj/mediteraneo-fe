@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import CategoryContext from "../store/category-context";
 import CategoryElement from "./Categorisation/CategoryElement";
 import NavigationContext from "../store/navigation-context";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import exit from "../../assets/x.svg";
@@ -65,7 +66,9 @@ const Navigation = (props) => {
               <hr className={styles.hr} />
               <div className={styles[`other-info`]}>
                 <div>
-                  <div className={styles[`other-text`]}>O nama</div>
+                  <Link to="/aboutus" className={styles[`other-text`]}>
+                    O nama
+                  </Link>
                   <div className={styles[`other-text`]}>Kontakt</div>
                   <div className={styles[`other-text`]}>FAQ</div>
                 </div>

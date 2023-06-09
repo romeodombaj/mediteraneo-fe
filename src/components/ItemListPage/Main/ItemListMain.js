@@ -8,8 +8,6 @@ const ItemListMain = (props) => {
   const [itemCount, setItemCount] = useState(0);
 
   useEffect(() => {
-    console.log(gridStyle);
-
     if (props.gridStyle === "0") {
       setGridStyle(``);
     } else {

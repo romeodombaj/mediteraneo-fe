@@ -7,9 +7,11 @@ import ItemSelection from "./ItemSelection";
 import ImagePortfolioSection from "./ImagePortfolioSction";
 import ToBasketSection from "./ToBasketSection";
 import arrowOut from "../../../assets/arrow_down.png";
+import { useOutletContext } from "react-router-dom";
 
 const Item = (props) => {
   const cartCtx = useContext(CartContext);
+  const itemInfo = useOutletContext();
 
   const addItemToCartHandler = () => {
     cartCtx.addItem({
@@ -22,7 +24,7 @@ const Item = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <ImagePortfolioSection item={props.itemInfo} />
+      <ImagePortfolioSection item={itemInfo} />
 
       <div className={styles[`information-wrapper`]}>
         <div className={styles[`position-wrapper`]}>
@@ -34,10 +36,8 @@ const Item = (props) => {
           <div className={styles.path}>Product /product</div>
         </div>
 
-        <ItemInfo itemInfo={props.itemInfo} />
-        {props.itemInfo.attributes[0] && (
-          <ItemSelection itemInfo={props.itemInfo} />
-        )}
+        <ItemInfo itemInfo={itemInfo} />
+        {/*props.itemInfo.attributes[0] && <ItemSelection itemInfo={itemInfo} />*/}
 
         <ToBasketSection addToCart={addItemToCartHandler} />
       </div>

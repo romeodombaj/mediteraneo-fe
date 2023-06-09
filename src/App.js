@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import styles from "./App.module.css";
 import { useEffect, useContext, useState } from "react";
 import CategoryContext from "./components/store/category-context";
@@ -10,6 +10,9 @@ import CartProvider from "./components/store/CartProvider";
 import PageLoad from "./components/Loader/PageLoad";
 import LoadingContext from "./components/store/loading-context";
 import SubPageLoad from "./components/Loader/SubPageLoad";
+import AboustUs from "./components/Informative-Pages/AboutUs";
+import Footer from "./components/Informative-Pages/Footer";
+import Item from "./components/ItemListPage/FocusItem/Item";
 
 const App = () => {
   const categoryCtx = useContext(CategoryContext);
@@ -65,8 +68,13 @@ const App = () => {
         <div className={`${styles[`nav-state`]} ${styles[navBodyAnimation]}`}>
           <Routes>
             <Route path="/" element={<FrontPage />} />
-            <Route path="/:categoryID" element={<ItemList />} />
+            <Route path="/aboutus" element={<AboustUs />} />
+            <Route path="/:categoryID" element={<ItemList />}>
+              <Route path=":productSlug" element={<Item />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
+          <Footer />
         </div>
       </div>
     </CartProvider>

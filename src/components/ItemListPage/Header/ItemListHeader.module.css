@@ -45,6 +45,16 @@
   }
 
   .info-wrapper {
+    width: 90%;
+    padding-left: 0rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+  }
+
+  .description {
     width: 100%;
+    line-height: 1.2rem;
+    margin-top: 1rem;
   }
 }
