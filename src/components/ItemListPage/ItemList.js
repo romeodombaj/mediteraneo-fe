@@ -1,6 +1,6 @@
 import { useState, Fragment, useEffect, useContext } from "react";
 import styles from "./ItemList.module.css";
-import { Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import CartContext from "../store/cart-context";
 import ItemListHeader from "./Header/ItemListHeader";
 import ItemListMain from "./Main/ItemListMain";
@@ -64,7 +64,7 @@ const ItemList = () => {
   const loadCtx = useContext(LoadingContext);
   const navCtx = useContext(NavigationContext);
 
-  const params = useParams().categoryID;
+  const params = useParams().categorySlug;
 
   const currentCategory = categoryCtx.getCategory(params);
 
@@ -113,10 +113,19 @@ const ItemList = () => {
     setItemList(temp);
   }, [sortingValue]);
 
+  //
+
   return (
     <Fragment>
-      <Outlet context={itemList[1]} />
+      <Outlet />
       <div className={styles.wrapper}>
+        <div className={styles[`nav-map`]}>
+          <Link to="/" className={styles.past}>
+            Naslovnica
+          </Link>
+          <div>/</div>
+          <div> {params}</div>
+        </div>
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} />
@@ -125,7 +134,7 @@ const ItemList = () => {
             <ItemListMain
               gridStyle={gridStyleValue}
               itemInfo={itemList}
-              params={loadCtx.params}
+              currentCategory={loadCtx.params}
               categories={categoryCtx.categories}
             />
           </Fragment>

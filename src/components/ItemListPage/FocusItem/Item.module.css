@@ -12,9 +12,8 @@
   overflow-y: scroll;
 }
 
-
-
 .position-wrapper {
+  margin-top: 10vh;
   position: relative;
   width: 100%;
   display: flex;

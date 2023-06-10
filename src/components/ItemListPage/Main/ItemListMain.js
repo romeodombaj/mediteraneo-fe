@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const ItemListMain = (props) => {
   const [gridStyle, setGridStyle] = useState(``);
   const [itemCount, setItemCount] = useState(0);
+  let counter;
 
   useEffect(() => {
     if (props.gridStyle === "0") {
@@ -19,7 +20,13 @@ const ItemListMain = (props) => {
     <div className={styles[`wrapper`]}>
       <div className={`${styles[`item-grid`]} ${styles[gridStyle]}`}>
         {props.itemInfo.map((item) => {
-          return <ShowItem key={item.id} item={item} />;
+          return (
+            <ShowItem
+              key={item.id}
+              item={item}
+              currentCategory={props.currentCategory}
+            />
+          );
         })}
       </div>
     </div>

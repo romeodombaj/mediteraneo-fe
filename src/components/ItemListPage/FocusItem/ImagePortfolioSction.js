@@ -8,6 +8,7 @@ const ImagePortfolioSection = (props) => {
       {props.item.images.map((image, i) => {
         return (
           <img
+            key={i}
             className={`${styles.image} ${styles[`item${i}`]}`}
             src={image.src}
           />

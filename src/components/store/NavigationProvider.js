@@ -19,23 +19,22 @@ const NavigationProvider = (props) => {
 
   const loadPage = (catID = "") => {
     if (loadCtx.params !== catID) {
-      console.log("proslo");
-      let catSlug = "";
+      let slug = "";
       if (catID !== "") {
-        catSlug =
+        slug =
           categoryCtx.categories[
             categoryCtx.categories.findIndex((category) => category.id == catID)
           ].slug;
       }
 
-      loadCtx.setParams(catSlug);
+      loadCtx.setParams(slug);
 
       if (catID !== "") {
         loadCtx.onProductLoad();
       }
 
       setTimeout(() => {
-        navigate(`/${catSlug}`);
+        navigate(`/${slug}`);
         goToTop();
         setIsNavigating(false);
       }, 250);
