@@ -6,7 +6,7 @@ import ItemInfo from "./ItemInfo";
 import ItemSelection from "./ItemSelection";
 import ImagePortfolioSection from "./ImagePortfolioSction";
 import ToBasketSection from "./ToBasketSection";
-import arrowOut from "../../../assets/arrow_down.png";
+import arrowOut from "../../../assets/Arrow-down.svg";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import LoadingContext from "../../store/loading-context";

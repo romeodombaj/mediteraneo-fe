@@ -7,8 +7,9 @@ import CategoryElement from "./Categorisation/CategoryElement";
 import NavigationContext from "../store/navigation-context";
 import { Link } from "react-router-dom";
 
+//images
 import logo from "../../assets/logo.png";
-import exit from "../../assets/x.svg";
+import exit from "../../assets/navigation/menu-x.png";
 import InfoModal from "../UI/InfoModal";
 
 const Navigation = (props) => {

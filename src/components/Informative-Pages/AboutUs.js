@@ -1,7 +1,7 @@
 import styles from "./AboustUs.module.css";
 
 //temp
-import tempImg from "../../assets/kitchen main.png";
+import tempImg from "../../assets/about-front.png";
 
 const AboustUs = () => {
   return (

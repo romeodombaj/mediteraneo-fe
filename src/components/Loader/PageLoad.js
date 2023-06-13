@@ -6,8 +6,8 @@ import LoadingContext from "../store/loading-context";
 // temp
 
 import logo from "../../assets/logo.png";
-import background from "../../assets/background colors.jpg";
-import TEMPimage from "../../assets/kitchen main.png";
+import background from "../../assets/head-img.png";
+import TEMPimage from "../../assets/head-img.png";
 
 const PageLoad = () => {
   const [outAnimation, setOutAnimation] = useState(``);

@@ -7,30 +7,7 @@ import ItemListMain from "./Main/ItemListMain";
 import CategoryContext from "../store/category-context";
 import LoadingContext from "../store/loading-context";
 import ListActions from "./Main/ListActions";
-
-// dummy_images
-import rucniciImg from "../../assets/ruc0.jpeg";
-import kuhinjaImg from "../../assets/ruc1.jpg";
-import posteljinaImg from "../../assets/ruc2.jpg";
 import NavigationContext from "../store/navigation-context";
-
-const dummy_categories = [
-  {
-    id: 0,
-    title: "Ručnici",
-    image: rucniciImg,
-  },
-  {
-    id: 1,
-    title: "Posteljina",
-    image: posteljinaImg,
-  },
-  {
-    id: 2,
-    title: "Kuhinja",
-    image: kuhinjaImg,
-  },
-];
 
 const fetchLinks = [
   {

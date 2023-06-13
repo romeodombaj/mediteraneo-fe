@@ -1,10 +1,12 @@
 import styles from "./NavBar.module.css";
-import menuIcon from "../../assets/menu.png";
-import cartIcon from "../../assets/cart.png";
 import { Fragment, useState, useContext, useEffect } from "react";
 import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
 import NavigationContext from "../store/navigation-context";
+
+//imgs
+import menuIcon from "../../assets/navigation/menu-bars.png";
+import cartIcon from "../../assets/navigation/cart.png";
 
 const NavBar = (props) => {
   const [cartIsOpen, setCartIsOpen] = useState(false);

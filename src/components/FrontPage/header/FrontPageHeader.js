@@ -1,11 +1,7 @@
-import { Fragment, useEffect, useState, useContext } from "react";
 import styles from "./FrontPageHeader.module.css";
-import LoadingContext from "../../store/loading-context";
 
-// temp images
-import logo from "../../../assets/logo.png";
-import arrowDown from "../../../assets/arrow_down.png";
-import TEMPimage from "../../../assets/kitchen main.png";
+//imgs
+import TEMPimage from "../../../assets/head-img.png";
 
 const FrontPageHeader = () => {
   return (
