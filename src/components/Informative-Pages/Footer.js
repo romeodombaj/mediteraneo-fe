@@ -3,6 +3,12 @@ import styles from "./Footer.module.css";
 //temp
 
 import logo from "../../assets/logo.png";
+import ig from "../../assets/socials/ig.png";
+import linked from "../../assets/socials/in.png";
+import fb from "../../assets/socials/fb.png";
+import yt from "../../assets/socials/yt.png";
+import tw from "../../assets/socials/tw.png";
+import payments from "../../assets/other/placanja.png";
 
 const Footer = () => {
   return (
@@ -36,7 +42,16 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.hr} />
-      <div className={styles[`media-wrapper`]}>dw</div>
+      <div className={styles[`media-wrapper`]}>
+        <div className={styles[`media-list`]}>
+          <img className={styles[`social-icon`]} src={fb} />
+          <img className={styles[`social-icon`]} src={ig} />
+          <img className={styles[`social-icon`]} src={tw} />
+          <img className={styles[`social-icon`]} src={linked} />
+          <img className={styles[`social-icon`]} src={yt} />
+        </div>
+        <img src={payments} className={styles.payment}></img>
+      </div>
       <div className={styles.hr} />
       <div className={styles[`copyright-wrapper`]}>
         <div>© 2023 Mediteraneo</div>

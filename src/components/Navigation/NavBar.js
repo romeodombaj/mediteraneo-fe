@@ -4,13 +4,14 @@ import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
 import NavigationContext from "../store/navigation-context";
 
-//imgs
+//images
 import menuIcon from "../../assets/navigation/menu-bars.png";
 import cartIcon from "../../assets/navigation/cart.png";
+import navLogo from "../../assets/navigation/nav-logo.png";
+import searcIcon from "../../assets/navigation/search.png";
 
 const NavBar = (props) => {
   const [cartIsOpen, setCartIsOpen] = useState(false);
-  const [menuIconState, setMenuIconState] = useState(``);
 
   const navCtx = useContext(NavigationContext);
 
@@ -31,9 +32,6 @@ const NavBar = (props) => {
   };
 
   useEffect(() => {
-    navCtx.isNavigating
-      ? setMenuIconState(`menu-icon-open`)
-      : setMenuIconState(``);
     props.nav(navCtx.isNavigating);
   }, [navCtx.isNavigating]);
 
@@ -44,23 +42,31 @@ const NavBar = (props) => {
       )}
       {cartIsOpen && <Cart onClose={closeCartHandler}></Cart>}
       <div className={styles.wrapper}>
-        <div onClick={goHome} className={styles[`title-wrapper`]}>
-          <div className={styles.title}>Mediteraneo</div>
+        <div className={styles[`left-section`]}>
+          <img
+            className={`${styles[`nav-logo`]} ${styles[`nav-item`]}`}
+            onClick={goHome}
+            src={navLogo}
+          ></img>
+          <div className={`${styles[`nav-item`]} ${styles.language}`}>ENG</div>
+          <img
+            className={`${styles[`nav-item`]} ${styles.search}`}
+            src={searcIcon}
+          ></img>
         </div>
 
         <div className={styles[`action-wrapper`]}>
-          <div onClick={openCartHandler} className={styles[`nav-item-wrapper`]}>
-            <img className={styles.navItem} src={cartIcon} />
-          </div>
-
+          <img
+            onClick={openCartHandler}
+            className={styles[`nav-item`]}
+            src={cartIcon}
+          />
           <div
             onClick={changeNavigationStateHandler}
-            className={`${styles[`nav-item-wrapper`]}`}
+            className={`${styles.menu} ${styles[`nav-item`]}`}
           >
-            <img
-              className={`${styles.navItem} ${styles[menuIconState]}`}
-              src={menuIcon}
-            ></img>
+            <img src={menuIcon}></img>
+            <div className={styles[`menu-text`]}>MENU</div>
           </div>
         </div>
       </div>

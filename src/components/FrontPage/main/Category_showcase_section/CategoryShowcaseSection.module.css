@@ -5,7 +5,13 @@
 }
 
 .title {
-  color: gray;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lookup {
+  color: var(--gray-text-color);
+  cursor: pointer;
 }
 
 .grid {

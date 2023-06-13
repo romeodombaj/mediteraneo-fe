@@ -9,8 +9,7 @@ const FrontPageHeader = () => {
       <img className={styles[`background-image`]} src={TEMPimage} />
       <div className={styles[`info-wrapper`]}>
         <div className={styles[`head-text`]}>
-          RAZNOLIKE OPCIJE KOJE ĆE ZADOVOLJITI <br /> VAŠE POTREBE I
-          PREFERENCIJE
+          RAZNOLIKE OPCIJE KOJE ĆE ZADOVOLJITI VAŠE POTREBE I PREFERENCIJE
         </div>
         <div className={styles.button}>POGLEDAJTE PONUDU</div>
       </div>

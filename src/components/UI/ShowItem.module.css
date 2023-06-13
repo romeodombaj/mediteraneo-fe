@@ -22,7 +22,7 @@
 }
 
 .title {
-  font-size: 1.2em;
+  font-size: 0.9em;
   font-weight: 900;
   color: black;
   text-transform: uppercase;
@@ -30,7 +30,7 @@
 
 .price {
   color: var(--gray-text-color);
-  font-size: 1.2em;
+  font-size: 0.9em;
   margin-top: 0.5rem;
 }
 
@@ -47,7 +47,8 @@
   color: var(--gray-text-color);
   float: right;
   opacity: 0;
-  font-size: 1em;
+  font-size: 0.7em;
+  font-weight: 600;
 }
 
 .wrapper:hover {

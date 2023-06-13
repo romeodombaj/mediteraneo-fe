@@ -36,9 +36,10 @@
 }
 
 .logo {
-  width: 36%;
+  scale: 0.8;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .hr {
@@ -47,15 +48,36 @@
 }
 
 .media-wrapper {
-  width: 80%;
+  width: 87%;
   margin: auto;
   line-height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.media-list {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.social-icon {
+  height: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+.payment {
+  height: 1.25rem;
 }
 
 .copyright-wrapper {
-  width: 80%;
+  width: 87%;
   margin: auto;
   line-height: 3rem;
   color: rgb(141, 141, 141);
-  font-size: 0.8em;
+  font-size: 0.6em;
 }
