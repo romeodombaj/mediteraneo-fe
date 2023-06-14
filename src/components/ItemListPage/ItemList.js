@@ -9,32 +9,12 @@ import LoadingContext from "../store/loading-context";
 import ListActions from "./Main/ListActions";
 import NavigationContext from "../store/navigation-context";
 
-const fetchLinks = [
-  {
-    id: 0,
-    name: "Ručnici",
-    codename: "rucnici",
-    link: "https://mediteraneo.eu/wp-json/wc/v3/products?category=186&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4",
-  },
-  {
-    id: 1,
-    name: "Posteljina",
-    codename: "posteljina",
-    link: "https://mediteraneo.eu/wp-json/wc/v3/products?category=187&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4",
-  },
-  {
-    id: 2,
-    name: "Kuhinjski elementi",
-    codename: "kuhinja",
-    link: "https://mediteraneo.eu/wp-json/wc/v3/products?category=188&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4",
-  },
-];
-
 const ItemList = () => {
   const [itemList, setItemList] = useState([]);
   const [sortingValue, setSortingValue] = useState("0");
   const [gridStyleValue, setGridStyleValue] = useState("0");
   const [isLoading, setIsLoading] = useState(true);
+  const [itemCount, setItemCount] = useState(0);
 
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
@@ -57,6 +37,24 @@ const ItemList = () => {
     setSortingValue(val);
   };
 
+  const filterItems = (filter) => {
+
+    if (itemList.length > 0) {
+      let tempArray = [];
+      let counter = 0;
+
+      itemList.map((item) => {
+        if (item.price < 50) {
+          tempArray.push(item);
+          counter++;
+        }
+      });
+
+      setItemList(tempArray);
+      setItemCount(counter);
+    }
+  };
+
   useEffect(() => {
     loadCtx.setParams(params);
     loadCtx.onProductLoad();
@@ -64,10 +62,13 @@ const ItemList = () => {
 
     if (categoryCtx.categories) {
       fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products?category/slug=${params}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+        `https://mediteraneo.eu/wp-json/wc/v3/products?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
       )
         .then((response) => response.json())
-        .then((ctgList) => setItemList(ctgList))
+        .then((ctgList) => {
+          setItemList(ctgList);
+          setItemCount(ctgList.length);
+        })
         .then(() => {
           if (itemList) {
             loadCtx.onProductLoaded();
@@ -106,8 +107,12 @@ const ItemList = () => {
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} />
-            <div className={styles.count}>55 proizvoda </div>
-            <ListActions val={changeSortingValue} sty={changeGridStyleValue} />
+            <div className={styles.count}>{itemCount} proizvoda </div>
+            <ListActions
+              filterItems={filterItems}
+              val={changeSortingValue}
+              sty={changeGridStyleValue}
+            />
             <ItemListMain
               gridStyle={gridStyleValue}
               itemInfo={itemList}

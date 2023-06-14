@@ -17,6 +17,10 @@ const ListActions = (props) => {
     props.sty(selectedStyle);
   };
 
+  const valueChange = (value) => {
+    props.filterItems(value);
+  };
+
   return (
     <div className={styles.wrapper}>
       {/*<div className={styles[`sort-wrapper`]}>
@@ -38,12 +42,16 @@ const ListActions = (props) => {
         </div>
       </div>*/}
 
-      <Dropdown title="Razvrstaj" options={["opt1", "opt2", "opt3"]} />
-      <Dropdown title="Boja" options={["opt1", "opt2", "opt3"]} />
-      <Dropdown title="Vrsta" options={["opt1", "opt2", "opt3"]} />
-      <Dropdown title="Cijena" options={["opt1", "opt2", "opt3"]} />
-      <Dropdown title="Materijal" options={["opt1", "opt2", "opt3"]} />
-      <Dropdown title="Veličina" options={["opt1", "opt2", "opt3"]} />
+      <Dropdown
+        valueChange={valueChange}
+        title="Razvrstaj"
+        options={["Najmanji", "Najveći", "Cijena"]}
+      />
+      <Dropdown title="Boja" options={["Plava", "Zelena", "Crvena"]} />
+      <Dropdown title="Vrsta" options={["p", "opt2", "opt3"]} />
+      <Dropdown title="Cijena" options={["0-50e", "51-100", "100+"]} />
+      <Dropdown title="Materijal" options={["Plastika", "Metal", "Pamuk"]} />
+      <Dropdown title="Veličina" options={["S", "L", "XL"]} />
 
       {/*<div className={styles[`grid-wrapper`]}>
         <div

@@ -29,7 +29,7 @@
 .description {
   margin-top: 3rem;
   font-size: 0.9em;
-  color: rgba(46, 46, 46, 0.302);
+  color: var(--gray-text-color);
   line-height: 1.6rem;
   width: 70%;
 }

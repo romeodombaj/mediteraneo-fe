@@ -22,8 +22,6 @@ const Item = () => {
   const itemSlug = useParams().productSlug;
   const itemInfo = location.state;
 
-  console.log(itemSlug);
-
   const [item, setItem] = useState();
 
   const addItemToCartHandler = () => {
@@ -53,7 +51,6 @@ const Item = () => {
         });
     } else {
       setItem(itemInfo.item);
-      console.log("HELLO MELO ITS ME GELLO");
     }
   }, []);
 
