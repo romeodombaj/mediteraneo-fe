@@ -64,7 +64,7 @@ const App = () => {
       {/*productIsLoading && <SubPageLoad />*/}
 
       <div className="App">
-        {mainLoaded && <NavBar nav={setIsNavigating} />}
+        <NavBar nav={setIsNavigating} />
         <div className={`${styles[`nav-state`]} ${styles[navBodyAnimation]}`}>
           <Routes>
             <Route path="/" element={<FrontPage />} />
