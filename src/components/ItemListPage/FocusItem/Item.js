@@ -23,7 +23,6 @@ const Item = () => {
   const navigate = useNavigate();
 
   const categorySlug = useParams().categorySlug;
-  const categoryId = categoryCtx.getCategory(categorySlug);
   const itemSlug = useParams().productSlug;
   const itemInfo = location.state;
 
@@ -44,17 +43,20 @@ const Item = () => {
   };
 
   const fetchSimilarItems = () => {
-    fetch(
-      `https://mediteraneo.eu/wp-json/wc/v3/products?consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4&attribute_term=1&per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&category=${categoryId}`
-    )
-      .then((response) => response.json())
-      .then((data) => setItem(...data))
-      .then(() => {
-        if (item) {
-          loadCtx.onProductLoaded();
-        }
-      });
+    const categoryId = categoryCtx.getCategory(categorySlug);
+
+    if (categoryId) {
+      fetch(
+        `https://mediteraneo.eu/wp-json/wc/v3/products?consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4&attribute_term=1&per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&category=${categoryId.id}`
+      )
+        .then((response) => response.json())
+        .then((data) => setOtherItems(data));
+    }
   };
+
+  useEffect(() => {
+    fetchSimilarItems();
+  }, [categoryCtx.categories]);
 
   useEffect(() => {
     if (!itemInfo) {
@@ -98,7 +100,7 @@ const Item = () => {
             </div>
           </div>
           <ItemDescription />
-          {/*<SimilarProducts items={otherItems} />*/}
+          <SimilarProducts items={otherItems} curentCategory={categorySlug} />
         </div>
       )}
     </Fragment>

@@ -1,0 +1,18 @@
+.wrapper {
+  width: 90%;
+  height: 80vh;
+  margin: auto;
+  margin-top: 10rem;
+}
+
+.title {
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  justify-content: center;
+  column-gap: 0.1rem;
+}
