@@ -38,7 +38,6 @@ const ItemList = () => {
   };
 
   const filterItems = (filter) => {
-
     if (itemList.length > 0) {
       let tempArray = [];
       let counter = 0;

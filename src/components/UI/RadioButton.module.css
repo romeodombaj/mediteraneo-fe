@@ -1,0 +1,30 @@
+.wrapper {
+  height: 2rem;
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--property-background-color);
+  margin-right: 0.5 rem;
+  margin-left: 0.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.wrapper:hover {
+}
+
+.color {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: contrast(20%);
+}
+
+.active {
+  border: 1px solid black;
+}

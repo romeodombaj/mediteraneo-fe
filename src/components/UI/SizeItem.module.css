@@ -1,0 +1,32 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+}
+
+.info {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.size {
+  color: var(----gray-text-color);
+  font-size: 0.8em;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.divider {
+  border-radius: 1rem;
+  width: 100%;
+  border: 1px solid rgba(188, 188, 188, 0.229);
+}

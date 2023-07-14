@@ -6,12 +6,13 @@
   top: 0;
   z-index: 190;
   animation: load-in 1s;
-  color: black;
+  color: white;
   background-color: white;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
 }
 
 .transparent {
-  color: white;
   background-color: transparent;
 }
 
@@ -34,13 +35,16 @@
   margin: auto;
   margin-right: 1.25rem;
   margin-left: 1.25rem;
-  transition: 0.3s;
   opacity: 0.8;
   cursor: pointer;
+  transition: 0.2s;
+  filter: invert(0%);
+  -webkit-flitter: invert(0%);
 }
 
 .nav-img-item {
   filter: invert(100%);
+  -webkit-flitter: invert(100%);
 }
 
 .nav-item:hover {
@@ -59,6 +63,7 @@
   cursor: pointer;
   margin-left: 0;
   opacity: 1;
+  scale: 0.9;
 }
 
 .language {
@@ -86,8 +91,8 @@
 }
 
 .menu-icon {
-  transition: 0.3s;
 }
+
 .menu-text {
   margin-left: 0.5rem;
   font-weight: 500;

@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100%;
+  margin: auto;
+  background-color: var(--property-background-color);
+  margin-bottom: 1rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text {
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.arrow {
+  margin-right: 1rem;
+  height: 1rem;
+  aspect-ratio: 1;
+}

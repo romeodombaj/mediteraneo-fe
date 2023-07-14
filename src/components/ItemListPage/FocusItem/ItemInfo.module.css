@@ -1,51 +1,55 @@
 .wrapper {
-  width: 100%;
-  padding-left: 1rem;
-}
-
-.title-wrapper {
-  width: fit-content;
-  padding: 0.5rem;
-  padding-right: 2rem;
-  position: relative;
-  margin-bottom: 0.5rem;
-  padding-left: 2rem;
-  transform: skewX(-20deg);
-  background-color: #0a433c;
+  width: 80%;
+  margin-top: 4rem;
 }
 
 .title {
-  position: relative;
-  font-size: 2em;
-  color: #f6ffeb;
-  z-index: 100;
-  transform: skewX(20deg);
-  text-align: left;
-}
-
-.description {
-  font-size: 1em;
-  width: 60%;
-  text-align: left;
-  color: gray;
-  margin-bottom: 0.7rem;
-}
-
-.price-wrapper {
-  position: relative;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  width: fit-content;
-  background-color: #0a433c;
-  transform: skewX(-10deg);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.9em;
+  text-transform: uppercase;
 }
 
 .price {
-  position: relative;
-  text-align: left;
-  z-index: 100;
-  color: #f6ffeb;
+  margin-bottom: 2rem;
+  font-weight: 500;
   font-size: 1.5em;
-  transform: skewX(10deg);
+  text-transform: uppercase;
+}
+
+.short-description {
+  margin-bottom: 2rem;
+  color: var(--gray-text-color);
+  font-size: 0.9em;
+}
+
+.availability-section {
+  margin-bottom: 1.5rem;
+}
+
+.availability {
+  color: var(--gray-text-color);
+  font-size: 0.8em;
+}
+
+.availability-divider {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delivery-section {
+}
+
+.delivery {
+  color: var(--gray-text-color);
+  font-size: 0.8em;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 0.9em;
 }

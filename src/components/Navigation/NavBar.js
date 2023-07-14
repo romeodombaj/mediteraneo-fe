@@ -37,17 +37,21 @@ const NavBar = (props) => {
   }, [navCtx.isNavigating]);
 
   useEffect(() => {
-    if (window.pageYOffset === 0) {
-      setNavigationTransparency(true);
-    }
-
-    window.onscroll = () => {
-      if (window.pageYOffset === 0) {
+    if (window.location.pathname === "/") {
+      if (window.scrollY === 0) {
         setNavigationTransparency(true);
-      } else {
-        setNavigationTransparency(false);
       }
-    };
+
+      window.onscroll = () => {
+        if (window.scrollY === 0) {
+          setNavigationTransparency(true);
+        } else {
+          setNavigationTransparency(false);
+        }
+      };
+    } else {
+      setNavigationTransparency(false);
+    }
   });
 
   return (
@@ -69,8 +73,12 @@ const NavBar = (props) => {
               }`}
               onClick={goHome}
               src={navLogo}
-            ></img>
-            <div className={`${styles[`nav-item`]} ${styles.language}`}>
+            />
+            <div
+              className={`${styles[`nav-item`]} ${styles.language} ${
+                styles[!navigationTransparency && `nav-img-item`]
+              }`}
+            >
               ENG
             </div>
             <img
@@ -91,14 +99,11 @@ const NavBar = (props) => {
             />
             <div
               onClick={changeNavigationStateHandler}
-              className={`${styles.menu} ${styles[`nav-item`]}`}
+              className={`${styles.menu} ${styles[`nav-item`]} ${
+                styles[!navigationTransparency && `nav-img-item`]
+              }`}
             >
-              <img
-                src={menuIcon}
-                className={` ${styles[`menu-icon`]} ${
-                  styles[!navigationTransparency && `nav-img-item`]
-                }`}
-              ></img>
+              <img src={menuIcon} className={` ${styles[`menu-icon`]} `}></img>
               <div className={styles[`menu-text`]}>MENU</div>
             </div>
           </div>

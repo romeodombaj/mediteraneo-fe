@@ -11,18 +11,24 @@ import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import LoadingContext from "../../store/loading-context";
 import { useNavigate } from "react-router-dom";
+import ItemDescription from "./ItemDescription";
+import SimilarProducts from "./SimilarProducts";
+import CategoryContext from "../../store/category-context";
 
 const Item = () => {
   const cartCtx = useContext(CartContext);
+  const categoryCtx = useContext(CategoryContext);
   const location = useLocation();
   const loadCtx = useContext(LoadingContext);
   const navigate = useNavigate();
 
   const categorySlug = useParams().categorySlug;
+  const categoryId = categoryCtx.getCategory(categorySlug);
   const itemSlug = useParams().productSlug;
   const itemInfo = location.state;
 
   const [item, setItem] = useState();
+  const [otherItems, setOtherItems] = useState();
 
   const addItemToCartHandler = () => {
     cartCtx.addItem({
@@ -35,6 +41,19 @@ const Item = () => {
 
   const onCloseHandler = () => {
     navigate(`/${categorySlug}`);
+  };
+
+  const fetchSimilarItems = () => {
+    fetch(
+      `https://mediteraneo.eu/wp-json/wc/v3/products?consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4&attribute_term=1&per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&category=${categoryId}`
+    )
+      .then((response) => response.json())
+      .then((data) => setItem(...data))
+      .then(() => {
+        if (item) {
+          loadCtx.onProductLoaded();
+        }
+      });
   };
 
   useEffect(() => {
@@ -58,22 +77,28 @@ const Item = () => {
     <Fragment>
       {item && (
         <div className={styles.wrapper}>
-          <ImagePortfolioSection item={item} />
-          <div className={styles[`information-wrapper`]}>
-            <div className={styles[`position-wrapper`]}>
-              <img
-                onClick={onCloseHandler}
-                src={arrowOut}
-                className={styles[`back-button`]}
-              ></img>
-              <div className={styles.path}>Product /product</div>
+          <div className={styles[`item-main`]}>
+            <ImagePortfolioSection item={item} />
+            <div className={styles[`information-wrapper`]}>
+              <div className={styles[`position-wrapper`]}>
+                <div className={styles.path}>
+                  Naslovnica/ Ručnici i Ogrtači/ <strong>Ručnik Vinarn </strong>
+                </div>
+              </div>
+              <div className={styles[`info-division`]}>
+                <div className={styles[`info-section`]}>
+                  <ItemInfo itemInfo={item} />
+                  {/*props.itemInfo.attributes[0] && <ItemSelection itemInfo={itemInfo} />*/}
+                </div>
+                <div className={styles[`info-section`]}>
+                  <ItemSelection />
+                </div>
+              </div>
+              <ToBasketSection addToCart={addItemToCartHandler} />
             </div>
-
-            <ItemInfo itemInfo={item} />
-            {/*props.itemInfo.attributes[0] && <ItemSelection itemInfo={itemInfo} />*/}
-
-            <ToBasketSection addToCart={addItemToCartHandler} />
           </div>
+          <ItemDescription />
+          {/*<SimilarProducts items={otherItems} />*/}
         </div>
       )}
     </Fragment>

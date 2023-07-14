@@ -9,7 +9,6 @@
   width: 85%;
   aspect-ratio: 1;
   margin: auto;
-  margin-top: 5vh;
   display: grid;
   grid-template-columns: auto auto;
   transition: 1s;
@@ -18,7 +17,7 @@
 
 .image {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
   cursor: pointer;
 }

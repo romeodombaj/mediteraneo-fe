@@ -1,5 +1,5 @@
 import styles from "./FrontPage.module.css";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import FrontPageHeader from "./header/FrontPageHeader";
 import HotProductsSection from "./main/HotSection/HotProductsSection";
 import CategoriesSection from "./main/CategoriesSection/CategoriesSection";
@@ -14,6 +14,7 @@ const FrontPage = () => {
     const selectedCatId = event.target.getAttribute("value");
     navCtx.loadCategory(selectedCatId);
   };
+
 
   return (
     <Fragment>
