@@ -103,6 +103,7 @@ const ItemList = () => {
           <div>/</div>
           <div> {params}</div>
         </div>
+
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} />

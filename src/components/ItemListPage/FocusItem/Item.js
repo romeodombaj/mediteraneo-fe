@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import ItemDescription from "./ItemDescription";
 import SimilarProducts from "./SimilarProducts";
 import CategoryContext from "../../store/category-context";
+import LoadingAnimation from "../../UI/LoadingAnimation";
+import Footer from "../../Informative-Pages/Footer";
 
 const Item = () => {
   const cartCtx = useContext(CartContext);
@@ -77,32 +79,38 @@ const Item = () => {
 
   return (
     <Fragment>
-      {item && (
-        <div className={styles.wrapper}>
-          <div className={styles[`item-main`]}>
-            <ImagePortfolioSection item={item} />
-            <div className={styles[`information-wrapper`]}>
-              <div className={styles[`position-wrapper`]}>
-                <div className={styles.path}>
-                  Naslovnica/ Ručnici i Ogrtači/ <strong>Ručnik Vinarn </strong>
+      <div className={styles.wrapper}>
+        {!item ? (
+          <LoadingAnimation />
+        ) : (
+          <Fragment>
+            <div className={styles[`item-main`]}>
+              <ImagePortfolioSection item={item} />
+              <div className={styles[`information-wrapper`]}>
+                <div className={styles[`position-wrapper`]}>
+                  <div className={styles.path}>
+                    Naslovnica/ Ručnici i Ogrtači/{" "}
+                    <strong>Ručnik Vinarn </strong>
+                  </div>
                 </div>
+                <div className={styles[`info-division`]}>
+                  <div className={styles[`info-section`]}>
+                    <ItemInfo itemInfo={item} />
+                    {/*props.itemInfo.attributes[0] && <ItemSelection itemInfo={itemInfo} />*/}
+                  </div>
+                  <div className={styles[`info-section`]}>
+                    <ItemSelection />
+                  </div>
+                </div>
+                <ToBasketSection addToCart={addItemToCartHandler} />
               </div>
-              <div className={styles[`info-division`]}>
-                <div className={styles[`info-section`]}>
-                  <ItemInfo itemInfo={item} />
-                  {/*props.itemInfo.attributes[0] && <ItemSelection itemInfo={itemInfo} />*/}
-                </div>
-                <div className={styles[`info-section`]}>
-                  <ItemSelection />
-                </div>
-              </div>
-              <ToBasketSection addToCart={addItemToCartHandler} />
             </div>
-          </div>
-          <ItemDescription />
-          <SimilarProducts items={otherItems} curentCategory={categorySlug} />
-        </div>
-      )}
+            <ItemDescription />
+            <SimilarProducts items={otherItems} curentCategory={categorySlug} />
+            <Footer />
+          </Fragment>
+        )}
+      </div>
     </Fragment>
   );
 };

@@ -19,18 +19,15 @@ const ImagePortfolioSection = (props) => {
   return (
     <Fragment>
       {slideShow && (
-        <ImageShow
-          onClose={closeImageSlieShow}
-          img={props.item.images[0].src}
-        />
+        <ImageShow onClose={closeImageSlieShow} img={props.item.images} />
       )}
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} onClick={openImageSlideShow}>
         {/*<img className={styles.image2} src={props.item.images[0].src} />*/}
         <div className={styles.grid}>
           <img className={`${styles.image}`} src={props.item.images[0].src} />
           <img className={`${styles.image}`} src={props.item.images[1].src} />
           <img className={`${styles.image}`} src={props.item.images[2].src} />
-          <div onClick={openImageSlideShow} className={styles[`image-wrapper`]}>
+          <div className={styles[`image-wrapper`]}>
             <img className={`${styles.image}`} src={props.item.images[0].src} />
             <div className={styles[`open-more`]}>
               <img src={search} className={styles.search}></img>

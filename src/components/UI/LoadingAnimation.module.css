@@ -1,0 +1,36 @@
+.wrapper {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.element {
+  background-color: transparent;
+
+  height: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.5rem solid rgba(181, 181, 181, 0.343);
+  transition: 0.2s;
+  animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    border-color: rgba(181, 181, 181, 0.513) transparent transparent transparent;
+  }
+
+  50% {
+    transform: rotate(180);
+    border-color: transparent transparent rgba(181, 181, 181, 0.513) transparent;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    border-color: rgba(181, 181, 181, 0.513) transparent transparent transparent;
+  }
+}

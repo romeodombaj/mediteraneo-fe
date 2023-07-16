@@ -1,6 +1,7 @@
 import ShowItem from "../../../UI/ShowItem";
 import styles from "./SelectedSection.module.css";
 import { useEffect, useState } from "react";
+import LoadingAnimation from "../../../UI/LoadingAnimation";
 
 const SelectedSection = (props) => {
   const [selectedProductsList, setSelectedProductsList] = useState([]);
@@ -16,12 +17,16 @@ const SelectedSection = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>IZDVOJENI PROIZVODI</div>
-      <div className={styles.grid}>
-        {selectedProductsList &&
-          selectedProductsList.map((item) => {
-            return <ShowItem load={props.load} key={item.id} item={item} />;
-          })}
-      </div>
+      {selectedProductsList.length === 0 ? (
+        <LoadingAnimation />
+      ) : (
+        <div className={styles.grid}>
+          {selectedProductsList &&
+            selectedProductsList.map((item) => {
+              return <ShowItem load={props.load} key={item.id} item={item} />;
+            })}
+        </div>
+      )}
     </div>
   );
 };

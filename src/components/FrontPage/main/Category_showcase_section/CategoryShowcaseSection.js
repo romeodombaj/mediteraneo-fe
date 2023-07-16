@@ -1,6 +1,7 @@
 import styles from "./CategoryShowcaseSection.module.css";
 import { useEffect, useState } from "react";
 import ShowItem from "../../../UI/ShowItem";
+import LoadingAnimation from "../../../UI/LoadingAnimation";
 
 const CategoryShowcaseSection = (props) => {
   const [selectedProductsList, setSelectedProductsList] = useState([]);
@@ -20,12 +21,16 @@ const CategoryShowcaseSection = (props) => {
         <div className={styles.lookup}>POGLEDAJ SVE PROIZVODE</div>
       </div>
 
-      <div className={styles.grid}>
-        {selectedProductsList &&
-          selectedProductsList.map((item) => {
-            return <ShowItem load={props.load} key={item.id} item={item} />;
-          })}
-      </div>
+      {selectedProductsList.length === 0 ? (
+        <LoadingAnimation />
+      ) : (
+        <div className={styles.grid}>
+          {selectedProductsList &&
+            selectedProductsList.map((item) => {
+              return <ShowItem load={props.load} key={item.id} item={item} />;
+            })}
+        </div>
+      )}
     </div>
   );
 };
