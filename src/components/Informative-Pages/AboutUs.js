@@ -1,4 +1,4 @@
-import styles from "./AboustUs.module.css";
+import styles from "./AboutUs.module.css";
 
 //temp
 import tempImg from "../../assets/about-front.png";

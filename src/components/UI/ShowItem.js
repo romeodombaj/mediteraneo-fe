@@ -27,7 +27,7 @@ const ShowItem = (props) => {
           <div className={styles.title}>{props.item.name}</div>
           <div className={styles.price}>{props.item.price} €</div>
         </div>
-        <img className={styles.image} src={tempImg} />
+        <img className={styles.image} src={props.item.images[0].src} />
         <div className={styles[`open-indicator`]}>DETALJI</div>
       </div>
     </div>

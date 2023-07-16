@@ -1,4 +1,5 @@
 import styles from "./Footer.module.css";
+import CategoryContext from "../store/category-context";
 
 //temp
 
@@ -9,35 +10,43 @@ import fb from "../../assets/socials/fb.png";
 import yt from "../../assets/socials/yt.png";
 import tw from "../../assets/socials/tw.png";
 import payments from "../../assets/other/placanja.png";
+import { useContext } from "react";
+import NavigationContext from "../store/navigation-context";
 
 const Footer = () => {
+  const catCtx = useContext(CategoryContext);
+  const navCtx = useContext(NavigationContext);
+
+  const openCategory = (e) => {
+    const selectedId = e.currentTarget.getAttribute("value");
+
+    navCtx.loadCategory(selectedId);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles[`main-wrapper`]}>
         <div className={styles[`logo-section`]}>
           <img className={styles.logo} src={logo} />
         </div>
+
         <div className={styles[`quick-links`]}>
+          <div className={styles[`link-list-title`]}>KATEGORIJE</div>
           <div className={styles[`link-list`]}>
-            <div className={styles[`link-list-title`]}>KONTAKT & INFO</div>
-            <div className={styles[`link`]}>Kontakt</div>
-            <div className={styles[`link`]}>FAQ</div>
-            <div className={styles[`link`]}>Politika Privatnosti</div>
-            <div className={styles[`link`]}>Način plaćanja</div>
-          </div>
-          <div className={styles[`link-list`]}>
-            <div className={styles[`link-list-title`]}>KONTAKT & INFO</div>
-            <div className={styles[`link`]}>Kontakt</div>
-            <div className={styles[`link`]}>FAQ</div>
-            <div className={styles[`link`]}>Politika Privatnosti</div>
-            <div className={styles[`link`]}>Način plaćanja</div>
-          </div>
-          <div className={styles[`link-list`]}>
-            <div className={styles[`link-list-title`]}>KONTAKT & INFO</div>
-            <div className={styles[`link`]}>Kontakt</div>
-            <div className={styles[`link`]}>FAQ</div>
-            <div className={styles[`link`]}>Politika Privatnosti</div>
-            <div className={styles[`link`]}>Način plaćanja</div>
+            {catCtx.categories &&
+              catCtx.categories.map((category) => {
+                if (category.display === "default")
+                  return (
+                    <div
+                      key={category.id}
+                      onClick={openCategory}
+                      className={styles[`link`]}
+                      value={category.id}
+                    >
+                      {category.name}
+                    </div>
+                  );
+              })}
           </div>
         </div>
       </div>

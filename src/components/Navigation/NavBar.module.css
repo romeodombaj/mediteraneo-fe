@@ -49,7 +49,7 @@
 
 .nav-item:hover {
   opacity: 1;
-  scale: 1.1;
+  scale: 1.05;
 }
 
 .left-section {
@@ -96,6 +96,10 @@
 .menu-text {
   margin-left: 0.5rem;
   font-weight: 500;
+}
+
+.nav-logo:hover {
+  scale: 0.92;
 }
 
 @keyframes load-in {
