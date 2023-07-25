@@ -12,13 +12,7 @@ const CategoriesSection = (props) => {
         {categoryCtx.categories &&
           categoryCtx.categories.map((category) => {
             if (category.display === "default")
-              return (
-                <CategoryItem
-                  load={props.load}
-                  key={category.id}
-                  category={category}
-                />
-              );
+              return <CategoryItem key={category.id} category={category} />;
           })}
       </div>
 

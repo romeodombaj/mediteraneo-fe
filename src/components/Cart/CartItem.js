@@ -2,6 +2,9 @@ import { useState } from "react";
 import styles from "./CartItem.module.css";
 import { Fragment } from "react";
 
+//temp
+import tempImg from "../../assets/coffe maker.png";
+
 const CartItem = (props) => {
   const [totalPrice, setTotalPrice] = useState(22.21);
 
@@ -21,9 +24,15 @@ const CartItem = (props) => {
   return (
     <Fragment>
       <div className={styles.item} key={props.item.id}>
-        <div>
-          <div>{props.item.name}</div>
-          <div>22.21€</div>
+        <div className={styles[`main-info`]}>
+          <img className={styles.image} src={tempImg} />
+          <div>
+            <div>{props.item.name}</div>
+            <div className={styles.options}>
+              <div>Boja: </div>
+              <div>Veličina: </div>
+            </div>
+          </div>
         </div>
 
         <div className={styles[`total-wrapper`]}>

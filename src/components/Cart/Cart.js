@@ -3,6 +3,7 @@ import styles from "./Cart.module.css";
 import CartContext from "../store/cart-context";
 import ReactDOM from "react-dom";
 import CartItem from "./CartItem";
+import { createRoutesFromElements } from "react-router-dom";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
@@ -21,9 +22,20 @@ const Cart = (props) => {
     <Fragment>
       {ReactDOM.createPortal(
         <Fragment>
-          <div className={styles.backdrop} onClick={props.onClose}></div>
           <div className={styles.wrapper}>
-            <div className={styles[`item-wrapper`]}>
+            <div className={styles.title}>KOŠARICA</div>
+            <div className={styles[`item-list`]}>
+              <div className={styles[`item-list-header`]}>
+                <div className={styles[`header-padding`]}>
+                  <div className={styles[`header-name`]}>Naziv artikla</div>
+                  <div className={styles[`column-other`]}>
+                    <div>Cijena</div>
+                    <div>Količina</div>
+                    <div>Ukupno</div>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.divider} />
               {cartCtx.items.map((item) => {
                 return (
                   <CartItem

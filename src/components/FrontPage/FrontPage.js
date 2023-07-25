@@ -9,13 +9,6 @@ import CategoryShowcaseSection from "./main/Category_showcase_section/CategorySh
 import FeaturedCategories from "./main/Featured_categories_section/FeaturedCategories";
 
 const FrontPage = () => {
-  const navCtx = useContext(NavigationContext);
-
-  const loadCategory = (event) => {
-    const selectedCatId = event.target.getAttribute("value");
-    navCtx.loadCategory(selectedCatId);
-  };
-
   return (
     <Fragment>
       <div className={styles.wrapper}>

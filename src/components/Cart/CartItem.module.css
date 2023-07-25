@@ -11,11 +11,30 @@
   padding: 1rem;
 }
 
+.image {
+  height: 5rem;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.main-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.options {
+  font-size: 0.9em;
+  margin-top: 1rem;
+  color: var(--gray-text-color);
+}
+
 .item-divider {
-  background-color: black;
+  background-color: var(--property-background-color);
   border-radius: 2rem;
   height: 1px;
-  width: 80%;
+  width: 100%;
+  margin: auto;
 }
 
 .total-wrapper {

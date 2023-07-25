@@ -5,6 +5,7 @@
   overflow: hidden;
   border-radius: 0.25rem;
   transition: 0.3s;
+  background-color: aliceblue;
 }
 
 .wrapper::after {
@@ -42,6 +43,7 @@
 .wrapper:hover {
   cursor: pointer;
   box-shadow: 0px 0px 10px gray;
+  scale: 2;
 }
 
 .wrapper:hover .title {
