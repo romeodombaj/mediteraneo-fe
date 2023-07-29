@@ -1,0 +1,43 @@
+.wrapper {
+  width: 50%;
+  background-color: var(--property-background-color);
+  padding: 2rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.section {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.section-title {
+  width: 50%;
+  font-size: 0.8em;
+}
+
+.section-details {
+  font-size: 0.8em;
+  width: 50%;
+}
+
+.main-detail {
+}
+
+.description-detail {
+  font-style: italic;
+  color: var(--gray-text-color);
+  margin-top: 0.5rem;
+  font-size: 0.8em;
+}
+
+.section-divider {
+  margin-top: 1rem;
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.142);
+}

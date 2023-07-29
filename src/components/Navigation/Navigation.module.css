@@ -50,7 +50,7 @@
   align-items: center;
   z-index: 90;
   animation: slide-in 0.3s;
-  z-index: 210;
+  z-index: 310;
 }
 
 .content-wrapper {

@@ -47,7 +47,7 @@ const cartReducer = (state, action) => {
 
     updatedTotalAmount = state.totalAmount - existingCartItem.price;
 
-    if (existingCartItem.quantity > 1) {
+    if (existingCartItem.quantity > 1 && action.whole === false) {
       let updatedItem = {
         ...existingCartItem,
         quantity: existingCartItem.quantity - 1,
@@ -84,8 +84,9 @@ const CartProvider = (props) => {
     cartDispatch({ type: "ADD", item: item });
   };
 
-  const removeItemHandler = (id) => {
-    cartDispatch({ type: "REMOVE", id: id });
+  const removeItemHandler = (id, whole) => {
+    console.log("whole " + whole);
+    cartDispatch({ type: "REMOVE", id: id, whole: whole });
   };
 
   const cartContext = {

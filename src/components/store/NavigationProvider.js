@@ -6,6 +6,7 @@ import CategoryContext from "./category-context";
 
 const NavigationProvider = (props) => {
   const [isNavigating, setIsNavigating] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const loadCtx = useContext(LoadingContext);
   const navigate = useNavigate();
   const categoryCtx = useContext(CategoryContext);
@@ -37,10 +38,12 @@ const NavigationProvider = (props) => {
         navigate(`/${slug}`);
         goToTop();
         setIsNavigating(false);
+        closeCart();
       }, 250);
     } else {
       goToTop();
       setIsNavigating(false);
+      closeCart();
     }
   };
 
@@ -56,10 +59,21 @@ const NavigationProvider = (props) => {
     setIsNavigating((prevState) => !prevState);
   };
 
+  const changeCartState = () => {
+    setCartOpen((prevState) => !prevState);
+  };
+
+  const closeCart = () => {
+    setCartOpen(false);
+  };
+
   const navigationContext = {
     loadCategory: loadCategory,
     loadPage: loadPage,
     isNavigating: isNavigating,
+    cartOpen: cartOpen,
+    closeCart: closeCart,
+    changeCartState: changeCartState,
     loadHomePage: loadHomePage,
     changeNavigationState: changeNavigationState,
   };

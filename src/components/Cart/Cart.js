@@ -4,6 +4,8 @@ import CartContext from "../store/cart-context";
 import ReactDOM from "react-dom";
 import CartItem from "./CartItem";
 import { createRoutesFromElements } from "react-router-dom";
+import Coupon from "./Coupon";
+import Total from "./Total";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
@@ -12,8 +14,8 @@ const Cart = (props) => {
     cartCtx.addItem(item);
   };
 
-  const decreaseItem = (id) => {
-    cartCtx.removeItem(id);
+  const decreaseItem = (id, whole) => {
+    cartCtx.removeItem(id, whole);
   };
 
   const portalElement = document.getElementById("overlays");
@@ -27,26 +29,37 @@ const Cart = (props) => {
             <div className={styles[`item-list`]}>
               <div className={styles[`item-list-header`]}>
                 <div className={styles[`header-padding`]}>
-                  <div className={styles[`header-name`]}>Naziv artikla</div>
-                  <div className={styles[`column-other`]}>
-                    <div>Cijena</div>
-                    <div>Količina</div>
-                    <div>Ukupno</div>
+                  <div className={styles[`columns-padding`]}>
+                    <div className={styles[`header-name`]}>Naziv artikla</div>
+                    <div className={styles[`column-other`]}>
+                      <div className={styles[`other-item`]}>Cijena</div>
+                      <div className={styles[`other-item`]}>Količina</div>
+                      <div className={styles[`other-item`]}>Ukupno</div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className={styles.divider} />
-              {cartCtx.items.map((item) => {
-                return (
-                  <CartItem
-                    key={item.id}
-                    item={item}
-                    addItem={increaseItem}
-                    removeItem={decreaseItem}
-                  />
-                );
-              })}
+              {cartCtx.items.length > 0 ? (
+                cartCtx.items.map((item) => {
+                  return (
+                    <CartItem
+                      key={item.id}
+                      item={item}
+                      addItem={increaseItem}
+                      removeItem={decreaseItem}
+                    />
+                  );
+                })
+              ) : (
+                <div className={styles.empty}>KOŠARICA PRAZNA</div>
+              )}
             </div>
+            <div className={styles.details}>
+              <Coupon />
+              <Total />
+            </div>
+
             <div className={styles.price}>
               ${cartCtx.totalAmount.toFixed(2)}
             </div>

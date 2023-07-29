@@ -11,7 +11,6 @@ import navLogo from "../../assets/navigation/nav-logo.png";
 import searcIcon from "../../assets/navigation/search.png";
 
 const NavBar = (props) => {
-  const [cartIsOpen, setCartIsOpen] = useState(false);
   const [navigationTransparency, setNavigationTransparency] = useState(false);
 
   const navCtx = useContext(NavigationContext);
@@ -22,14 +21,6 @@ const NavBar = (props) => {
 
   const goHome = () => {
     navCtx.loadCategory();
-  };
-
-  const openCartHandler = () => {
-    setCartIsOpen(true);
-  };
-
-  const closeCartHandler = () => {
-    setCartIsOpen(false);
   };
 
   useEffect(() => {
@@ -59,31 +50,40 @@ const NavBar = (props) => {
       {navCtx.isNavigating && (
         <Navigation onClose={changeNavigationStateHandler} />
       )}
-      {cartIsOpen && <Cart onClose={closeCartHandler}></Cart>}
+      {navCtx.cartOpen && <Cart onClose={navCtx.closeCart}></Cart>}
       <div
         className={`${styles.wrapper} ${
-          styles[navigationTransparency && `transparent`]
+          styles[navigationTransparency && !navCtx.cartOpen && `transparent`]
         }`}
       >
         <div className={styles.container}>
           <div className={styles[`left-section`]}>
             <img
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${
-                styles[!navigationTransparency && `nav-img-item`]
+                styles[
+                  !(navigationTransparency && !navCtx.cartOpen) &&
+                    `nav-img-item`
+                ]
               }`}
               onClick={goHome}
               src={navLogo}
             />
             <div
               className={`${styles[`nav-item`]} ${styles.language} ${
-                styles[!navigationTransparency && `nav-img-item`]
+                styles[
+                  !(navigationTransparency && !navCtx.cartOpen) &&
+                    `nav-img-item`
+                ]
               }`}
             >
               ENG
             </div>
             <img
               className={`${styles[`nav-item`]} ${styles.search} ${
-                styles[!navigationTransparency && `nav-img-item`]
+                styles[
+                  !(navigationTransparency && !navCtx.cartOpen) &&
+                    `nav-img-item`
+                ]
               }`}
               src={searcIcon}
             ></img>
@@ -91,16 +91,22 @@ const NavBar = (props) => {
 
           <div className={styles[`action-wrapper`]}>
             <img
-              onClick={openCartHandler}
+              onClick={navCtx.changeCartState}
               className={`${styles[`nav-item`]} ${
-                styles[!navigationTransparency && `nav-img-item`]
+                styles[
+                  !(navigationTransparency && !navCtx.cartOpen) &&
+                    `nav-img-item`
+                ]
               }`}
               src={cartIcon}
             />
             <div
               onClick={changeNavigationStateHandler}
               className={`${styles.menu} ${styles[`nav-item`]} ${
-                styles[!navigationTransparency && `nav-img-item`]
+                styles[
+                  !(navigationTransparency && !navCtx.cartOpen) &&
+                    `nav-img-item`
+                ]
               }`}
             >
               <img src={menuIcon} className={` ${styles[`menu-icon`]} `}></img>

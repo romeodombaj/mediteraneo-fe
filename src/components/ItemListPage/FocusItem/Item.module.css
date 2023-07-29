@@ -7,7 +7,7 @@
   left: 0;
   background-color: white;
   z-index: 100;
-  animation: slide-in 0.2s ease-out;
+  animation: slide-in 0.25s ease-out;
   padding-top: 2rem;
 }
 
