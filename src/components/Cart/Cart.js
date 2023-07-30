@@ -57,17 +57,11 @@ const Cart = (props) => {
             </div>
             <div className={styles.details}>
               <Coupon />
-              <Total />
+              <Total price={cartCtx.totalAmount.toFixed(2)} />
             </div>
 
-            <div className={styles.price}>
-              ${cartCtx.totalAmount.toFixed(2)}
-            </div>
             <div className={styles.actions}>
-              <div className={styles[`action-button`]}>ORDER</div>
-              <div className={styles[`action-button`]} onClick={props.onClose}>
-                CLOSE
-              </div>
+              <div className={styles[`action-button`]}>KRENI NA PLAĆANJE</div>
             </div>
           </div>
         </Fragment>,
