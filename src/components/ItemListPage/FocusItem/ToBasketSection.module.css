@@ -9,8 +9,8 @@
 .divider {
   width: 100%;
   border: 1px solid rgba(193, 193, 193, 0.18);
-  margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-top: 5vh;
+  margin-bottom: 4vh;
 }
 
 .total-section {
@@ -36,8 +36,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  height: 2.25rem;
-  font-size: 0.7em;
+  height: 2rem;
+  font-size: 0.6em;
   border-radius: 0.1rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -59,4 +59,21 @@
 .cart-icon {
   height: 1rem;
   margin-right: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .add-button {
+    margin-top: 1.5rem;
+    font-size: 0.9em;
+    height: 2.5rem;
+  }
+
+  .total-section {
+    margin: auto;
+    font-size: 1em;
+  }
 }

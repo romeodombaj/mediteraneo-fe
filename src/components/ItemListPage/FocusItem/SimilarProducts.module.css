@@ -1,6 +1,5 @@
 .wrapper {
-  width: 90%;
-  height: 80vh;
+  width: 100%;
   margin: auto;
   margin-top: 10rem;
 }
@@ -15,4 +14,20 @@
   grid-template-columns: 20% 20% 20% 20%;
   justify-content: center;
   column-gap: 0.1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    margin-top: 0rem;
+    width: 90%;
+  }
+
+  .list {
+    grid-template-columns: 100%;
+    row-gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.1em;
+  }
 }
