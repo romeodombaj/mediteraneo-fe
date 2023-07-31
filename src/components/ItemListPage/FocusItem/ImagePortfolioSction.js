@@ -25,10 +25,16 @@ const ImagePortfolioSection = (props) => {
         {/*<img className={styles.image2} src={props.item.images[0].src} />*/}
         <div className={styles.grid}>
           <img className={`${styles.image}`} src={props.item.images[0].src} />
-          <img className={`${styles.image}`} src={props.item.images[1].src} />
-          <img className={`${styles.image}`} src={props.item.images[2].src} />
+          <img
+            className={`${styles.image} ${styles.row1}`}
+            src={props.item.images[1].src}
+          />
+          <img
+            className={`${styles.image} ${styles.row1}`}
+            src={props.item.images[2].src}
+          />
           <div className={styles[`image-wrapper`]}>
-            <img className={`${styles.image}`} src={props.item.images[0].src} />
+            <img className={`${styles.image}`} src={props.item.images[1].src} />
             <div className={styles[`open-more`]}>
               <img src={search} className={styles.search}></img>
               <div>POGLEDAJTE SVE FOTOGRAFIJE</div>

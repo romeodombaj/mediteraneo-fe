@@ -16,6 +16,7 @@ import SimilarProducts from "./SimilarProducts";
 import CategoryContext from "../../store/category-context";
 import LoadingAnimation from "../../UI/LoadingAnimation";
 import Footer from "../../Informative-Pages/Footer";
+import { useRef } from "react";
 
 const Item = () => {
   const cartCtx = useContext(CartContext);
@@ -23,6 +24,15 @@ const Item = () => {
   const location = useLocation();
   const loadCtx = useContext(LoadingContext);
   const navigate = useNavigate();
+
+  const topRef = useRef(null);
+
+  const scrollToTop = () => {
+    topRef.current.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const categorySlug = useParams().categorySlug;
   const itemSlug = useParams().productSlug;
@@ -61,6 +71,8 @@ const Item = () => {
   }, [categoryCtx.categories]);
 
   useEffect(() => {
+    scrollToTop();
+
     if (!itemInfo) {
       fetch(
         `https://mediteraneo.eu/wp-json/wc/v3/products?slug=${itemSlug}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
@@ -75,11 +87,11 @@ const Item = () => {
     } else {
       setItem(itemInfo.item);
     }
-  }, []);
+  }, [location]);
 
   return (
     <Fragment>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} ref={topRef}>
         {!item ? (
           <LoadingAnimation />
         ) : (

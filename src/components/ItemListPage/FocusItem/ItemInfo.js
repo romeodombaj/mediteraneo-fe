@@ -16,7 +16,10 @@ const ItemInfo = (props) => {
           <div className={styles[`availability-section`]}>
             <div className={styles[`section-title`]}>Dostupnost:</div>
             <div className={styles[`availability-divider`]}>
-              <RadioButton color="green" active={false} />
+              <div className={styles.radio}>
+                <RadioButton color="GreenYellow" active={false} />
+              </div>
+
               <div className={styles.availability}>dostupno</div>
             </div>
           </div>

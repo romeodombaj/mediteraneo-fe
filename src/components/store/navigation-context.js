@@ -9,6 +9,7 @@ const NavigationContext = React.createContext({
   closeCart: () => {},
   changeCartState: () => {},
   loadPage: () => {},
+  goToTop: () => {},
 });
 
 export default NavigationContext;

@@ -58,6 +58,14 @@
   .wrapper {
     width: 100%;
   }
+
+  .row1 {
+    display: none;
+  }
+
+  .grid {
+    aspect-ratio: 2;
+  }
 }
 
 @media only screen and (max-width: 480px) {

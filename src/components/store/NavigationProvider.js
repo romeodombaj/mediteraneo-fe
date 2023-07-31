@@ -76,6 +76,7 @@ const NavigationProvider = (props) => {
     changeCartState: changeCartState,
     loadHomePage: loadHomePage,
     changeNavigationState: changeNavigationState,
+    goToTop: goToTop,
   };
 
   return (
