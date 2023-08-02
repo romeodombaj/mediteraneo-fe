@@ -7,6 +7,7 @@
 .title {
   font-weight: 600;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .lookup {
@@ -27,8 +28,23 @@
     width: 95%;
   }
 
+  .title {
+    text-align: center;
+    margin-bottom: 0.7rem;
+    font-size: 1.2em;
+  }
+
+  .lookup {
+    text-align: center;
+    font-size: 0.8em;
+  }
+
   .grid {
     grid-template-columns: auto auto;
+  }
+
+  .hidden {
+    display: 0;
   }
 }
 

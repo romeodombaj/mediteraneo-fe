@@ -30,7 +30,7 @@ const Item = () => {
   const scrollToTop = () => {
     topRef.current.scroll({
       top: 0,
-      behavior: "smooth",
+      behavior: "instant",
     });
   };
 

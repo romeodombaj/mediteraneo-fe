@@ -10,7 +10,14 @@ const ItemListHeader = (props) => {
       <div className={styles.wrapper}>
         {props.category && (
           <Fragment>
-            <img className={styles.image} src={props.category.image.src}></img>
+            <img className={styles.image} src={props.category.image.src} />
+            <div className={styles[`nav-map`]}>
+              <Link to="/" className={styles.past}>
+                Naslovnica
+              </Link>
+              <div> / </div>
+              <div> {props.params}</div>
+            </div>
             <div className={styles[`info-wrapper`]}>
               <div className={styles.title}>{props.category.name}</div>
               <div className={styles.description}>

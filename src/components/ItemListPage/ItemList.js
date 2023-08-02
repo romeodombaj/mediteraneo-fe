@@ -96,17 +96,11 @@ const ItemList = () => {
     <Fragment>
       <Outlet />
       <div className={styles.wrapper}>
-        <div className={styles[`nav-map`]}>
-          <Link to="/" className={styles.past}>
-            Naslovnica
-          </Link>
-          <div>/</div>
-          <div> {params}</div>
-        </div>
+        
 
         {categoryCtx.categories && (
           <Fragment>
-            <ItemListHeader category={currentCategory} />
+            <ItemListHeader category={currentCategory} params={params} />
             <div className={styles.count}>{itemCount} proizvoda </div>
             <ListActions
               filterItems={filterItems}

@@ -22,8 +22,12 @@ const SelectedSection = (props) => {
       ) : (
         <div className={styles.grid}>
           {selectedProductsList &&
-            selectedProductsList.map((item) => {
-              return <ShowItem load={props.load} key={item.id} item={item} />;
+            selectedProductsList.map((item, i) => {
+              return (
+                <div className={`${styles[i > 3 && `hidden`]}`}>
+                  <ShowItem load={props.load} key={item.id} item={item} />
+                </div>
+              );
             })}
         </div>
       )}

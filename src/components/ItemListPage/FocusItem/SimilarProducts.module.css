@@ -23,6 +23,22 @@
   }
 
   .list {
+    grid-template-columns: 50% 50%;
+    row-gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.1em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    margin-top: 0rem;
+    width: 90%;
+  }
+
+  .list {
     grid-template-columns: 100%;
     row-gap: 1.5rem;
   }

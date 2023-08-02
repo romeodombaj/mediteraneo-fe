@@ -86,3 +86,62 @@
   color: rgb(141, 141, 141);
   font-size: 0.6em;
 }
+
+@media only screen and (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+
+  .logo-section {
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo {
+    scale: 0.7;
+  }
+
+  .quick-links {
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+
+  .link-list {
+    grid-template-columns: 100%;
+    text-align: center;
+  }
+
+  .link-list-title {
+    text-align: center;
+    font-size: 1.3em;
+  }
+
+  .link {
+    font-size: 1em;
+    padding: 0.5rem;
+  }
+
+  .media-wrapper {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
+  .hr {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .social-icon {
+    height: 1.75rem;
+    margin: auto;
+  }
+
+  .payment {
+    height: 1.75rem;
+  }
+
+  .copyright-wrapper {
+    font-size: 0.8em;
+    text-align: center;
+  }
+}

@@ -39,9 +39,6 @@
   align-items: center;
 }
 
-.delivery-section {
-}
-
 .delivery {
   color: var(--gray-text-color);
   font-size: 0.8em;
@@ -55,4 +52,16 @@
 
 .radio {
   scale: 0.5;
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 1em;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 1em;
+    margin-bottom: 1rem;
+  }
 }
