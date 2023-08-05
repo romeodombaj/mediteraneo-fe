@@ -48,7 +48,7 @@ const CartItem = (props) => {
           src={exitIcon}
         />
 
-        <img className={styles.image} src={tempImg} />
+        <img className={styles.image} src={props.item.image} />
         <div className={styles[`info`]}>
           <div>
             <div className={styles.name}>{props.item.name}</div>

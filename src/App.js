@@ -7,9 +7,7 @@ import ItemList from "./components/ItemListPage/ItemList";
 import FrontPage from "./components/FrontPage/FrontPage";
 import NavBar from "./components/Navigation/NavBar";
 import CartProvider from "./components/store/CartProvider";
-import PageLoad from "./components/Loader/PageLoad";
 import LoadingContext from "./components/store/loading-context";
-import SubPageLoad from "./components/Loader/SubPageLoad";
 import AboustUs from "./components/Informative-Pages/AboutUs";
 import Footer from "./components/Informative-Pages/Footer";
 import Item from "./components/ItemListPage/FocusItem/Item";
@@ -63,7 +61,7 @@ const App = () => {
       {/*mainIsLoading && <PageLoad />*/}
       {/*productIsLoading && <SubPageLoad />*/}
 
-      <div className="App">
+      <div>
         <NavBar nav={setIsNavigating} />
         <div className={`${styles[`nav-state`]} ${styles[navBodyAnimation]}`}>
           <Routes>

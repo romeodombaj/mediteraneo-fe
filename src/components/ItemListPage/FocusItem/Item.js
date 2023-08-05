@@ -42,10 +42,12 @@ const Item = () => {
   const [otherItems, setOtherItems] = useState();
 
   const addItemToCartHandler = () => {
+    console.log(item.price);
     cartCtx.addItem({
       id: item.id,
       name: item.name,
-      price: 22.21,
+      price: parseInt(item.price),
+      image: item.images[0].src,
       quantity: 1,
     });
   };

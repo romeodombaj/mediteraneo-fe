@@ -19,6 +19,7 @@
 .image {
   position: fixed;
   height: 80vh;
+  max-width: 65%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -40,10 +41,9 @@
 }
 
 .arrow {
-  z-index: 1000;
+  z-index: 1200;
   position: fixed;
-  top: 40%;
-  transform: translateY(-50%);
+
   height: 3rem;
   filter: invert(100%);
   padding: 5vh;
@@ -70,4 +70,23 @@
 
 .exit:hover {
   scale: 1.05;
+}
+
+@media only screen and (max-width: 768px) {
+  .image {
+    max-width: 100%;
+  }
+
+  .arrow {
+    height: 100vh;
+    width: 25%;
+  }
+
+  .arrow-right {
+    right: -10%;
+  }
+
+  .arrow-left {
+    left: -10%;
+  }
 }

@@ -10,10 +10,6 @@ const ItemListMain = (props) => {
   let counter;
 
   useEffect(() => {
-    console.log(props.itemInfo);
-  }, [props.itemInfo]);
-
-  useEffect(() => {
     if (props.gridStyle === "0") {
       setGridStyle(``);
     } else {

@@ -66,11 +66,10 @@ const cartReducer = (state, action) => {
   return defaultCartState;
 };
 
-console.log(JSON.parse(localStorage.getItem("cart-store")).length);
-
 const CartProvider = (props) => {
   const [cartStore, setCartStore] = useState(
-    JSON.parse(localStorage.getItem("cart-store")).length > 0
+    JSON.parse(localStorage.getItem("cart-store")) &&
+      JSON.parse(localStorage.getItem("cart-store")).length > 0
       ? {
           items: JSON.parse(localStorage.getItem("cart-store")),
           totalAmount: 0,
@@ -85,7 +84,6 @@ const CartProvider = (props) => {
   };
 
   const removeItemHandler = (id, whole) => {
-    console.log("whole " + whole);
     cartDispatch({ type: "REMOVE", id: id, whole: whole });
   };
 
