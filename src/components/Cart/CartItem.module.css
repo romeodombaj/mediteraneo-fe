@@ -38,9 +38,8 @@
 }
 
 .item-divider {
-  background-color: var(--property-background-color);
-  border-radius: 2rem;
-  height: 1px;
+  border-radius: 1rem;
+  border: 1px solid var(--property-background-color);
   width: 100%;
   margin: auto;
 }

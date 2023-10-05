@@ -7,6 +7,7 @@ import CategoryContext from "./category-context";
 const NavigationProvider = (props) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [savedOpen, setSavedOpen] = useState(false);
   const loadCtx = useContext(LoadingContext);
   const navigate = useNavigate();
   const categoryCtx = useContext(CategoryContext);
@@ -39,11 +40,13 @@ const NavigationProvider = (props) => {
         goToTop();
         setIsNavigating(false);
         closeCart();
+        closeSaved();
       }, 250);
     } else {
       goToTop();
       setIsNavigating(false);
       closeCart();
+      closeSaved();
     }
   };
 
@@ -60,6 +63,9 @@ const NavigationProvider = (props) => {
   };
 
   const changeCartState = () => {
+    if (!cartOpen) {
+      closeSaved();
+    }
     setCartOpen((prevState) => !prevState);
   };
 
@@ -67,13 +73,27 @@ const NavigationProvider = (props) => {
     setCartOpen(false);
   };
 
+  const changeSavedState = () => {
+    if (!savedOpen) {
+      closeCart();
+    }
+    setSavedOpen((prevState) => !prevState);
+  };
+
+  const closeSaved = () => {
+    setSavedOpen(false);
+  };
+
   const navigationContext = {
     loadCategory: loadCategory,
     loadPage: loadPage,
     isNavigating: isNavigating,
     cartOpen: cartOpen,
+    savedOpen: savedOpen,
     closeCart: closeCart,
     changeCartState: changeCartState,
+    changeSavedState: changeSavedState,
+    closeSaved: closeSaved,
     loadHomePage: loadHomePage,
     changeNavigationState: changeNavigationState,
     goToTop: goToTop,

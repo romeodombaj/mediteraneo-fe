@@ -8,6 +8,7 @@ import CategoryContext from "../store/category-context";
 import LoadingContext from "../store/loading-context";
 import ListActions from "./Main/ListActions";
 import NavigationContext from "../store/navigation-context";
+import SavedContext from "../store/saved-context";
 
 const ItemList = () => {
   const [itemList, setItemList] = useState([]);
@@ -20,7 +21,7 @@ const ItemList = () => {
   const categoryCtx = useContext(CategoryContext);
   const loadCtx = useContext(LoadingContext);
   const navCtx = useContext(NavigationContext);
-
+  const saveCtx = useContext(SavedContext);
   const params = useParams().categorySlug;
 
   const currentCategory = categoryCtx.getCategory(params);
@@ -65,7 +66,9 @@ const ItemList = () => {
       )
         .then((response) => response.json())
         .then((ctgList) => {
-          setItemList(ctgList);
+          if (ctgList.length > 0) {
+            setItemList(saveCtx.checkIfSaved(ctgList));
+          }
           setItemCount(ctgList.length);
         })
         .then(() => {
@@ -96,8 +99,6 @@ const ItemList = () => {
     <Fragment>
       <Outlet />
       <div className={styles.wrapper}>
-        
-
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} params={params} />

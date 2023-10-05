@@ -3,13 +3,15 @@ import { Fragment, useState, useContext, useEffect } from "react";
 import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
 import NavigationContext from "../store/navigation-context";
+import SubcategoryNavigation from "./SubcategoryNavigation";
+import Saved from "../Saved/Saved";
 
 //images
 import menuIcon from "../../assets/navigation/menu-bars.png";
 import cartIcon from "../../assets/navigation/cart.png";
 import navLogo from "../../assets/navigation/nav-logo.png";
 import searcIcon from "../../assets/navigation/search.png";
-import SubcategoryNavigation from "./SubcategoryNavigation";
+import savedIcon from "../../assets/heart-empty.png";
 
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
@@ -51,9 +53,16 @@ const NavBar = (props) => {
         <Navigation onClose={changeNavigationStateHandler} />
       )}
       {navCtx.cartOpen && <Cart onClose={navCtx.closeCart}></Cart>}
+
+      {navCtx.savedOpen && <Saved />}
       <div
         className={`${styles.wrapper} ${
-          styles[navigationTransparency && !navCtx.cartOpen && `transparent`]
+          styles[
+            navigationTransparency &&
+              !navCtx.cartOpen &&
+              !navCtx.savedOpen &&
+              `transparent`
+          ]
         }`}
       >
         <div className={styles.container}>
@@ -61,8 +70,11 @@ const NavBar = (props) => {
             <img
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${
                 styles[
-                  !(navigationTransparency && !navCtx.cartOpen) &&
-                    `nav-img-item`
+                  !(
+                    navigationTransparency &&
+                    !navCtx.cartOpen &&
+                    !navCtx.savedOpen
+                  ) && `nav-img-item`
                 ]
               }`}
               onClick={goHome}
@@ -71,8 +83,11 @@ const NavBar = (props) => {
             <div
               className={`${styles[`nav-item`]} ${styles.language} ${
                 styles[
-                  !(navigationTransparency && !navCtx.cartOpen) &&
-                    `nav-img-item`
+                  !(
+                    navigationTransparency &&
+                    !navCtx.cartOpen &&
+                    !navCtx.savedOpen
+                  ) && `nav-img-item`
                 ]
               }`}
             >
@@ -81,8 +96,11 @@ const NavBar = (props) => {
             <img
               className={`${styles[`nav-item`]} ${styles.search} ${
                 styles[
-                  !(navigationTransparency && !navCtx.cartOpen) &&
-                    `nav-img-item`
+                  !(
+                    navigationTransparency &&
+                    !navCtx.cartOpen &&
+                    !navCtx.savedOpen
+                  ) && `nav-img-item`
                 ]
               }`}
               src={searcIcon}
@@ -91,21 +109,39 @@ const NavBar = (props) => {
 
           <div className={styles[`action-wrapper`]}>
             <img
+              onClick={navCtx.changeSavedState}
+              className={`${styles[`nav-item`]} ${
+                styles[
+                  navigationTransparency &&
+                    !navCtx.cartOpen &&
+                    !navCtx.savedOpen &&
+                    `nav-img-item`
+                ]
+              } ${styles["saved-item"]}`}
+              src={savedIcon}
+            />
+            <img
               onClick={navCtx.changeCartState}
               className={`${styles[`nav-item`]} ${
                 styles[
-                  !(navigationTransparency && !navCtx.cartOpen) &&
-                    `nav-img-item`
+                  !(
+                    navigationTransparency &&
+                    !navCtx.cartOpen &&
+                    !navCtx.savedOpen
+                  ) && `nav-img-item`
                 ]
-              }`}
+              } ${styles["cart-item"]}`}
               src={cartIcon}
             />
             <div
               onClick={changeNavigationStateHandler}
               className={`${styles.menu} ${styles[`nav-item`]} ${
                 styles[
-                  !(navigationTransparency && !navCtx.cartOpen) &&
-                    `nav-img-item`
+                  !(
+                    navigationTransparency &&
+                    !navCtx.cartOpen &&
+                    !navCtx.savedOpen
+                  ) && `nav-img-item`
                 ]
               }`}
             >

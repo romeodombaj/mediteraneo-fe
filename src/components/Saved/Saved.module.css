@@ -1,0 +1,50 @@
+.wrapper {
+  position: fixed;
+  width: 100%;
+  height: calc(100vh - 5rem);
+  overflow-y: scroll;
+  background-color: white;
+  z-index: 210;
+  top: 5rem;
+  animation: slide-in 0.3s;
+}
+
+.title {
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 5rem;
+}
+
+.item-grid {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  overflow: hidden;
+  column-gap: 0.1rem;
+  row-gap: 0.2rem;
+  width: 85%;
+  padding: 2.5%;
+}
+
+.null {
+  line-height: 50vh;
+  font-size: 1.5em;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  font-style: italic;
+  color: var(--gray-text-color);
+  background-color: var(--property-background-color);
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translate(10%, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}

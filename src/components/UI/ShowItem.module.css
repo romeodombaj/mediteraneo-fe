@@ -63,6 +63,33 @@
   opacity: 1;
 }
 
+.save {
+  height: 1.3rem;
+  aspect-ratio: 0.9;
+  opacity: 0;
+  padding: 0.65rem;
+  transition: 0.3s;
+}
+
+.save:hover {
+  scale: 0.95;
+}
+
+.save:active {
+  scale: 0.7;
+}
+
+.wrapper:hover .save {
+  opacity: 1;
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media only screen and (max-width: 768px) {
   .open-indicator {
     opacity: 1;
@@ -77,5 +104,14 @@
   100% {
     opacity: 1;
     transform: translateY(0%);
+  }
+}
+
+@keyframes heart-in {
+  0% {
+    scale: 0.8;
+  }
+  100% {
+    scale: 1;
   }
 }

@@ -95,6 +95,16 @@
   margin-left: 0.5rem;
 }
 
+.saved-item {
+  height: 2rem;
+  aspect-ratio: 0.9;
+  margin-right: 0;
+}
+
+.cart-item {
+  margin-right: 2rem;
+}
+
 @media only screen and (max-width: 480px) {
   .search {
     display: none;

@@ -1,7 +1,7 @@
 .wrapper {
   position: fixed;
   width: 100%;
-  top: 10vh;
+  top: 5rem;
   height: 90vh;
   overflow: scroll;
   left: 0;
@@ -89,4 +89,3 @@
     width: 100%;
   }
 }
-
