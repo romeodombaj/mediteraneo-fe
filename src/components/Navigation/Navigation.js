@@ -1,11 +1,11 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import styles from "./Navigation.module.css";
-import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import CategoryContext from "../store/category-context";
 import CategoryElement from "./Categorisation/CategoryElement";
 import NavigationContext from "../store/navigation-context";
 import { Link } from "react-router-dom";
+import SubcategoryNavigation from "./SubcategoryNavigation";
 
 //images
 import logo from "../../assets/logo.png";
@@ -19,6 +19,8 @@ const Navigation = (props) => {
   const navCtx = useContext(NavigationContext);
 
   const [policyIsOpen, setPolicyIsOpen] = useState(false);
+  const [inSubcategories, setInSubcategoreis] = useState(false);
+  const [currentSubcategories, setCurrentSubcategories] = useState([]);
 
   // link to new page
   const categorySelectionHandler = (event) => {
@@ -26,9 +28,22 @@ const Navigation = (props) => {
     navCtx.loadCategory(selectedCatId);
   };
 
+  const openSubcategoriesHandler = (subcategories) => {
+    setCurrentSubcategories([...subcategories]);
+    setInSubcategoreis(true);
+  };
+
+  const closeSubcategoriesHandler = (subcategories) => {
+    setInSubcategoreis(false);
+  };
+
   const politicsHandler = () => {
     setPolicyIsOpen(true);
   };
+
+  useEffect(() => {
+    if (categoryCtx.categories) console.log(categoryCtx.categories.id);
+  }, [categoryCtx.categories]);
 
   return (
     <Fragment>
@@ -37,6 +52,13 @@ const Navigation = (props) => {
         <Fragment>
           <div className={styles.backdrop} onClick={props.onClose}></div>
           <div className={styles.wrapper}>
+            {inSubcategories && (
+              <SubcategoryNavigation
+                onSelected={categorySelectionHandler}
+                onClose={closeSubcategoriesHandler}
+                subcategories={currentSubcategories}
+              />
+            )}
             <div className={styles[`exit-actions`]} onClick={props.onClose}>
               <img src={exit} className={styles[`exit-icon`]} />
               <div className={styles[`exit-text`]}>MENU</div>
@@ -52,6 +74,12 @@ const Navigation = (props) => {
                           key={category.id}
                           category={category}
                           onSelected={categorySelectionHandler}
+                          openSubcategories={openSubcategoriesHandler}
+                          subcategories={[
+                            ...categoryCtx.categories.filter(
+                              (el) => el.parent === category.id
+                            ),
+                          ]}
                         />
                       );
                     }

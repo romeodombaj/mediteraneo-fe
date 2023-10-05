@@ -9,10 +9,10 @@ import menuIcon from "../../assets/navigation/menu-bars.png";
 import cartIcon from "../../assets/navigation/cart.png";
 import navLogo from "../../assets/navigation/nav-logo.png";
 import searcIcon from "../../assets/navigation/search.png";
+import SubcategoryNavigation from "./SubcategoryNavigation";
 
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
-
   const navCtx = useContext(NavigationContext);
 
   const changeNavigationStateHandler = () => {
