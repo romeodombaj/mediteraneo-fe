@@ -21,6 +21,7 @@ const Navigation = (props) => {
   const [policyIsOpen, setPolicyIsOpen] = useState(false);
   const [inSubcategories, setInSubcategoreis] = useState(false);
   const [currentSubcategories, setCurrentSubcategories] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState();
 
   // link to new page
   const categorySelectionHandler = (event) => {
@@ -28,8 +29,9 @@ const Navigation = (props) => {
     navCtx.loadCategory(selectedCatId);
   };
 
-  const openSubcategoriesHandler = (subcategories) => {
+  const openSubcategoriesHandler = (subcategories, category) => {
     setCurrentSubcategories([...subcategories]);
+    setCurrentCategory(category);
     setInSubcategoreis(true);
   };
 
@@ -57,6 +59,7 @@ const Navigation = (props) => {
                 onSelected={categorySelectionHandler}
                 onClose={closeSubcategoriesHandler}
                 subcategories={currentSubcategories}
+                category={currentCategory}
               />
             )}
             <div className={styles[`exit-actions`]} onClick={props.onClose}>

@@ -5,6 +5,7 @@ import backArrow from "./../../assets/navigation/back-arrow.png";
 
 const SubcategoryNavigation = (props) => {
   const itemList = props.subcategories;
+  const category = props.category;
 
   return (
     <div className={styles.wrapper}>
@@ -17,6 +18,14 @@ const SubcategoryNavigation = (props) => {
       </div>
       <div className={styles[`content-wrapper`]}>
         <div className={styles[`category-wrapper`]}>
+          <div className={styles.title}>
+            <CategoryElement
+              onSelected={props.onSelected}
+              key={category.id}
+              category={category}
+            />
+          </div>
+
           {itemList &&
             itemList.map((subcategory) => {
               return (

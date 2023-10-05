@@ -38,13 +38,19 @@
 
 .back-section {
   width: 70%;
-  margin-top: 15vh;
+  margin-top: 2.5rem;
 }
 
 .back-arrow {
   height: 1.5rem;
   float: left;
   cursor: pointer;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 3vh;
 }
 
 @media only screen and (max-width: 768px) {

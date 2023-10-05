@@ -5,7 +5,7 @@ import SubcategoryElement from "./SubcategoryElement";
 import backArrow from "../../../assets/navigation/back-arrow.png";
 const CategoryElement = (props) => {
   const openSubcategories = () => {
-    props.openSubcategories(props.subcategories);
+    props.openSubcategories(props.subcategories, props.category);
   };
 
   return (
