@@ -4,7 +4,9 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 200;
+  z-index: 310;
+  animation: fade-in 0.3s;
+  background-color: rgba(0, 0, 0, 0.179);
 }
 
 .exit-actions {
@@ -49,7 +51,7 @@
   flex-direction: column;
   align-items: center;
   animation: slide-in 0.3s;
-  z-index: 310;
+  z-index: 315;
 }
 
 .content-wrapper {
@@ -97,6 +99,15 @@
   cursor: pointer;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.335);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in {
