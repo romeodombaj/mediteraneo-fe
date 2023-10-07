@@ -1,11 +1,11 @@
 .wrapper {
   position: fixed;
   width: 100%;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 4rem);
   overflow-y: scroll;
   background-color: white;
   z-index: 210;
-  top: 5rem;
+  top: 4rem;
   animation: slide-in 0.3s;
 }
 
@@ -67,6 +67,15 @@
 
 .item-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 5rem;
+  height: 1.25rem;
+  right: 19.5%;
+  z-index: 220;
+  cursor: pointer;
 }
 
 @keyframes slide-in {

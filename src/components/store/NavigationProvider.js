@@ -39,14 +39,12 @@ const NavigationProvider = (props) => {
         navigate(`/${slug}`);
         goToTop();
         setIsNavigating(false);
-        closeCart();
-        closeSaved();
+        closeAll();
       }, 250);
     } else {
       goToTop();
       setIsNavigating(false);
-      closeCart();
-      closeSaved();
+      closeAll();
     }
   };
 
@@ -62,26 +60,39 @@ const NavigationProvider = (props) => {
     setIsNavigating((prevState) => !prevState);
   };
 
+  const closeCart = () => {
+    setCartOpen(false);
+  };
+
   const changeCartState = () => {
     if (!cartOpen) {
       closeSaved();
+      setTimeout(() => {
+        setCartOpen((prevState) => !prevState);
+      }, [100]);
+    } else {
+      setCartOpen((prevState) => !prevState);
     }
-    setCartOpen((prevState) => !prevState);
-  };
-
-  const closeCart = () => {
-    setCartOpen(false);
   };
 
   const changeSavedState = () => {
     if (!savedOpen) {
       closeCart();
+      setTimeout(() => {
+        setSavedOpen((prevState) => !prevState);
+      }, [100]);
+    } else {
+      setSavedOpen((prevState) => !prevState);
     }
-    setSavedOpen((prevState) => !prevState);
   };
 
   const closeSaved = () => {
     setSavedOpen(false);
+  };
+
+  const closeAll = () => {
+    closeSaved();
+    closeCart();
   };
 
   const navigationContext = {

@@ -11,59 +11,20 @@ import LoadingContext from "./components/store/loading-context";
 import AboustUs from "./components/Informative-Pages/AboutUs";
 import Footer from "./components/Informative-Pages/Footer";
 import Item from "./components/ItemListPage/FocusItem/Item";
+import NavigationContext from "./components/store/navigation-context";
 
 const App = () => {
   const categoryCtx = useContext(CategoryContext);
-  const loadCtx = useContext(LoadingContext);
-  const [mainIsLoading, setMainIsLoading] = useState(true);
-  const [mainLoaded, setMainLoaded] = useState(false);
-  const [productIsLoading, setProductIsLoading] = useState(false);
-  const [isNavigating, setIsNavigating] = useState(false);
-  const [navBodyAnimation, setNavBodyAnimation] = useState(``);
 
   useEffect(() => {
     categoryCtx.fetchCategories();
   }, []);
 
-  // LOADING EFFECTS
-
-  useEffect(() => {
-    if (loadCtx.mainLoaded) {
-      setTimeout(() => {
-        setMainIsLoading(false);
-        setTimeout(() => {
-          setMainLoaded(true);
-        }, 800);
-      }, 500);
-    }
-  }, [loadCtx.mainLoaded]);
-
-  /*
-  // product loading
-  useEffect(() => {
-    if (loadCtx.productLoaded) {
-      setTimeout(() => {
-        setProductIsLoading(false);
-      }, 250);
-    }
-  }, [loadCtx.productLoaded]);
-
-  useEffect(() => {
-    if (loadCtx.productIsLoading) {
-      setProductIsLoading(true);
-    }
-  }, [loadCtx.productIsLoading]);
-*/
-  //
-
   return (
     <CartProvider>
-      {/*mainIsLoading && <PageLoad />*/}
-      {/*productIsLoading && <SubPageLoad />*/}
-
       <div>
-        <NavBar nav={setIsNavigating} />
-        <div className={`${styles[`nav-state`]} ${styles[navBodyAnimation]}`}>
+        <NavBar />
+        <div className={`${styles[`nav-state`]}`}>
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="/aboutus" element={<AboustUs />} />

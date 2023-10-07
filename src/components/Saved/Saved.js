@@ -1,20 +1,36 @@
-import InfoModal from "../UI/InfoModal";
 import styles from "./Saved.module.css";
 import ReactDOM from "react-dom";
-import { Fragment, useContext } from "react";
-import NavigationContext from "../store/navigation-context";
+import { Fragment, useContext, useEffect } from "react";
 import ShowItem from "../UI/ShowItem";
 import SavedContext from "../store/saved-context";
-const Saved = () => {
+
+import exitIcon from "../../assets/navigation/menu-x.png";
+
+const Saved = (props) => {
   const portalElement = document.getElementById("overlays");
-  const navCtx = useContext(NavigationContext);
   const saveCtx = useContext(SavedContext);
+
+  const onClose = () => {
+    props.onClose();
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
     <Fragment>
       {ReactDOM.createPortal(
         <Fragment>
           <div className={styles.wrapper}>
+            <img
+              className={styles["close-button"]}
+              onClick={onClose}
+              src={exitIcon}
+            />
             <div className={styles.title}>SPREMLJENI PROIZVODI</div>
 
             {saveCtx.items && saveCtx.items.length > 0 ? (

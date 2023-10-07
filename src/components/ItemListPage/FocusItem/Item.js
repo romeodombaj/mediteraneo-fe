@@ -34,6 +34,13 @@ const Item = () => {
     });
   };
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const categorySlug = useParams().categorySlug;
   const itemSlug = useParams().productSlug;
   const itemInfo = location.state;

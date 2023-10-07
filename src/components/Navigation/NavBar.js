@@ -5,17 +5,18 @@ import Cart from "../Cart/Cart";
 import NavigationContext from "../store/navigation-context";
 import SubcategoryNavigation from "./SubcategoryNavigation";
 import Saved from "../Saved/Saved";
-
 //images
 import menuIcon from "../../assets/navigation/menu-bars.png";
 import cartIcon from "../../assets/navigation/cart.png";
 import navLogo from "../../assets/navigation/nav-logo.png";
 import searcIcon from "../../assets/navigation/search.png";
 import savedIcon from "../../assets/heart-empty.png";
+import { useLocation } from "react-router-dom";
 
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
   const navCtx = useContext(NavigationContext);
+  const { hash } = useLocation();
 
   const changeNavigationStateHandler = () => {
     navCtx.changeNavigationState();
@@ -26,12 +27,7 @@ const NavBar = (props) => {
   };
 
   useEffect(() => {
-    props.nav(navCtx.isNavigating);
-  }, [navCtx.isNavigating]);
-
-  useEffect(() => {
-    console.log(window.location.hostname);
-    if (window.location.pathname === "/") {
+    if (window.location.hash === "#/") {
       if (window.scrollY === 0) {
         setNavigationTransparency(true);
       }
@@ -55,7 +51,7 @@ const NavBar = (props) => {
       )}
       {navCtx.cartOpen && <Cart onClose={navCtx.closeCart}></Cart>}
 
-      {navCtx.savedOpen && <Saved />}
+      {navCtx.savedOpen && <Saved onClose={navCtx.closeSaved} />}
       <div
         className={`${styles.wrapper} ${
           styles[

@@ -35,7 +35,7 @@ const CategoryShowcaseSection = (props) => {
           {selectedProductsList &&
             selectedProductsList.map((item, i) => {
               return (
-                <div className={`${styles[i > 3 && `hidden`]}`}>
+                <div key={i} className={`${styles[i > 3 && `hidden`]}`}>
                   <ShowItem load={props.load} key={item.id} item={item} />
                 </div>
               );
