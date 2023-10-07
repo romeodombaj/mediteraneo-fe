@@ -101,6 +101,12 @@
   color: rgba(0, 0, 0, 0.335);
 }
 
+.loading-anim {
+  scale: 0.35;
+  transform: translatey(-25vh);
+  max-height: 10vh;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

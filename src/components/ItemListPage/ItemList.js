@@ -60,7 +60,7 @@ const ItemList = () => {
     loadCtx.onProductLoad();
     setItemList([]);
 
-    if (categoryCtx.categories) {
+    if (categoryCtx.categories && categoryCtx.categories.length > 0) {
       fetch(
         `https://mediteraneo.eu/wp-json/wc/v3/products?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
       )

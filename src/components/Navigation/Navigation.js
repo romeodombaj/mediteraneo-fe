@@ -11,6 +11,7 @@ import SubcategoryNavigation from "./SubcategoryNavigation";
 import logo from "../../assets/logo.png";
 import exit from "../../assets/navigation/menu-x.png";
 import InfoModal from "../UI/InfoModal";
+import LoadingAnimation from "../UI/LoadingAnimation";
 
 const Navigation = (props) => {
   const portalElement = document.getElementById("overlays");
@@ -68,7 +69,7 @@ const Navigation = (props) => {
             </div>
             <div className={styles[`content-wrapper`]}>
               <div className={styles[`category-wrapper`]}>
-                {categoryCtx.categories &&
+                {categoryCtx.categories && categoryCtx.categories.length > 0 ? (
                   categoryCtx.categories.map((category) => {
                     if (category.display === "default") {
                       return (
@@ -86,7 +87,12 @@ const Navigation = (props) => {
                         />
                       );
                     }
-                  })}
+                  })
+                ) : (
+                  <div className={styles["loading-anim"]}>
+                    <LoadingAnimation />
+                  </div>
+                )}
               </div>
               <hr className={styles.hr} />
               <div className={styles[`specials-wrapper`]}>

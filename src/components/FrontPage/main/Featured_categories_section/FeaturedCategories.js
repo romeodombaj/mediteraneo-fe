@@ -2,6 +2,7 @@ import styles from "./FeaturedCategories.module.css";
 import CategoryContext from "../../../store/category-context";
 import NavigationContext from "../../../store/navigation-context";
 import { Fragment, useContext } from "react";
+import LoadingAnimation from "../../../UI/LoadingAnimation";
 
 const FeaturedCategories = () => {
   const catCtx = useContext(CategoryContext);
@@ -9,17 +10,14 @@ const FeaturedCategories = () => {
   const navCtx = useContext(NavigationContext);
 
   const openCategory = (e) => {
-    console.log("cat");
-
     const selectedId = e.currentTarget.getAttribute("value");
-
     navCtx.loadCategory(selectedId);
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.grid}>
-        {catCtx.categories && (
+        {catCtx.categories && catCtx.categories.length > 0 ? (
           <Fragment>
             <div
               className={styles.category}
@@ -52,6 +50,8 @@ const FeaturedCategories = () => {
               </div>
             </div>
           </Fragment>
+        ) : (
+          <LoadingAnimation />
         )}
       </div>
     </div>

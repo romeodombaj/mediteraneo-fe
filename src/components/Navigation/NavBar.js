@@ -30,6 +30,7 @@ const NavBar = (props) => {
   }, [navCtx.isNavigating]);
 
   useEffect(() => {
+    console.log(window.location.hostname);
     if (window.location.pathname === "/") {
       if (window.scrollY === 0) {
         setNavigationTransparency(true);
