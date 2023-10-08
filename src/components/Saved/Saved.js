@@ -30,6 +30,7 @@ const Saved = (props) => {
               className={styles["close-button"]}
               onClick={onClose}
               src={exitIcon}
+              alt="Exit"
             />
             <div className={styles.title}>SPREMLJENI PROIZVODI</div>
 

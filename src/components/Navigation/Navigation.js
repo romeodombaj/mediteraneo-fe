@@ -44,10 +44,6 @@ const Navigation = (props) => {
     setPolicyIsOpen(true);
   };
 
-  useEffect(() => {
-    if (categoryCtx.categories) console.log(categoryCtx.categories.id);
-  }, [categoryCtx.categories]);
-
   return (
     <Fragment>
       {policyIsOpen && <InfoModal />}

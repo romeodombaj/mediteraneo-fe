@@ -9,26 +9,25 @@ import LoadingContext from "../store/loading-context";
 import ListActions from "./Main/ListActions";
 import NavigationContext from "../store/navigation-context";
 import SavedContext from "../store/saved-context";
+import useGetItems from "../hooks/use-get-items";
 
 const ItemList = () => {
-  const [itemList, setItemList] = useState([]);
+  //const [itemList, setItemList] = useState([]);
   const [sortingValue, setSortingValue] = useState("0");
   const [gridStyleValue, setGridStyleValue] = useState("0");
-  const [isLoading, setIsLoading] = useState(true);
-  const [itemCount, setItemCount] = useState(0);
 
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
   const loadCtx = useContext(LoadingContext);
-  const navCtx = useContext(NavigationContext);
-  const saveCtx = useContext(SavedContext);
+
   const params = useParams().categorySlug;
+  const [itemList, setItemList, getItemList] = useGetItems();
 
   const currentCategory = categoryCtx.getCategory(params);
 
-  const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
+  /*const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
-  }, 0);
+  }, 0);*/
 
   const changeGridStyleValue = (val) => {
     setGridStyleValue(val);
@@ -51,32 +50,17 @@ const ItemList = () => {
       });
 
       setItemList(tempArray);
-      setItemCount(counter);
     }
   };
 
   useEffect(() => {
-    loadCtx.setParams(params);
-    loadCtx.onProductLoad();
-    setItemList([]);
+    /*loadCtx.setParams(params);
+    loadCtx.onProductLoad();*/
 
-    if (categoryCtx.categories && categoryCtx.categories.length > 0) {
-      fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
-      )
-        .then((response) => response.json())
-        .then((ctgList) => {
-          if (ctgList.length > 0) {
-            setItemList(saveCtx.checkIfSaved(ctgList));
-          }
-          setItemCount(ctgList.length);
-        })
-        .then(() => {
-          if (itemList) {
-            loadCtx.onProductLoaded();
-          }
-        });
-    }
+    setItemList([]);
+    getItemList(
+      `?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+    );
   }, [params, cartCtx.items.length, categoryCtx.categories]);
 
   useEffect(() => {
@@ -102,7 +86,7 @@ const ItemList = () => {
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} params={params} />
-            <div className={styles.count}>{itemCount} proizvoda </div>
+            <div className={styles.count}>{itemList.length} proizvoda </div>
             <ListActions
               filterItems={filterItems}
               val={changeSortingValue}

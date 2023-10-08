@@ -45,7 +45,9 @@ const ShowItem = (props) => {
     });
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setIsSaved(props.item.saved);
+  }, [props.item.saved]);
 
   return (
     <div onClick={openItemHandler} className={styles.wrapper}>

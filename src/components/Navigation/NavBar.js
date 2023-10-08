@@ -3,7 +3,6 @@ import { Fragment, useState, useContext, useEffect } from "react";
 import Navigation from "./Navigation";
 import Cart from "../Cart/Cart";
 import NavigationContext from "../store/navigation-context";
-import SubcategoryNavigation from "./SubcategoryNavigation";
 import Saved from "../Saved/Saved";
 //images
 import menuIcon from "../../assets/navigation/menu-bars.png";
@@ -11,12 +10,10 @@ import cartIcon from "../../assets/navigation/cart.png";
 import navLogo from "../../assets/navigation/nav-logo.png";
 import searcIcon from "../../assets/navigation/search.png";
 import savedIcon from "../../assets/heart-empty.png";
-import { useLocation } from "react-router-dom";
 
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
   const navCtx = useContext(NavigationContext);
-  const { hash } = useLocation();
 
   const changeNavigationStateHandler = () => {
     navCtx.changeNavigationState();
