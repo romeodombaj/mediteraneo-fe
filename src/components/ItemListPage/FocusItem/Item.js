@@ -6,10 +6,8 @@ import ItemInfo from "./ItemInfo";
 import ItemSelection from "./ItemSelection";
 import ImagePortfolioSection from "./ImagePortfolioSction";
 import ToBasketSection from "./ToBasketSection";
-import arrowOut from "../../../assets/Arrow-down.svg";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import LoadingContext from "../../store/loading-context";
 import { useNavigate } from "react-router-dom";
 import ItemDescription from "./ItemDescription";
 import SimilarProducts from "./SimilarProducts";
@@ -17,22 +15,25 @@ import CategoryContext from "../../store/category-context";
 import LoadingAnimation from "../../UI/LoadingAnimation";
 import Footer from "../../Informative-Pages/Footer";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+import useGetItem from "../../hooks/use-get-item";
 
 const Item = () => {
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
   const location = useLocation();
-  const loadCtx = useContext(LoadingContext);
   const navigate = useNavigate();
 
   const topRef = useRef(null);
 
-  const scrollToTop = () => {
-    topRef.current.scroll({
-      top: 0,
-      behavior: "instant",
-    });
-  };
+  const categorySlug = useParams().categorySlug;
+  const itemSlug = useParams().productSlug;
+  const itemInfo = location.state;
+  const [item, itemVariations, setItem, getData, getItemVariations] =
+    useGetItem();
+  const [otherItems, setOtherItems] = useState();
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -41,12 +42,12 @@ const Item = () => {
     };
   }, []);
 
-  const categorySlug = useParams().categorySlug;
-  const itemSlug = useParams().productSlug;
-  const itemInfo = location.state;
-
-  const [item, setItem] = useState();
-  const [otherItems, setOtherItems] = useState();
+  const scrollToTop = () => {
+    topRef.current.scroll({
+      top: 0,
+      behavior: "instant",
+    });
+  };
 
   const addItemToCartHandler = () => {
     console.log(item.price);
@@ -68,7 +69,8 @@ const Item = () => {
 
     if (categoryId) {
       fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products?consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4&attribute_term=1&per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&category=${categoryId.id}`
+        `https://mediteraneo.eu/wp-json/wc/v3/products?consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4&attribute_term=1&per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&category=${categoryId.id}`,
+        { mode: "cors" }
       )
         .then((response) => response.json())
         .then((data) => setOtherItems(data));
@@ -83,20 +85,38 @@ const Item = () => {
     scrollToTop();
 
     if (!itemInfo) {
-      fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products?slug=${itemSlug}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
-      )
-        .then((response) => response.json())
-        .then((data) => setItem(...data))
-        .then(() => {
-          if (item) {
-            loadCtx.onProductLoaded();
-          }
-        });
+      getData(itemSlug);
     } else {
       setItem(itemInfo.item);
+      getItemVariations(itemInfo.item.id);
+      setCurrentImages([...itemInfo.item.images]);
     }
   }, [location]);
+
+  useEffect(() => {
+    if (item && item != undefined) {
+      let tempImageSet = [];
+
+      let startIndex;
+      let endIndex;
+
+      if (selectedColorIndex === 0) {
+        startIndex = 1;
+        endIndex = parseInt(item.attributes[1].options[selectedColorIndex]);
+      } else {
+        startIndex = parseInt(
+          item.attributes[1].options[selectedColorIndex - 1]
+        );
+        endIndex = parseInt(item.attributes[1].options[selectedColorIndex]);
+      }
+
+      for (let i = startIndex; i <= endIndex; i++) {
+        tempImageSet.push(item.images[i]);
+      }
+
+      setCurrentImages([...tempImageSet]);
+    }
+  }, [selectedColorIndex]);
 
   return (
     <Fragment>
@@ -106,27 +126,46 @@ const Item = () => {
         ) : (
           <Fragment>
             <div className={styles[`item-main`]}>
-              <ImagePortfolioSection item={item} />
+              <ImagePortfolioSection images={currentImages} />
               <div className={styles[`information-wrapper`]}>
-                <div className={styles[`position-wrapper`]}>
-                  <div className={styles.path}>
-                    Naslovnica/ Ručnici i Ogrtači/{" "}
-                    <strong>Ručnik Vinarn </strong>
+                <div className={styles.path}>
+                  <Link to="/" className={styles.past}>
+                    Naslovnica
+                  </Link>
+                  <div> / </div>
+                  <Link
+                    to={`/${item.categories[0].slug}`}
+                    className={styles.past}
+                  >
+                    {item.categories[0].name}
+                  </Link>
+                  <div> / </div>
+                  <div>
+                    <strong>{item.name}</strong>
                   </div>
                 </div>
+
                 <div className={styles[`info-division`]}>
                   <div className={styles[`info-section`]}>
                     <ItemInfo itemInfo={item} />
-                    {/*props.itemInfo.attributes[0] && <ItemSelection itemInfo={itemInfo} />*/}
                   </div>
                   <div className={styles[`info-section`]}>
-                    <ItemSelection />
+                    <ItemSelection
+                      selectedColorIndex={selectedColorIndex}
+                      setColorIndex={setSelectedColorIndex}
+                      itemVariations={itemVariations || undefined}
+                      color={
+                        item.attributes[0]
+                          ? item.attributes[0].options
+                          : undefined
+                      }
+                    />
                   </div>
                 </div>
                 <ToBasketSection addToCart={addItemToCartHandler} />
               </div>
             </div>
-            <ItemDescription />
+            <ItemDescription item={item} />
             <SimilarProducts items={otherItems} curentCategory={categorySlug} />
             <Footer />
           </Fragment>

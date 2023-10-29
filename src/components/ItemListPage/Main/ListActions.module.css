@@ -2,7 +2,10 @@
   margin: auto;
   width: 85%;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: center;
   column-gap: 1rem;
   margin-top: 3rem;
   margin-bottom: 3rem;

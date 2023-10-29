@@ -39,6 +39,10 @@
   height: 2rem;
 }
 
+.selected {
+  background-color: blueviolet;
+}
+
 .wrapper:hover .options-wrapper {
   display: flex;
 }

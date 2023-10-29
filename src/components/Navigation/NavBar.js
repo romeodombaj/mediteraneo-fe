@@ -24,7 +24,7 @@ const NavBar = (props) => {
   };
 
   useEffect(() => {
-    if (window.location.hash === "#/") {
+    if (window.location.hash === "#/" || window.location.hash === "") {
       if (window.scrollY === 0) {
         setNavigationTransparency(true);
       }

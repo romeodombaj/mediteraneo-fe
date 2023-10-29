@@ -19,39 +19,31 @@ const ImagePortfolioSection = (props) => {
   return (
     <Fragment>
       {slideShow && (
-        <ImageShow onClose={closeImageSlieShow} img={props.item.images} />
+        <ImageShow onClose={closeImageSlieShow} img={props.images} />
       )}
-      <div className={styles.wrapper} onClick={openImageSlideShow}>
-        {/*<img className={styles.image2} src={props.item.images[0].src} />*/}
-        <div className={styles.grid}>
-          <img className={`${styles.image}`} src={props.item.images[0].src} />
-          <img
-            className={`${styles.image} ${styles.row1}`}
-            src={props.item.images[1].src}
-          />
-          <img
-            className={`${styles.image} ${styles.row1}`}
-            src={props.item.images[2].src}
-          />
-          <div className={styles[`image-wrapper`]}>
-            <img className={`${styles.image}`} src={props.item.images[1].src} />
-            <div className={styles[`open-more`]}>
-              <img src={search} className={styles.search}></img>
-              <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+
+      {props.images && props.images.length > 0 && (
+        <div className={styles.wrapper} onClick={openImageSlideShow}>
+          <div className={styles.grid}>
+            <img className={`${styles.image}`} src={props.images[0].src} />
+            <img
+              className={`${styles.image} ${styles.row1}`}
+              src={props.images[1].src}
+            />
+            <img
+              className={`${styles.image} ${styles.row1}`}
+              src={props.images[2].src}
+            />
+            <div className={styles[`image-wrapper`]}>
+              <img className={`${styles.image}`} src={props.images[1].src} />
+              <div className={styles[`open-more`]}>
+                <img src={search} className={styles.search}></img>
+                <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+              </div>
             </div>
           </div>
         </div>
-
-        {/*props.item.images.map((image, i) => {
-        return (
-          <img
-            key={i}
-            className={`${styles.image} ${styles[`item${i}`]}`}
-            src={image.src}
-          />
-        );
-      })*/}
-      </div>
+      )}
     </Fragment>
   );
 };

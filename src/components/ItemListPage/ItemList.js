@@ -12,7 +12,6 @@ import SavedContext from "../store/saved-context";
 import useGetItems from "../hooks/use-get-items";
 
 const ItemList = () => {
-  //const [itemList, setItemList] = useState([]);
   const [sortingValue, setSortingValue] = useState("0");
   const [gridStyleValue, setGridStyleValue] = useState("0");
 
@@ -22,12 +21,9 @@ const ItemList = () => {
 
   const params = useParams().categorySlug;
   const [itemList, setItemList, getItemList] = useGetItems();
+  const [filteredItemList, setFilteredItemList] = useState([]);
 
   const currentCategory = categoryCtx.getCategory(params);
-
-  /*const amoutOfItemsInCart = cartCtx.items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);*/
 
   const changeGridStyleValue = (val) => {
     setGridStyleValue(val);
@@ -88,13 +84,15 @@ const ItemList = () => {
             <ItemListHeader category={currentCategory} params={params} />
             <div className={styles.count}>{itemList.length} proizvoda </div>
             <ListActions
+              itemList={itemList}
+              setFilteredItemList={setFilteredItemList}
               filterItems={filterItems}
               val={changeSortingValue}
               sty={changeGridStyleValue}
             />
             <ItemListMain
               gridStyle={gridStyleValue}
-              itemInfo={itemList}
+              itemInfo={filteredItemList}
               currentCategory={loadCtx.params}
               categories={categoryCtx.categories}
             />

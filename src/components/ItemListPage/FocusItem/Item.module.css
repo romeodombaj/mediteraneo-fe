@@ -19,18 +19,20 @@
   margin-bottom: 4rem;
 }
 
-.position-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+.past {
+  text-decoration: none;
+  color: gray;
 }
 
 .path {
-  width: 100%;
   text-align: right;
   color: gray;
   font-size: 0.8em;
-  margin-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  justify-content: flex-start;
 }
 
 .information-wrapper {
@@ -58,7 +60,7 @@
     top: 100vh;
   }
   100% {
-    top: 10vh;
+    top: 4rem;
   }
 }
 

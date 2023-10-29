@@ -16,6 +16,7 @@
   padding-left: 7.5%;
   padding-right: 7.5%;
   background-color: var(--property-background-color);
+  min-height: 40vh;
 }
 
 .material-section {
@@ -38,6 +39,11 @@
 }
 
 .paragraph {
+  margin-bottom: 2rem;
+  color: var(--gray-text-color);
+}
+
+p {
   margin-bottom: 2rem;
   color: var(--gray-text-color);
 }

@@ -5,17 +5,16 @@ import arrowDown from "../../assets/Arrow-down.svg";
 import { useState } from "react";
 
 const Dropdown = (props) => {
-  const [value, setValue] = useState(props.title);
+  const value = props.value;
 
   const onValueChangeHandler = (e) => {
-    setValue(e.target.getAttribute("value"));
-    props.valueChange();
+    props.setValue(e.target.getAttribute("value"));
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles[`info-wrapper`]}>
-        <div onChange={props.valueChange}>{value}</div>
+        <div>{props.title}</div>
         <img src={arrowDown} className={styles.arrow} />
       </div>
 
@@ -25,7 +24,7 @@ const Dropdown = (props) => {
             <div
               onClick={onValueChangeHandler}
               key={i}
-              className={styles.option}
+              className={`${styles.option} ${styles[option === value && "selected"]}`}
               value={option}
             >
               {option}
