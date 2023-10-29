@@ -35,7 +35,10 @@ const ImagePortfolioSection = (props) => {
               src={props.images[2].src}
             />
             <div className={styles[`image-wrapper`]}>
-              <img className={`${styles.image}`} src={props.images[1].src} />
+              <img
+                className={`${styles.image}`}
+                src={props.images[3].src || props.images[0].src}
+              />
               <div className={styles[`open-more`]}>
                 <img src={search} className={styles.search}></img>
                 <div>POGLEDAJTE SVE FOTOGRAFIJE</div>

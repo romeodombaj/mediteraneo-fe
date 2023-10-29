@@ -2,19 +2,9 @@ import { Fragment } from "react";
 import styles from "./ItemSelection.module.css";
 import RadioButton from "../../UI/RadioButton";
 
-import arrowdown from "../../../assets/Arrow-down.svg";
 import SelectionLabel from "../../UI/SelectionLabel";
 import SizeItem from "../../UI/SizeItem";
 import LoadingAnimation from "../../UI/LoadingAnimation";
-
-//const colors = ["red", "blue", "purple", "yellow", "green"];
-
-/*const sizes = [
-  { size: "30x50", price: 50.55 },
-  { size: "60x70", price: 13.99 },
-  { size: "120x30", price: 40.91 },
-  { size: "150x100", price: 65.91 },
-];*/
 
 const ItemSelection = (props) => {
   const colors = props.color;

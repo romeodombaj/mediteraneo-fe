@@ -20,15 +20,15 @@ const ItemDescription = (props) => {
         <div className={styles.paragraph}>
           {item.attributes[4].options.map((option, i) => {
             if (i + 1 === materialLength) {
-              return <span>{option}</span>;
+              return <span key={i}>{option}</span>;
             } else {
-              return <span>{option}, </span>;
+              return <span key={i}>{option}, </span>;
             }
           })}
         </div>
         <div className={styles.subtitle}>Njega:</div>
         {item.attributes[5].options.map((option, i) => {
-          return <div className={styles.paragraph}>{option}</div>;
+          return <div key={i} className={styles.paragraph}>{option}</div>;
         })}
       </div>
     </div>

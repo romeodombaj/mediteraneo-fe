@@ -50,7 +50,6 @@ const Item = () => {
   };
 
   const addItemToCartHandler = () => {
-    console.log(item.price);
     cartCtx.addItem({
       id: item.id,
       name: item.name,
@@ -89,7 +88,12 @@ const Item = () => {
     } else {
       setItem(itemInfo.item);
       getItemVariations(itemInfo.item.id);
-      setCurrentImages([...itemInfo.item.images]);
+
+      let startingImages = itemInfo.item.images.slice(
+        1,
+        itemInfo.item.attributes[1].options[0]
+      );
+      setCurrentImages(startingImages);
     }
   }, [location]);
 
