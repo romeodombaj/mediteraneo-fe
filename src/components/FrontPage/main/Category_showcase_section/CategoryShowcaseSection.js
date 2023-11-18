@@ -1,16 +1,19 @@
 import styles from "./CategoryShowcaseSection.module.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ShowItem from "../../../UI/ShowItem";
 import LoadingAnimation from "../../../UI/LoadingAnimation";
 import useGetItems from "../../../hooks/use-get-items";
+import CategoryContext from "../../../store/category-context";
 
 const CategoryShowcaseSection = (props) => {
   const [itemList, setItemList, getItemList] = useGetItems("showcase");
+  const catCtx = useContext(CategoryContext);
+
   useEffect(() => {
     getItemList(
       `?per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
     );
-  }, []);
+  }, [catCtx.categories]);
 
   return (
     <div className={styles.wrapper}>
