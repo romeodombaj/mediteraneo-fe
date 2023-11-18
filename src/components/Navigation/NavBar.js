@@ -7,7 +7,7 @@ import Saved from "../Saved/Saved";
 //images
 import menuIcon from "../../assets/navigation/menu-bars.png";
 import cartIcon from "../../assets/navigation/cart.png";
-import navLogo from "../../assets/navigation/nav-logo.png";
+import navLogo from "../../assets/logo-notxt.png";
 import searcIcon from "../../assets/navigation/search.png";
 import savedIcon from "../../assets/heart-empty.png";
 
@@ -64,17 +64,18 @@ const NavBar = (props) => {
             <img
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${
                 styles[
-                  !(
-                    navigationTransparency &&
+                  navigationTransparency &&
                     !navCtx.cartOpen &&
-                    !navCtx.savedOpen
-                  ) && `nav-img-item`
+                    !navCtx.savedOpen &&
+                    `nav-img-item`
                 ]
               }`}
               onClick={goHome}
               src={navLogo}
             />
-            <div
+            {
+              // language PART
+              /*<div
               className={`${styles[`nav-item`]} ${styles.language} ${
                 styles[
                   !(
@@ -86,7 +87,8 @@ const NavBar = (props) => {
               }`}
             >
               ENG
-            </div>
+            </div>*/
+            }
             <img
               className={`${styles[`nav-item`]} ${styles.search} ${
                 styles[

@@ -50,7 +50,6 @@
 
 .nav-item:hover {
   opacity: 1;
-  scale: 1.02;
 }
 
 .left-section {
@@ -63,7 +62,7 @@
 .nav-logo {
   cursor: pointer;
   margin-left: 0;
-  opacity: 1;
+  opacity: 0.7;
   height: 2.2em;
 }
 
