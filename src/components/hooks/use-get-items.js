@@ -23,6 +23,8 @@ const useGetItems = (storageValue = undefined) => {
         value = saveCtx.checkIfSaved(await value);
       }
 
+      value = await value.sort((a, b) => a.price - b.price);
+
       setData(await value);
 
       if (storageValue !== undefined) {

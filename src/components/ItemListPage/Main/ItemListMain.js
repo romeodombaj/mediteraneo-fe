@@ -6,8 +6,6 @@ import LoadingAnimation from "../../UI/LoadingAnimation";
 
 const ItemListMain = (props) => {
   const [gridStyle, setGridStyle] = useState(``);
-  const [itemCount, setItemCount] = useState(0);
-  let counter;
 
   useEffect(() => {
     if (props.gridStyle === "0") {
@@ -19,8 +17,10 @@ const ItemListMain = (props) => {
 
   return (
     <div className={styles[`wrapper`]}>
-      {props.itemInfo.length === 0 ? (
+      {props.itemListCount === 0 ? (
         <LoadingAnimation />
+      ) : props.itemInfo.length === 0 ? (
+        <div className={styles["no-available"]}>Nema dostupnih proizvoda</div>
       ) : (
         <div className={`${styles[`item-grid`]} ${styles[gridStyle]}`}>
           {props.itemInfo.map((item) => {

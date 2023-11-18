@@ -7,7 +7,7 @@
   left: 0;
   background-color: white;
   z-index: 100;
-  animation: slide-in 0.25s ease-out;
+  animation: show-up 0.1s ease-out;
   padding-top: 2rem;
 }
 
@@ -61,6 +61,17 @@
   }
   100% {
     top: 4rem;
+  }
+}
+
+@keyframes show-up {
+  0% {
+    opacity: 0.5;
+    scale: 0.9;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
   }
 }
 
