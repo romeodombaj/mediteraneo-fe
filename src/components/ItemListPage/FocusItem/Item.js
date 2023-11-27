@@ -29,6 +29,7 @@ const Item = () => {
   const categorySlug = useParams().categorySlug;
   const itemSlug = useParams().productSlug;
   const itemInfo = location.state;
+
   const [item, itemVariations, setItem, getData, getItemVariations] =
     useGetItem();
   const [otherItems, setOtherItems] = useState();
@@ -166,7 +167,10 @@ const Item = () => {
                     />
                   </div>
                 </div>
-                <ToBasketSection addToCart={addItemToCartHandler} />
+                <ToBasketSection
+                  item={item}
+                  addToCart={addItemToCartHandler}
+                />
               </div>
             </div>
             <ItemDescription item={item} />

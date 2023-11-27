@@ -9,11 +9,14 @@ import menuIcon from "../../assets/navigation/menu-bars.png";
 import cartIcon from "../../assets/navigation/cart.png";
 import navLogo from "../../assets/logo-notxt.png";
 import searcIcon from "../../assets/navigation/search.png";
-import savedIcon from "../../assets/heart-empty.png";
+import savedIcon from "../../assets/heart-filled.png";
+import unsavedIcon from "../../assets/heart-empty.png";
+import SavedContext from "../store/saved-context";
 
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
   const navCtx = useContext(NavigationContext);
+  const saveCtx = useContext(SavedContext);
 
   const changeNavigationStateHandler = () => {
     navCtx.changeNavigationState();
@@ -89,6 +92,10 @@ const NavBar = (props) => {
               ENG
             </div>*/
             }
+
+            {
+              // SEARCH
+            }
             <img
               className={`${styles[`nav-item`]} ${styles.search} ${
                 styles[
@@ -104,31 +111,49 @@ const NavBar = (props) => {
           </div>
 
           <div className={styles[`action-wrapper`]}>
-            <img
-              onClick={navCtx.changeSavedState}
-              className={`${styles[`nav-item`]} ${
-                styles[
-                  navigationTransparency &&
-                    !navCtx.cartOpen &&
-                    !navCtx.savedOpen &&
-                    `nav-img-item`
-                ]
-              } ${styles["saved-item"]}`}
-              src={savedIcon}
-            />
-            <img
-              onClick={navCtx.changeCartState}
-              className={`${styles[`nav-item`]} ${
-                styles[
-                  !(
+            {
+              // SAVED
+            }
+            <div className={styles["counter-anchor"]}>
+              <img
+                onClick={navCtx.changeSavedState}
+                className={`${styles[`nav-item`]} ${
+                  styles[
                     navigationTransparency &&
-                    !navCtx.cartOpen &&
-                    !navCtx.savedOpen
-                  ) && `nav-img-item`
-                ]
-              } ${styles["cart-item"]}`}
-              src={cartIcon}
-            />
+                      !navCtx.cartOpen &&
+                      !navCtx.savedOpen &&
+                      `nav-img-item`
+                  ]
+                } ${styles["saved-item"]}`}
+                src={navCtx.savedOpen ? savedIcon : unsavedIcon}
+              />
+            </div>
+
+            {
+              // CART
+            }
+
+            <div className={styles["counter-anchor"]}>
+              <div className={styles["counter"]}>{saveCtx.itemCounter}</div>
+
+              <img
+                onClick={navCtx.changeCartState}
+                className={`${styles[`nav-item`]} ${
+                  styles[
+                    !(
+                      navigationTransparency &&
+                      !navCtx.cartOpen &&
+                      !navCtx.savedOpen
+                    ) && `nav-img-item`
+                  ]
+                } ${styles["cart-item"]}`}
+                src={cartIcon}
+              />
+            </div>
+            {
+              // MENU
+            }
+
             <div
               onClick={changeNavigationStateHandler}
               className={`${styles.menu} ${styles[`nav-item`]} ${

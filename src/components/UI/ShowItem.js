@@ -9,24 +9,25 @@ import tempImg from "../../assets/coffe maker.png";
 import saveIcon from "../../assets/heart-empty.png";
 import unsaveIcon from "../../assets/heart-filled.png";
 import NavigationContext from "../store/navigation-context";
+import { prettyDOM } from "@testing-library/react";
 
 const ShowItem = (props) => {
   const navigate = useNavigate();
   const navCtx = useContext(NavigationContext);
   const saveCtx = useContext(SavedContext);
 
-  const [isSaved, setIsSaved] = useState(
-    props.item.saved || props.saved || false
-  );
+  const [isSaved, setIsSaved] = useState(props.item.saved || false);
 
   const saveItem = (e) => {
     e.stopPropagation();
+    props.item.saved = true;
     saveCtx.addItem(props.item);
     setIsSaved(true);
   };
 
   const removeItem = (e) => {
     e.stopPropagation();
+    props.item.saved = false;
     saveCtx.removeItem(props.item.id);
     setIsSaved(false);
   };
@@ -41,13 +42,16 @@ const ShowItem = (props) => {
     navCtx.closeCart();
     navCtx.closeSaved();
     navigate(`/${props.item.categories[0].slug}/${props.item.slug}`, {
-      state: { item: props.item },
+      state: { item: props.item, refresh: props.refreshSaved },
     });
   };
 
   useEffect(() => {
     setIsSaved(props.item.saved);
-  }, [props.item.saved]);
+    saveCtx.checkIfSavedOne(props.item);
+    console.log(props.item.saved);
+    console.log("refresh");
+  }, [props.item.saved, saveCtx.items]);
 
   return (
     <div onClick={openItemHandler} className={styles.wrapper}>

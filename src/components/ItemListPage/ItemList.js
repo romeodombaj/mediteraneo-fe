@@ -8,6 +8,7 @@ import CategoryContext from "../store/category-context";
 import LoadingContext from "../store/loading-context";
 import ListActions from "./Main/ListActions";
 import useGetItems from "../hooks/use-get-items";
+import SavedContext from "../store/saved-context";
 
 const ItemList = () => {
   const [sortingValue, setSortingValue] = useState("Price Up");
@@ -15,6 +16,7 @@ const ItemList = () => {
 
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
+  const saveCtx = useContext(SavedContext);
   const loadCtx = useContext(LoadingContext);
 
   const params = useParams().categorySlug;
@@ -35,7 +37,6 @@ const ItemList = () => {
   }, [params, cartCtx.items.length, categoryCtx.categories]);
 
   useEffect(() => {
-    console.log("trigegr");
     let temp = [...itemList];
     setFilteredItemList([]);
     setTimeout(() => {

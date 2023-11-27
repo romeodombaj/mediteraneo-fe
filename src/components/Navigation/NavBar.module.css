@@ -11,6 +11,7 @@
   transition: 0.4s;
   -webkit-transition: 0.4s;
   overflow-x: hidden;
+  user-select: none;
 }
 
 .transparent {
@@ -82,6 +83,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 }
 
 .menu {
@@ -95,13 +97,34 @@
 }
 
 .saved-item {
-  height: 2rem;
+  height: 1.8rem;
   aspect-ratio: 0.9;
   margin-right: 0;
 }
 
 .cart-item {
   margin-right: 2rem;
+}
+
+.counter-anchor {
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 1.5rem;
+  background-color: black;
+  color: whitesmoke;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 0.7em;
+  font-weight: bold;
+  z-index: 100;
 }
 
 @media only screen and (max-width: 480px) {

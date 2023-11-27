@@ -6,8 +6,9 @@ const SavedProvider = (props) => {
     JSON.parse(localStorage.getItem("saved")) || []
   );
 
+  const [itemCounter, setItemCounter] = useState(0);
+
   const addItem = (item) => {
-    console.log("HERE");
     const existingItemIndex = items.findIndex((el) => el.id === item.id);
 
     if (existingItemIndex === -1) {
@@ -19,20 +20,37 @@ const SavedProvider = (props) => {
     setItems(items.filter((el) => el.id !== id));
   };
 
-  const checkIfSaved = (itemList) => {
-    if (itemList && itemList.length > 0 && items && items.length > 0) {
-      items.forEach((item) => {
-        const existingItemIndex = itemList.findIndex((el) => el.id === item.id);
+  const checkIfSavedOne = (item) => {
+    if (item && items) {
+      const existingItemIndex = items.findIndex((el) => el.id === item.id);
+      if (existingItemIndex !== -1) {
+        item.saved = true;
+      } else {
+        item.saved = false;
+      }
+    }
+  };
 
-        console.log("HA");
-        console.log(existingItemIndex);
+  const checkIfSaved = (itemList) => {
+    if (itemList && itemList.length > 0 && items) {
+      itemList.forEach((item) => {
+        const existingItemIndex = items.findIndex((el) => el.id === item.id);
+        if (existingItemIndex !== -1) {
+          item.saved = true;
+        } else {
+          item.saved = false;
+        }
+      });
+
+      /*items.forEach((item) => {
+        const existingItemIndex = itemList.findIndex((el) => el.id === item.id);
         if (existingItemIndex !== -1) {
           itemList[existingItemIndex] = {
             ...itemList[existingItemIndex],
             saved: true,
           };
         }
-      });
+      });*/
     }
 
     return itemList;
@@ -40,13 +58,16 @@ const SavedProvider = (props) => {
 
   useEffect(() => {
     localStorage.setItem("saved", JSON.stringify(items));
+    setItemCounter(items.length);
   }, [items]);
 
   const savedContext = {
     items: items,
+    itemCounter: itemCounter,
     addItem: addItem,
     removeItem: removeItem,
     checkIfSaved: checkIfSaved,
+    checkIfSavedOne: checkIfSavedOne,
   };
 
   return (

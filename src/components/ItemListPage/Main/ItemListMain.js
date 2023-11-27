@@ -29,6 +29,7 @@ const ItemListMain = (props) => {
                 key={item.id}
                 item={item}
                 currentCategory={props.currentCategory}
+                refreshSaved={props.refreshSaved}
               />
             );
           })}
