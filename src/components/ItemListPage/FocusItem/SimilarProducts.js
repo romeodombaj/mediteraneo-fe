@@ -20,10 +20,6 @@ const SimilarProducts = (props) => {
     }
   }, [catCtx.categories]);
 
-  /*useEffect(() => {
-    console.log(similarItems);
-    console.log(similarItems.length);
-  }, [similarItems]);*/
 
   return (
     <div className={styles.wrapper}>

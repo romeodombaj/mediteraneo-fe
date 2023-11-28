@@ -14,8 +14,6 @@ const ImagePortfolioSection = (props) => {
   const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
-    console.log(selectedColorIndex);
-
     if (item && item != undefined) {
       let tempImageSet = [];
 
@@ -36,14 +34,9 @@ const ImagePortfolioSection = (props) => {
         tempImageSet.push(item.images[i]);
       }
 
-      console.log("here");
       setCurrentImages([...tempImageSet]);
     }
   }, [selectedColorIndex, item]);
-
-  useEffect(() => {
-    console.log(currentImages[0]);
-  }, [currentImages]);
 
   const openImageSlideShow = () => {
     setSlideShow(true);

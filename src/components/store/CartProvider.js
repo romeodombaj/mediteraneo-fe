@@ -1,5 +1,5 @@
 import CartContext from "./cart-context";
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 
 const defaultCartState = {
   items: [],
@@ -12,7 +12,7 @@ const cartReducer = (state, action) => {
     let updatedTotalAmount;
     let updatedItems;
 
-    updatedTotalAmount = state.totalAmount + action.item.price;
+    updatedTotalAmount = state.totalAmount + parseFloat(action.item.price);
 
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
@@ -79,8 +79,10 @@ const CartProvider = (props) => {
 
   const [cartState, cartDispatch] = useReducer(cartReducer, cartStore);
 
-  const addItemHandler = (item) => {
-    cartDispatch({ type: "ADD", item: item });
+  const addItemHandler = (items) => {
+    items.forEach((item) => {
+      cartDispatch({ type: "ADD", item: item });
+    });
   };
 
   const removeItemHandler = (id, whole) => {

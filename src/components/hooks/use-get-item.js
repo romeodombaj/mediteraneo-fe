@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useGetItem = () => {
   const [item, setItem] = useState(undefined);
@@ -28,7 +28,14 @@ const useGetItem = () => {
     }
   };
 
-  return [item, itemVariations, setItem, getData, getItemVariations];
+  return [
+    item,
+    itemVariations,
+    setItem,
+    setItemVariations,
+    getData,
+    getItemVariations,
+  ];
 };
 
 export default useGetItem;

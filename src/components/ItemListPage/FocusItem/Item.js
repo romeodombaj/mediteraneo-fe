@@ -11,7 +11,6 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ItemDescription from "./ItemDescription";
 import SimilarProducts from "./SimilarProducts";
-import CategoryContext from "../../store/category-context";
 import LoadingAnimation from "../../UI/LoadingAnimation";
 import Footer from "../../Informative-Pages/Footer";
 import { useRef } from "react";
@@ -19,7 +18,6 @@ import { Link } from "react-router-dom";
 import useGetItem from "../../hooks/use-get-item";
 
 const Item = () => {
-  const cartCtx = useContext(CartContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -29,9 +27,17 @@ const Item = () => {
   const itemSlug = useParams().productSlug;
   const itemInfo = location.state;
 
-  const [item, itemVariations, setItem, getData, getItemVariations] =
-    useGetItem();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  const [
+    item,
+    itemVariations,
+    setItem,
+    setItemVariations,
+    getData,
+    getItemVariations,
+  ] = useGetItem();
+
+  const [change, setChange] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -44,16 +50,6 @@ const Item = () => {
     topRef.current.scroll({
       top: 0,
       behavior: "instant",
-    });
-  };
-
-  const addItemToCartHandler = () => {
-    cartCtx.addItem({
-      id: item.id,
-      name: item.name,
-      price: parseInt(item.price),
-      image: item.images[0].src,
-      quantity: 1,
     });
   };
 
@@ -107,9 +103,11 @@ const Item = () => {
                   </div>
                   <div className={styles[`info-section`]}>
                     <ItemSelection
+                      setChange={setChange}
                       selectedColorIndex={selectedColorIndex}
                       setColorIndex={setSelectedColorIndex}
                       itemVariations={itemVariations || undefined}
+                      setItemVariations={setItemVariations}
                       color={
                         item.attributes[0]
                           ? item.attributes[0].options
@@ -118,7 +116,11 @@ const Item = () => {
                     />
                   </div>
                 </div>
-                <ToBasketSection item={item} addToCart={addItemToCartHandler} />
+                <ToBasketSection
+                  change={change}
+                  item={item}
+                  itemVariations={itemVariations}
+                />
               </div>
             </div>
             <ItemDescription item={item} />

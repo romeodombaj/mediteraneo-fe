@@ -1,15 +1,15 @@
 import styles from "./QuantitySelector.module.css";
-import { useState } from "react";
 
 const QuantitySelector = (props) => {
-  const [quantity, setQuantity] = useState(0);
+  const quantity = props.quantity;
+  const index = props.index;
 
   const increaseQuantity = () => {
-    setQuantity((prevValue) => prevValue + 1);
+    props.setQuantity((prevValue) => prevValue + 1);
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 0) setQuantity((prevValue) => prevValue - 1);
+    if (quantity > 0) props.setQuantity((prevValue) => prevValue - 1);
   };
 
   return (

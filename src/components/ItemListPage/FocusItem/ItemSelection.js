@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./ItemSelection.module.css";
 import RadioButton from "../../UI/RadioButton";
 
@@ -12,6 +12,14 @@ const ItemSelection = (props) => {
 
   const changeColorHandler = (e) => {
     props.setColorIndex(parseInt(e.currentTarget.getAttribute("index")));
+
+    let tempVariations = props.itemVariations;
+    tempVariations.forEach((element) => {
+      element.quantity = 0;
+    });
+    props.setItemVariations(tempVariations);
+
+    props.setChange((prevVal) => !prevVal);
   };
 
   return (
@@ -44,9 +52,14 @@ const ItemSelection = (props) => {
                   ) {
                     return (
                       <SizeItem
+                        setChange={props.setChange}
                         key={i}
                         size={size.attributes[1].option}
                         price={size.price}
+                        index={i}
+                        itemVariations={itemVariations}
+                        setItemVariations={props.setItemVariations}
+                        variationQuantities={props.variationQuantities}
                       />
                     );
                   }

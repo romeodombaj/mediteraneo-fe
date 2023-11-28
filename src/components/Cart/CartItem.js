@@ -10,13 +10,15 @@ const CartItem = (props) => {
   const [totalPrice, setTotalPrice] = useState(22.21);
   const [quantity, setQuantity] = useState(props.item.quantity);
 
+  console.log(props.item);
+
   const onIncreaseHandler = () => {
     const tempItem = {
       ...props.item,
       quantity: 1,
     };
 
-    props.addItem(tempItem);
+    props.addItem([tempItem]);
   };
 
   const onDecreaseHandler = () => {
@@ -48,19 +50,19 @@ const CartItem = (props) => {
           src={exitIcon}
         />
 
-        <img className={styles.image} src={props.item.image} />
+        <img className={styles.image} src={props.item.image.src} />
         <div className={styles[`info`]}>
           <div>
             <div className={styles.name}>{props.item.name}</div>
             <div className={styles.options}>
-              <div>Boja: </div>
-              <div>Veličina: </div>
+              <div>Boja: {props.item.attributes[0].option}</div>
+              <div>Veličina: {props.item.attributes[1].option}</div>
             </div>
           </div>
 
           <div className={styles[`total-wrapper`]}>
             <div className={styles[`price-wrapper`]}>
-              <div>{totalPrice.toFixed(2)} €</div>
+              <div>{props.item.price} €</div>
             </div>
             <input
               className={styles[`quantity-wrapper`]}
@@ -71,7 +73,7 @@ const CartItem = (props) => {
               onChange={quantityChangeHandler}
             />
             <div className={styles[`price-wrapper`]}>
-              <div>{(totalPrice * props.item.quantity).toFixed(2)} €</div>
+              <div>{(props.item.price * props.item.quantity).toFixed(2)} €</div>
             </div>
           </div>
         </div>

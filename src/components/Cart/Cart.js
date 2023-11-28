@@ -3,7 +3,6 @@ import styles from "./Cart.module.css";
 import CartContext from "../store/cart-context";
 import ReactDOM from "react-dom";
 import CartItem from "./CartItem";
-import { createRoutesFromElements } from "react-router-dom";
 import Coupon from "./Coupon";
 import Total from "./Total";
 
