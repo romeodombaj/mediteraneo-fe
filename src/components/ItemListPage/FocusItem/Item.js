@@ -20,7 +20,6 @@ import useGetItem from "../../hooks/use-get-item";
 
 const Item = () => {
   const cartCtx = useContext(CartContext);
-  const categoryCtx = useContext(CategoryContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,9 +31,7 @@ const Item = () => {
 
   const [item, itemVariations, setItem, getData, getItemVariations] =
     useGetItem();
-  const [otherItems, setOtherItems] = useState();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-  const [currentImages, setCurrentImages] = useState([]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -64,64 +61,15 @@ const Item = () => {
     navigate(`/${categorySlug}`);
   };
 
-  const fetchSimilarItems = () => {
-    const categoryId = categoryCtx.getCategory(categorySlug);
-
-    if (categoryId) {
-      fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products?consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4&attribute_term=1&per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&category=${categoryId.id}`,
-        { mode: "cors" }
-      )
-        .then((response) => response.json())
-        .then((data) => setOtherItems(data));
-    }
-  };
-
-  useEffect(() => {
-    fetchSimilarItems();
-  }, [categoryCtx.categories]);
-
   useEffect(() => {
     scrollToTop();
-
     if (!itemInfo) {
       getData(itemSlug);
     } else {
       setItem(itemInfo.item);
       getItemVariations(itemInfo.item.id);
-
-      let startingImages = itemInfo.item.images.slice(
-        1,
-        itemInfo.item.attributes[1].options[0]
-      );
-      setCurrentImages(startingImages);
     }
   }, [location]);
-
-  useEffect(() => {
-    if (item && item != undefined) {
-      let tempImageSet = [];
-
-      let startIndex;
-      let endIndex;
-
-      if (selectedColorIndex === 0) {
-        startIndex = 1;
-        endIndex = parseInt(item.attributes[1].options[selectedColorIndex]);
-      } else {
-        startIndex = parseInt(
-          item.attributes[1].options[selectedColorIndex - 1]
-        );
-        endIndex = parseInt(item.attributes[1].options[selectedColorIndex]);
-      }
-
-      for (let i = startIndex; i <= endIndex; i++) {
-        tempImageSet.push(item.images[i]);
-      }
-
-      setCurrentImages([...tempImageSet]);
-    }
-  }, [selectedColorIndex]);
 
   return (
     <Fragment>
@@ -131,7 +79,10 @@ const Item = () => {
         ) : (
           <Fragment>
             <div className={styles[`item-main`]}>
-              <ImagePortfolioSection images={currentImages} />
+              <ImagePortfolioSection
+                item={item}
+                selectedColorIndex={selectedColorIndex}
+              />
               <div className={styles[`information-wrapper`]}>
                 <div className={styles.path}>
                   <Link to="/" className={styles.past}>
@@ -167,14 +118,11 @@ const Item = () => {
                     />
                   </div>
                 </div>
-                <ToBasketSection
-                  item={item}
-                  addToCart={addItemToCartHandler}
-                />
+                <ToBasketSection item={item} addToCart={addItemToCartHandler} />
               </div>
             </div>
             <ItemDescription item={item} />
-            <SimilarProducts items={otherItems} curentCategory={categorySlug} />
+            <SimilarProducts currentCategory={categorySlug} />
             <Footer />
           </Fragment>
         )}

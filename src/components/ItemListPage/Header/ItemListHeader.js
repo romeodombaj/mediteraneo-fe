@@ -1,7 +1,5 @@
 import styles from "./ItemListHeader.module.css";
 import { Fragment, useState, useEffect, useContext } from "react";
-import logoImg from "../../../assets/logo.png";
-import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 
 const ItemListHeader = (props) => {

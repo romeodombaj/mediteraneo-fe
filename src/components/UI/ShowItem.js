@@ -49,8 +49,6 @@ const ShowItem = (props) => {
   useEffect(() => {
     setIsSaved(props.item.saved);
     saveCtx.checkIfSavedOne(props.item);
-    console.log(props.item.saved);
-    console.log("refresh");
   }, [props.item.saved, saveCtx.items]);
 
   return (

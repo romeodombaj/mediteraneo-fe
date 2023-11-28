@@ -12,8 +12,8 @@ const useGetItem = () => {
 
     let value = await response.json();
 
-    getItemVariations(value.id);
-    setItem(...value);
+    getItemVariations(value[0].id);
+    setItem(value[0]);
   };
 
   const getItemVariations = async (itemID) => {
@@ -23,7 +23,9 @@ const useGetItem = () => {
 
     let value = await response.json();
 
-    setItemVariations([...value]);
+    if (value) {
+      setItemVariations([...value]);
+    }
   };
 
   return [item, itemVariations, setItem, getData, getItemVariations];
