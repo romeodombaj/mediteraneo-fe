@@ -65,7 +65,7 @@ const NavBar = (props) => {
         }`}
       >
         <div className={styles.container}>
-          <div className={styles[`left-section`]}>
+          <div className={styles[`left-section`]} onClick={goHome}>
             <img
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${
                 styles[
@@ -75,7 +75,6 @@ const NavBar = (props) => {
                     `nav-img-item`
                 ]
               }`}
-              onClick={goHome}
               src={navLogo}
             />
             {

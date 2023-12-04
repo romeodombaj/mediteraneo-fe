@@ -30,6 +30,8 @@ const Footer = () => {
           <img className={styles.logo} src={logo} />
         </div>
 
+        <div></div>
+
         <div className={styles[`quick-links`]}>
           <div className={styles[`link-list-title`]}>KATEGORIJE</div>
           <div className={styles[`link-list`]}>
