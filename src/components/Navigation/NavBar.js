@@ -12,11 +12,13 @@ import searcIcon from "../../assets/navigation/search.png";
 import savedIcon from "../../assets/heart-filled.png";
 import unsavedIcon from "../../assets/heart-empty.png";
 import SavedContext from "../store/saved-context";
+import CartContext from "../store/cart-context";
 
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
   const navCtx = useContext(NavigationContext);
   const saveCtx = useContext(SavedContext);
+  const cartCtx = useContext(CartContext);
 
   const changeNavigationStateHandler = () => {
     navCtx.changeNavigationState();
@@ -134,7 +136,7 @@ const NavBar = (props) => {
             }
 
             <div className={styles["counter-anchor"]}>
-              <div className={styles["counter"]}>{saveCtx.itemCounter}</div>
+              <div className={styles["counter"]}>{cartCtx.itemCounter}</div>
 
               <img
                 onClick={navCtx.changeCartState}

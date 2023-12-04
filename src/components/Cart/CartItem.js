@@ -5,24 +5,22 @@ import { Fragment } from "react";
 //temp
 import tempImg from "../../assets/coffe maker.png";
 import exitIcon from "../../assets/navigation/menu-x.png";
+import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 
 const CartItem = (props) => {
   const [totalPrice, setTotalPrice] = useState(22.21);
   const [quantity, setQuantity] = useState(props.item.quantity);
 
-  console.log(props.item);
-
-  const onIncreaseHandler = () => {
-    const tempItem = {
-      ...props.item,
-      quantity: 1,
-    };
-
-    props.addItem([tempItem]);
+  const onIncreaseHandler = (value) => {
+    for (let i = 0; i < value; i++) {
+      props.addItem([props.item]);
+    }
   };
 
-  const onDecreaseHandler = () => {
-    props.removeItem(props.item.id, false);
+  const onDecreaseHandler = (value) => {
+    for (let i = 0; i < value; i++) {
+      props.removeItem(props.item.id, false);
+    }
   };
 
   const onRemoveHandler = () => {
@@ -32,13 +30,26 @@ const CartItem = (props) => {
   const quantityChangeHandler = (e) => {
     const value = e.target.value;
 
-    if (value > quantity) {
-      onIncreaseHandler();
-    } else if (value < quantity) {
-      onDecreaseHandler();
+    if (value !== "") {
+      if (value > props.item.quantity) {
+        onIncreaseHandler(value - props.item.quantity);
+      } else if (value < props.item.quantity) {
+        onDecreaseHandler(props.item.quantity - value);
+      }
     }
-
     setQuantity(value);
+  };
+
+  const onFocusOut = (e) => {
+    const value = e.target.value;
+
+    if (value === "") {
+      if (1 < props.item.quantity) {
+        onDecreaseHandler(props.item.quantity - 1);
+      }
+
+      setQuantity(1);
+    }
   };
 
   return (
@@ -71,6 +82,7 @@ const CartItem = (props) => {
               name="quantity"
               value={quantity}
               onChange={quantityChangeHandler}
+              onBlur={onFocusOut}
             />
             <div className={styles[`price-wrapper`]}>
               <div>{(props.item.price * props.item.quantity).toFixed(2)} €</div>
