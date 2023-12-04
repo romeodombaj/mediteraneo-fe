@@ -36,6 +36,7 @@ const ImageShow = (props) => {
       {ReactDOM.createPortal(
         <Fragment>
           <div className={styles.backdrop} onClick={onCloseHandler} />
+
           <img className={styles.exit} src={menuX} onClick={onCloseHandler} />
           <img
             onClick={prevImage}
@@ -47,15 +48,12 @@ const ImageShow = (props) => {
             className={`${styles[`arrow-right`]} ${styles.arrow}`}
             src={arrow}
           />
-
-          <div className={styles.wrapper}>
-            {props.img && (
-              <img
-                className={styles.image}
-                src={props.img[currentImageIndex].src}
-              />
-            )}
-          </div>
+          {props.img && (
+            <img
+              className={styles.image}
+              src={props.img[currentImageIndex].src}
+            />
+          )}
         </Fragment>,
         portalElement
       )}

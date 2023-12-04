@@ -7,16 +7,21 @@
   width: 100%;
   height: 100vh;
   backdrop-filter: blur(5px);
+  animation: pop-in 0.2s;
 }
 
 .wrapper {
-  position: relative;
+  opacity: 0;
+  position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 1000;
+  animation: pop-in 0.2s 0.1s forwards;
+  background-color: aliceblue;
 }
 
 .image {
+  z-index: 1000;
   position: fixed;
   height: 80vh;
   max-width: 65%;
@@ -31,45 +36,53 @@
   position: fixed;
   top: 2%;
   right: 3%;
-  height: 1.5rem;
+  height: 2rem;
   aspect-ratio: 1;
   z-index: 1000;
   filter: brightness(50%) invert(100%);
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.5s;
   padding: 2rem;
+  opacity: 0.7;
 }
 
 .arrow {
   z-index: 1200;
   position: fixed;
-
-  height: 3rem;
+  top: 50%;
+  height: 4rem;
   filter: invert(100%);
-  padding: 5vh;
   cursor: pointer;
   user-select: none;
   transition: 0.2s;
+  padding: 5rem;
 }
 
 .arrow-right {
-  right: 5%;
-  transform: translateX(-50%);
-  transform: rotate(-90deg);
+  left: 92.5%;
+  transform: translate(-50%, -50%) rotate(-90deg);
 }
 
 .arrow-left {
-  left: 5%;
-  transform: translateX(-50%);
-  transform: rotate(90deg);
+  left: 7.5%;
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .arrow:hover {
-  scale: 1.05;
+  height: 4.3rem;
 }
 
 .exit:hover {
-  scale: 1.05;
+  opacity: 1;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 768px) {
