@@ -28,7 +28,6 @@ const ToBasketSection = (props) => {
   };
 
   useEffect(() => {
-    console.log("total update");
     let tempTotal = 0;
     props.itemVariations.forEach((variation) => {
       if (variation.quantity && variation.quantity > 0) {
@@ -37,17 +36,20 @@ const ToBasketSection = (props) => {
     });
 
     setTotalAmount(tempTotal);
-  }, [props.change]);
+  }, [props.itemVariations]);
 
   const addItemToCartHandler = () => {
     let tempVariations = [];
+    let tempItemVariations = [...props.itemVariations];
 
-    props.itemVariations.forEach((variation) => {
+    tempItemVariations.forEach((variation) => {
       if (variation.quantity && variation.quantity > 0) {
         tempVariations.push({ name, ...variation });
+        variation.quantity = 0;
       }
     });
 
+    props.setItemVariations(tempItemVariations);
     cartCtx.addItem([...tempVariations]);
   };
 

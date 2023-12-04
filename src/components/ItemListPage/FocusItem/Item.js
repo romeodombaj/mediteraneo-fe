@@ -37,8 +37,6 @@ const Item = () => {
     getItemVariations,
   ] = useGetItem();
 
-  const [change, setChange] = useState(false);
-
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -103,7 +101,6 @@ const Item = () => {
                   </div>
                   <div className={styles[`info-section`]}>
                     <ItemSelection
-                      setChange={setChange}
                       selectedColorIndex={selectedColorIndex}
                       setColorIndex={setSelectedColorIndex}
                       itemVariations={itemVariations || undefined}
@@ -117,9 +114,9 @@ const Item = () => {
                   </div>
                 </div>
                 <ToBasketSection
-                  change={change}
                   item={item}
                   itemVariations={itemVariations}
+                  setItemVariations={setItemVariations}
                 />
               </div>
             </div>

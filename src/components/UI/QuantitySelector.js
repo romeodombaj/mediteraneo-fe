@@ -1,15 +1,19 @@
 import styles from "./QuantitySelector.module.css";
 
 const QuantitySelector = (props) => {
-  const quantity = props.quantity;
   const index = props.index;
+  const quantity = props.quantity[index].quantity || 0;
 
   const increaseQuantity = () => {
-    props.setQuantity((prevValue) => prevValue + 1);
+    let newQuantity = quantity + 1;
+    props.setQuantity(newQuantity);
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 0) props.setQuantity((prevValue) => prevValue - 1);
+    if (quantity > 0) {
+      let newQuantity = quantity - 1;
+      props.setQuantity(newQuantity);
+    }
   };
 
   return (

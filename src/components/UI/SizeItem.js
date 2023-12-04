@@ -9,13 +9,20 @@ const SizeItem = (props) => {
 
   const [quantity, setQuantity] = useState(0);
 
-  useEffect(() => {
-    let tempVariations = props.itemVariations;
+  const setVariation = (value) => {
+    let tempVariations = [...props.itemVariations];
+    tempVariations[index].quantity = value;
+    console.log(tempVariations[index]);
+    props.setItemVariations(tempVariations);
+  };
+
+  /*useEffect(() => {
+    let tempVariations = [...props.itemVariations];
     tempVariations[index].quantity = quantity;
     props.setItemVariations(tempVariations);
-    props.setChange((prevVal) => !prevVal);
+  }, [quantity]);*/
 
-  }, [quantity]);
+  useEffect(() => {}, [props.itemVariations]);
 
   return (
     <Fragment>
@@ -24,8 +31,10 @@ const SizeItem = (props) => {
           <div className={styles.size}>{size}</div>
           <QuantitySelector
             index={index}
-            quantity={quantity}
-            setQuantity={setQuantity}
+            quantity={props.itemVariations}
+            setQuantity={setVariation}
+            //quantity={quantity}
+            //setQuantity={setQuantity}
           />
         </div>
         <div className={styles.price}>{price} EUR</div>
