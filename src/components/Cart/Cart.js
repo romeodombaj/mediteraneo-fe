@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import styles from "./Cart.module.css";
 import CartContext from "../store/cart-context";
 import ReactDOM from "react-dom";
@@ -7,8 +7,12 @@ import Coupon from "./Coupon";
 import Total from "./Total";
 
 import exitIcon from "../../assets/navigation/menu-x.png";
+import UseCreateOrder from "../hooks/use-create-order";
 
 const Cart = (props) => {
+  ////////////////////////////////////
+  const [createOrder] = UseCreateOrder();
+  ////////////////////////////////
   const cartCtx = useContext(CartContext);
 
   const increaseItem = (item) => {
@@ -30,6 +34,11 @@ const Cart = (props) => {
     };
   }, []);
 
+  /////////////////
+  const placeOrder = () => {
+    createOrder();
+  };
+  ///////////////
   const portalElement = document.getElementById("overlays");
 
   return (
@@ -78,7 +87,9 @@ const Cart = (props) => {
             </div>
 
             <div className={styles.actions}>
-              <div className={styles[`action-button`]}>KRENI NA PLAĆANJE</div>
+              <div className={styles[`action-button`]} onClick={placeOrder}>
+                KRENI NA PLAĆANJE
+              </div>
             </div>
           </div>
         </Fragment>,

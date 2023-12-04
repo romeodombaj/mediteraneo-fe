@@ -135,11 +135,11 @@ const NavBar = (props) => {
               // CART
             }
 
-            <div className={styles["counter-anchor"]}>
-              <div className={styles["counter"]}>{cartCtx.itemCounter}</div>
-
+            <div
+              className={styles["counter-anchor"]}
+              onClick={navCtx.changeCartState}
+            >
               <img
-                onClick={navCtx.changeCartState}
                 className={`${styles[`nav-item`]} ${
                   styles[
                     !(
@@ -151,6 +151,7 @@ const NavBar = (props) => {
                 } ${styles["cart-item"]}`}
                 src={cartIcon}
               />
+              <div className={styles["counter"]}>{cartCtx.itemCounter}</div>
             </div>
             {
               // MENU
