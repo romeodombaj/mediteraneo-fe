@@ -17,11 +17,16 @@ const ImagePortfolioSection = (props) => {
   const noImgSet = [noImg, noImg, noImg, noImg];
 
   useEffect(() => {
-    if (item && item != undefined && item.attributes[1]) {
+    if (
+      item &&
+      item != undefined &&
+      item.attributes[1] &&
+      item.images.length > 0
+    ) {
       let tempImageSet = [];
 
-      let startIndex;
-      let endIndex;
+      let startIndex = 0;
+      let endIndex = 0;
 
       if (selectedColorIndex === 0) {
         startIndex = 1;
