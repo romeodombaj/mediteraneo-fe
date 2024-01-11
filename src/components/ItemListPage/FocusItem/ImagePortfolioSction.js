@@ -25,8 +25,8 @@ const ImagePortfolioSection = (props) => {
     ) {
       let tempImageSet = [];
 
-      let startIndex = 0;
-      let endIndex = 0;
+      let startIndex;
+      let endIndex;
 
       if (selectedColorIndex === 0) {
         startIndex = 1;
@@ -38,10 +38,10 @@ const ImagePortfolioSection = (props) => {
         endIndex = parseInt(item.attributes[1].options[selectedColorIndex]);
       }
 
-      for (let i = startIndex; i <= endIndex; i++) {
+      for (let i = startIndex; i < endIndex; i++) {
+        console.log(i);
         tempImageSet.push(item.images[i]);
       }
-
       setCurrentImages([...tempImageSet]);
     } else {
       setCurrentImages([...noImgSet]);
@@ -55,6 +55,10 @@ const ImagePortfolioSection = (props) => {
   const closeImageSlieShow = () => {
     setSlideShow(false);
   };
+
+  useEffect(() => {
+    console.log(currentImages);
+  }, [currentImages]);
 
   return (
     <Fragment>
@@ -71,17 +75,23 @@ const ImagePortfolioSection = (props) => {
             />
             <img
               className={`${styles.image} ${styles.row1}`}
-              src={currentImages[1].src || currentImages[0]}
+              src={
+                currentImages[1].src || currentImages[0].src || currentImages[0]
+              }
             />
             <img
               className={`${styles.image} ${styles.row1}`}
-              src={currentImages[2].src || currentImages[0]}
+              src={
+                currentImages[2].src ||
+                currentImages[0].src ||
+                currentImages[0].src
+              }
             />
             <div className={styles[`image-wrapper`]}>
               <img
                 className={`${styles.image}`}
                 src={
-                  currentImages[3].src ||
+                  (currentImages[3] && currentImages[3].src) ||
                   currentImages[0].src ||
                   currentImages[0]
                 }
