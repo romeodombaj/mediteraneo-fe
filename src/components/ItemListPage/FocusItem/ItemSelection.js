@@ -10,6 +10,8 @@ const ItemSelection = (props) => {
   const colors = props.color;
   const itemVariations = props.itemVariations;
 
+  console.log(colors[1].substr(colors[1].lastIndexOf("#") + 1).split(" ")[0]);
+
   const changeColorHandler = (e) => {
     props.setColorIndex(parseInt(e.currentTarget.getAttribute("index")));
 
@@ -32,7 +34,10 @@ const ItemSelection = (props) => {
                   <RadioButton
                     active={i === props.selectedColorIndex ? true : false}
                     key={i}
-                    color={color}
+                    color={
+                      "#" +
+                      color.substr(color.lastIndexOf("#") + 1).split(" ")[0]
+                    }
                     index={i}
                     onClick={changeColorHandler}
                   />

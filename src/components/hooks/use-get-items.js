@@ -13,7 +13,7 @@ const useGetItems = (storageValue = undefined) => {
   const getData = async (path) => {
     if (catCtx.categories && catCtx.categories.length > 0) {
       let response = await fetch(
-        `https://mediteraneo.eu/wp-json/wc/v3/products${path}`,
+        `https://mediteraneo.eu/wp-json/wc/v3/products${path}&status=publish`,
         { mode: "cors" }
       );
 

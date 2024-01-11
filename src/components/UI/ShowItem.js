@@ -5,7 +5,7 @@ import SavedContext from "../store/saved-context";
 
 // temp
 
-import tempImg from "../../assets/coffe maker.png";
+import noImg from "../../assets/questionmarks.png";
 import saveIcon from "../../assets/heart-empty.png";
 import unsaveIcon from "../../assets/heart-filled.png";
 import NavigationContext from "../store/navigation-context";
@@ -70,7 +70,12 @@ const ShowItem = (props) => {
           )}
         </div>
 
-        <img className={styles.image} src={props.item.images[0].src} />
+        <img
+          className={styles.image}
+          src={
+            (props.item.images.length > 0 && props.item.images[0].src) || noImg
+          }
+        />
         <div className={styles[`open-indicator`]}>DETALJI</div>
       </div>
     </div>
