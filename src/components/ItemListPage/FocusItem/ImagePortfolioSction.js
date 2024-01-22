@@ -56,10 +56,6 @@ const ImagePortfolioSection = (props) => {
     setSlideShow(false);
   };
 
-  useEffect(() => {
-    console.log(currentImages);
-  }, [currentImages]);
-
   return (
     <Fragment>
       {slideShow && (
@@ -71,20 +67,28 @@ const ImagePortfolioSection = (props) => {
           <div className={styles.grid}>
             <img
               className={`${styles.image}`}
-              src={currentImages[0].src || currentImages[0]}
-            />
-            <img
-              className={`${styles.image} ${styles.row1}`}
               src={
-                currentImages[1].src || currentImages[0].src || currentImages[0]
+                (currentImages[0] && currentImages[0].src) ||
+                (currentImages[0] && currentImages[0]) ||
+                noImg
               }
             />
             <img
               className={`${styles.image} ${styles.row1}`}
               src={
-                currentImages[2].src ||
-                currentImages[0].src ||
-                currentImages[0].src
+                (currentImages[1] && currentImages[1].src) ||
+                (currentImages[0] && currentImages[0].src) ||
+                (currentImages[0] && currentImages[0]) ||
+                noImg
+              }
+            />
+            <img
+              className={`${styles.image} ${styles.row1}`}
+              src={
+                (currentImages[2] && currentImages[2].src) ||
+                (currentImages[0] && currentImages[0].src) ||
+                (currentImages[0] && currentImages[0]) ||
+                noImg
               }
             />
             <div className={styles[`image-wrapper`]}>
@@ -92,8 +96,9 @@ const ImagePortfolioSection = (props) => {
                 className={`${styles.image}`}
                 src={
                   (currentImages[3] && currentImages[3].src) ||
-                  currentImages[0].src ||
-                  currentImages[0]
+                  (currentImages[0] && currentImages[0].src) ||
+                  (currentImages[0] && currentImages[0]) ||
+                  noImg
                 }
               />
               <div className={styles[`open-more`]}>
