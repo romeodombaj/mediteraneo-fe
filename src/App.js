@@ -12,6 +12,7 @@ import AboustUs from "./components/Informative-Pages/AboutUs";
 import Footer from "./components/Informative-Pages/Footer";
 import Item from "./components/ItemListPage/FocusItem/Item";
 import NavigationContext from "./components/store/navigation-context";
+import Footer2 from "./components/Informative-Pages/Footer2";
 
 const App = () => {
   const categoryCtx = useContext(CategoryContext);
@@ -33,7 +34,7 @@ const App = () => {
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
-          <Footer />
+          <Footer2 />
         </div>
       </div>
     </CartProvider>

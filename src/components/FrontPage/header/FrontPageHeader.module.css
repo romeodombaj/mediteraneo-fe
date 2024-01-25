@@ -22,6 +22,7 @@
 .head-text {
   line-height: 2rem;
   font-size: 1.3em;
+  text-transform: uppercase;
 }
 
 .button {
