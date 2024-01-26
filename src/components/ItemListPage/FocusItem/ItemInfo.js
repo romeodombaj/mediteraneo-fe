@@ -13,9 +13,12 @@ const ItemInfo = (props) => {
         <div className={styles.wrapper}>
           <div className={styles.title}>{props.itemInfo.name}</div>
           <div className={styles.price}>{props.itemInfo.price} EUR</div>
-          <div className={styles[`short-description`]}>
-            {props.itemInfo.description.substring(0, 150) || defaultText}
-          </div>
+          <div
+            className={styles[`short-description`]}
+            dangerouslySetInnerHTML={{
+              __html: props.itemInfo.description.substring(0, 150) + "...",
+            }}
+          ></div>
           <div className={styles[`availability-section`]}>
             <div className={styles[`section-title`]}>Dostupnost:</div>
             <div className={styles[`availability-divider`]}>

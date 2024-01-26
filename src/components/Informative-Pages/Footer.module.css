@@ -98,6 +98,11 @@
     text-align: center;
   }
 
+  .newsletter-button {
+    font-size: 1em;
+    opacity: 1;
+  }
+
   .logo {
     scale: 0.7;
   }

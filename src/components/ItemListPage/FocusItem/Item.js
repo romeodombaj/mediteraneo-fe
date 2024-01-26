@@ -16,6 +16,7 @@ import Footer from "../../Informative-Pages/Footer";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import useGetItem from "../../hooks/use-get-item";
+import Footer2 from "../../Informative-Pages/Footer2";
 
 const Item = () => {
   const location = useLocation();
@@ -122,7 +123,7 @@ const Item = () => {
             </div>
             <ItemDescription item={item} />
             <SimilarProducts currentCategory={categorySlug} />
-            <Footer />
+            <Footer2 />
           </Fragment>
         )}
       </div>

@@ -94,6 +94,10 @@
   .open-indicator {
     opacity: 1;
   }
+
+  .save {
+    opacity: 1;
+  }
 }
 
 @keyframes show-up {

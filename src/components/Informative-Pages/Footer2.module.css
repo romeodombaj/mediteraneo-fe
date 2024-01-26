@@ -55,6 +55,10 @@
   opacity: 1;
 }
 
+.newsletter-text {
+  font-weight: bold;
+}
+
 .quick-links {
   width: 60%;
 }
@@ -120,7 +124,23 @@
 
 @media only screen and (max-width: 768px) {
   .main-wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  .newsletter-section {
+    width: 100%;
+  }
+
+  .link-section {
+    width: 100%;
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .subscribe-button {
+    font-size: 1em;
+    opacity: 1;
   }
 
   .logo-section {
@@ -145,11 +165,6 @@
   .link-list-title {
     text-align: center;
     font-size: 1.3em;
-  }
-
-  .link {
-    font-size: 1em;
-    padding: 0.5rem;
   }
 
   .media-wrapper {
