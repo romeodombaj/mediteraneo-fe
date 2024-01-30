@@ -7,11 +7,9 @@ import ItemList from "./components/ItemListPage/ItemList";
 import FrontPage from "./components/FrontPage/FrontPage";
 import NavBar from "./components/Navigation/NavBar";
 import CartProvider from "./components/store/CartProvider";
-import LoadingContext from "./components/store/loading-context";
 import AboustUs from "./components/Informative-Pages/AboutUs";
 import Footer from "./components/Informative-Pages/Footer";
 import Item from "./components/ItemListPage/FocusItem/Item";
-import NavigationContext from "./components/store/navigation-context";
 import Footer2 from "./components/Informative-Pages/Footer2";
 
 const App = () => {

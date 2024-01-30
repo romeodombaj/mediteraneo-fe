@@ -5,10 +5,9 @@ import CartContext from "../store/cart-context";
 import ItemListHeader from "./Header/ItemListHeader";
 import ItemListMain from "./Main/ItemListMain";
 import CategoryContext from "../store/category-context";
-import LoadingContext from "../store/loading-context";
 import ListActions from "./Main/ListActions";
 import useGetItems from "../hooks/use-get-items";
-import SavedContext from "../store/saved-context";
+
 
 const ItemList = () => {
   const [sortingValue, setSortingValue] = useState("Price Up");
@@ -16,8 +15,6 @@ const ItemList = () => {
 
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
-  const saveCtx = useContext(SavedContext);
-  const loadCtx = useContext(LoadingContext);
 
   const params = useParams().categorySlug;
   const [itemList, setItemList, getItemList] = useGetItems();
@@ -72,7 +69,7 @@ const ItemList = () => {
               gridStyle={gridStyleValue}
               itemInfo={filteredItemList}
               itemListCount={itemList.length}
-              currentCategory={loadCtx.params}
+              currentCategory={params}
               categories={categoryCtx.categories}
             />
           </Fragment>

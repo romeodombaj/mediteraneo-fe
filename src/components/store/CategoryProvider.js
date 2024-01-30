@@ -1,13 +1,10 @@
 import { useState, useContext } from "react";
 import CategoryContext from "./category-context";
-import LoadingContext from "./loading-context";
 
 const CategoryProvider = (props) => {
   const [categoryList, setCategoryList] = useState(
     JSON.parse(localStorage.getItem("categories")) || []
   );
-
-  const loadCtx = useContext(LoadingContext);
 
   const fetchCategories = () => {
     fetch(
@@ -19,8 +16,7 @@ const CategoryProvider = (props) => {
           setCategoryList(categories);
           localStorage.setItem("categories", JSON.stringify(categories));
         }
-      })
-      .then(loadCtx.onMainLoaded);
+      });
   };
 
   const getCategory = (slug) => {

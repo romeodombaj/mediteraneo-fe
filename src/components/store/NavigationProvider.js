@@ -1,6 +1,5 @@
 import NavigationContext from "./navigation-context";
 import { useContext, useState } from "react";
-import LoadingContext from "./loading-context";
 import { useNavigate } from "react-router-dom";
 import CategoryContext from "./category-context";
 
@@ -8,7 +7,7 @@ const NavigationProvider = (props) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
-  const loadCtx = useContext(LoadingContext);
+  const [params, setParams] = useState();
   const navigate = useNavigate();
   const categoryCtx = useContext(CategoryContext);
 
@@ -20,7 +19,7 @@ const NavigationProvider = (props) => {
   };
 
   const loadPage = (catID = "") => {
-    if (loadCtx.params !== catID) {
+    if (params !== catID) {
       let slug = "";
       if (catID !== "") {
         slug =
@@ -29,12 +28,7 @@ const NavigationProvider = (props) => {
           ].slug;
       }
 
-      loadCtx.setParams(slug);
-
-      if (catID !== "") {
-        loadCtx.onProductLoad();
-      }
-
+      setParams(slug);
       setTimeout(() => {
         navigate(`/${slug}`);
         goToTop();
