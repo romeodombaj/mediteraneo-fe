@@ -7,7 +7,7 @@ const NavigationProvider = (props) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
-  const [params, setParams] = useState();
+  const [params, setParams] = useState("/");
   const navigate = useNavigate();
   const categoryCtx = useContext(CategoryContext);
 
@@ -16,6 +16,16 @@ const NavigationProvider = (props) => {
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  const loader = (slug) => {
+    setParams(slug);
+    setTimeout(() => {
+      goToTop();
+      navigate(`${slug}`);
+      setIsNavigating(false);
+      closeAll();
+    }, 250);
   };
 
   const loadPage = (catID = "") => {
@@ -28,13 +38,7 @@ const NavigationProvider = (props) => {
           ].slug;
       }
 
-      setParams(slug);
-      setTimeout(() => {
-        navigate(`/${slug}`);
-        goToTop();
-        setIsNavigating(false);
-        closeAll();
-      }, 250);
+      loader("/" + slug);
     } else {
       goToTop();
       setIsNavigating(false);
@@ -48,6 +52,10 @@ const NavigationProvider = (props) => {
 
   const loadHomePage = () => {
     loadPage();
+  };
+
+  const loadOtherPages = (slug) => {
+    loader(slug);
   };
 
   const changeNavigationState = () => {
@@ -95,6 +103,7 @@ const NavigationProvider = (props) => {
     isNavigating: isNavigating,
     cartOpen: cartOpen,
     savedOpen: savedOpen,
+    loadOtherPages: loadOtherPages,
     closeCart: closeCart,
     changeCartState: changeCartState,
     changeSavedState: changeSavedState,

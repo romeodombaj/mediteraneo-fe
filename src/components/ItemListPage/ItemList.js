@@ -8,7 +8,6 @@ import CategoryContext from "../store/category-context";
 import ListActions from "./Main/ListActions";
 import useGetItems from "../hooks/use-get-items";
 
-
 const ItemList = () => {
   const [sortingValue, setSortingValue] = useState("Price Up");
   const [gridStyleValue, setGridStyleValue] = useState("0");

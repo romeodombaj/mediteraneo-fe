@@ -4,6 +4,7 @@ const NavigationContext = React.createContext({
   isNavigating: false,
   cartOpen: false,
   savedOpen: false,
+  loadOtherPages: () => {},
   loadHomePage: () => {},
   loadCategory: () => {},
   changeNavigationState: () => {},

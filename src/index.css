@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
-:root {
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Salsa&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Salsa&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Salsa&family=Teko:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Salsa&family=Teko:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Lilita+One&family=Salsa&family=Teko:wght@300..700&display=swap");
+
+root {
   --gray-text-color: #9a9a9a;
   --item-background-color: #fafafa;
   --property-background-color: rgba(235, 235, 235, 0.606);

@@ -7,6 +7,7 @@ const FrontPageHeader = () => {
   return (
     <div className={styles.wrapper}>
       <img className={styles[`background-image`]} src={TEMPimage} />
+      <div className={styles.title}>MEDITERANEO</div>
       <div className={styles[`info-wrapper`]}>
         <div className={styles[`head-text`]}>
           Otkrijte sofisticiranost svojih prostora uz našu odabranu kolekciju

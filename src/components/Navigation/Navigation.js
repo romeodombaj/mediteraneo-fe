@@ -40,6 +40,11 @@ const Navigation = (props) => {
     setInSubcategoreis(false);
   };
 
+  const openOtherPages = (event) => {
+    const slug = event.target.getAttribute("value");
+    navCtx.loadOtherPages(slug);
+  };
+
   const politicsHandler = () => {
     setPolicyIsOpen(true);
   };
@@ -92,17 +97,22 @@ const Navigation = (props) => {
               </div>
               <hr className={styles.hr} />
               <div className={styles[`specials-wrapper`]}>
-                <div className={styles.special}>Outdoor</div>
+                <div className={styles.special}>Insipiracije</div>
                 <div className={styles.special}>Specialprices</div>
-                <div className={styles.special}>Made in Croatia</div>
+                <div className={styles.special}>Zanimljivosti</div>
                 <div className={styles.special}>Novo u ponudi</div>
+                <div className={styles.special}>Blog</div>
               </div>
               <hr className={styles.hr} />
               <div className={styles[`other-info`]}>
                 <div>
-                  <Link to="/aboutus" className={styles[`other-text`]}>
+                  <div
+                    value="/aboutus"
+                    onClick={openOtherPages}
+                    className={styles[`other-text`]}
+                  >
                     O nama
-                  </Link>
+                  </div>
                   <div className={styles[`other-text`]}>Kontakt</div>
                   <div className={styles[`other-text`]}>FAQ</div>
                 </div>

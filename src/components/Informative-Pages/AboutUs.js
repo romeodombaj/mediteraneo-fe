@@ -65,20 +65,6 @@ const AboustUs = () => {
           predani smo redefiniranju iskustva kupnje namještaja na mreži i
           postajemo odredište za one koji žele poboljšati svoj životni prostor.
         </div>
-
-        <div className={styles[`section-title`]}>
-          MI SMO BREND NAMJEŠTAJA KOJI VJERUJE U DRUGAČIJI PRISTUP
-        </div>
-        <div className={styles[`section-text`]}>
-          Sve proizvode biramo s naglaskom na vrhunsku izradu, funkcionalnost i
-          estetiku.
-        </div>
-        <div className={styles[`section-text`]}>
-          Osim toga, surađujemo s provjerenim dobaljačima kako bismo osigurali
-          da naši kupci dobiju proizvode visoke kvalitete. Naš cilj je stvoriti
-          ugodno i stilizirano okruženje u vašem domu, nadahnut šarmom i
-          opuštenošću.
-        </div>
       </div>
 
       <div className={styles[`footer-wrapper`]}>
