@@ -13,11 +13,15 @@
 }
 
 .head-text {
+  margin-top: 1rem;
   width: 45%;
   text-align: center;
   color: rgba(0, 0, 0, 0.596);
   line-height: 1.5rem;
   font-size: 1.5em;
+  font-size: 2.5em;
+  letter-spacing: 0.2rem;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .head-image {
