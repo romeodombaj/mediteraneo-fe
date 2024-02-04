@@ -7,6 +7,7 @@ import ItemListMain from "./Main/ItemListMain";
 import CategoryContext from "../store/category-context";
 import ListActions from "./Main/ListActions";
 import useGetItems from "../hooks/use-get-items";
+import SubcategoryList from "./Main/SubcategoryList";
 
 const ItemList = () => {
   const [sortingValue, setSortingValue] = useState("Price Up");
@@ -20,6 +21,10 @@ const ItemList = () => {
   const [filteredItemList, setFilteredItemList] = useState([]);
 
   const currentCategory = categoryCtx.getCategory(params);
+
+  const subcategories = [
+    ...categoryCtx.categories.filter((el) => el.parent === currentCategory.id),
+  ];
 
   const changeGridStyleValue = (val) => {
     setGridStyleValue(val);
@@ -54,6 +59,7 @@ const ItemList = () => {
         {categoryCtx.categories && (
           <Fragment>
             <ItemListHeader category={currentCategory} params={params} />
+            <SubcategoryList subcategories={subcategories} />
             <div className={styles.count}>
               {filteredItemList.length} proizvoda
             </div>
