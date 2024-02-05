@@ -11,6 +11,7 @@ import AboustUs from "./components/Informative-Pages/AboutUs";
 import Footer from "./components/Informative-Pages/Footer";
 import Item from "./components/ItemListPage/FocusItem/Item";
 import Footer2 from "./components/Informative-Pages/Footer2";
+import OurStory from "./components/Informative-Pages/OurStory";
 
 const App = () => {
   const categoryCtx = useContext(CategoryContext);
@@ -27,6 +28,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="/aboutus" element={<AboustUs />} />
+            <Route path="/ourstory" element={<OurStory />} />
             <Route path="/:categorySlug" element={<ItemList />}>
               <Route path=":productSlug" element={<Item />} />
             </Route>

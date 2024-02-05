@@ -28,6 +28,22 @@
   margin: auto;
 }
 
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  transition: 0.5s;
+  font-size: 2em;
+  font-weight: bold;
+  z-index: 400;
+}
+
+.title-inverted {
+  color: whitesmoke;
+}
+
 .divider {
   border: 1px solid rgba(114, 114, 114, 0.149);
   width: 100%;

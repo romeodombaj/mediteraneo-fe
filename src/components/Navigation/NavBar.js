@@ -65,6 +65,18 @@ const NavBar = (props) => {
         }`}
       >
         <div className={styles.container}>
+          <div
+            className={`${styles.title} ${
+              styles[
+                navigationTransparency &&
+                  !navCtx.cartOpen &&
+                  !navCtx.savedOpen &&
+                  `title-inverted`
+              ]
+            }`}
+          >
+            Mediteraneo
+          </div>
           <div className={styles[`left-section`]} onClick={goHome}>
             <img
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${

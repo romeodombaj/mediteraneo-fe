@@ -21,15 +21,38 @@ const Footer2 = () => {
     navCtx.loadCategory(selectedId);
   };
 
+  const openOtherPages = (event) => {
+    const slug = event.target.getAttribute("value");
+    navCtx.loadOtherPages(slug);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles[`main-wrapper`]}>
         <div className={styles[`link-section`]}>
           <div className={styles[`quick-links`]}>
-            <div className={styles[`link-list-title`]}>O nama</div>
+            <div
+              className={styles[`link-list-title`]}
+              onClick={openOtherPages}
+              value="aboutus"
+            >
+              O nama
+            </div>
             <div className={styles[`link-list`]}>
-              <div className={styles[`link`]}>Tko smo</div>
-              <div className={styles[`link`]}>Naša priča</div>
+              <div
+                className={styles[`link`]}
+                onClick={openOtherPages}
+                value="aboutus"
+              >
+                Tko smo
+              </div>
+              <div
+                className={styles[`link`]}
+                onClick={openOtherPages}
+                value="ourstory"
+              >
+                Naša priča
+              </div>
               <div className={styles[`link`]}>Nastanak</div>
               <div className={styles[`link`]}>Poslovanje</div>
             </div>
