@@ -12,17 +12,19 @@ const NavigationProvider = (props) => {
   const categoryCtx = useContext(CategoryContext);
 
   const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, [1]);
   };
 
   const loader = (slug) => {
     setParams(slug);
     setTimeout(() => {
-      goToTop();
       navigate(`${slug}`);
+      goToTop();
       setIsNavigating(false);
       closeAll();
     }, 250);

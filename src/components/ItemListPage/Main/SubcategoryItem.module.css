@@ -1,7 +1,7 @@
 .wrapper {
   height: 20vh;
   aspect-ratio: 0.8;
-  background-color: rgb(244, 244, 244);
+  background-color: var(--property-background-color);
   position: relative;
   cursor: pointer;
   border: 2px solid rgba(94, 94, 94, 0);
