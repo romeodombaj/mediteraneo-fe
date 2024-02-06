@@ -14,6 +14,8 @@ import unsavedIcon from "../../assets/heart-empty.png";
 import SavedContext from "../store/saved-context";
 import CartContext from "../store/cart-context";
 
+const title = ["M", "E", "D", "I", "T", "E", "R", "A", "N", "E", "O"];
+
 const NavBar = (props) => {
   const [navigationTransparency, setNavigationTransparency] = useState(false);
   const navCtx = useContext(NavigationContext);
@@ -75,7 +77,22 @@ const NavBar = (props) => {
               ]
             }`}
           >
-            Mediteraneo
+            {title.map((letter) => {
+              return (
+                <div
+                  className={`${styles["title-letter"]} ${
+                    styles[
+                      navigationTransparency &&
+                        !navCtx.cartOpen &&
+                        !navCtx.savedOpen &&
+                        `title-letter-inverted`
+                    ]
+                  }`}
+                >
+                  {letter}
+                </div>
+              );
+            })}
           </div>
           <div className={styles[`left-section`]} onClick={goHome}>
             <img

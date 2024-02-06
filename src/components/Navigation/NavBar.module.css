@@ -33,15 +33,35 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: black;
-  transition: 0.5s;
-  font-size: 2em;
+  color: rgb(110, 110, 110);
+  transition: 0.2s;
+  font-size: 1.4em;
   font-weight: bold;
   z-index: 400;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .title-inverted {
   color: whitesmoke;
+}
+
+.title-letter {
+  transition: 0.2s;
+  border: 3px solid rgb(110, 110, 110);
+  border-radius: 25%;
+  width: 1.75rem;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-letter-inverted {
+  border: 3px solid whitesmoke;
 }
 
 .divider {
