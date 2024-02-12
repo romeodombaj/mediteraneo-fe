@@ -12,11 +12,11 @@ import { useNavigate } from "react-router-dom";
 import ItemDescription from "./ItemDescription";
 import SimilarProducts from "./SimilarProducts";
 import LoadingAnimation from "../../UI/LoadingAnimation";
-import Footer from "../../Informative-Pages/Footer";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import useGetItem from "../../hooks/use-get-item";
 import Footer2 from "../../Informative-Pages/Footer2";
+import useScrollStop from "../../hooks/use-scroll-stop";
 
 const Item = () => {
   const location = useLocation();
@@ -38,12 +38,7 @@ const Item = () => {
     getItemVariations,
   ] = useGetItem();
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
+  useScrollStop();
 
   const scrollToTop = () => {
     topRef.current.scroll({

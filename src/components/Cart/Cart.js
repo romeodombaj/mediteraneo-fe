@@ -8,6 +8,7 @@ import Total from "./Total";
 
 import exitIcon from "../../assets/navigation/menu-x.png";
 import UseCreateOrder from "../hooks/use-create-order";
+import useScrollStop from "../hooks/use-scroll-stop";
 
 const Cart = (props) => {
   ////////////////////////////////////
@@ -27,12 +28,7 @@ const Cart = (props) => {
     props.onClose();
   };
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
+  useScrollStop();
 
   /////////////////
   const placeOrder = () => {

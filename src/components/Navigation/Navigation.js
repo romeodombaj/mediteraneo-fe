@@ -12,6 +12,7 @@ import logo from "../../assets/logo.png";
 import exit from "../../assets/navigation/menu-x.png";
 import InfoModal from "../UI/InfoModal";
 import LoadingAnimation from "../UI/LoadingAnimation";
+import useScrollStop from "../hooks/use-scroll-stop";
 
 const Navigation = (props) => {
   const portalElement = document.getElementById("overlays");
@@ -23,6 +24,8 @@ const Navigation = (props) => {
   const [inSubcategories, setInSubcategoreis] = useState(false);
   const [currentSubcategories, setCurrentSubcategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState();
+
+  useScrollStop();
 
   // link to new page
   const categorySelectionHandler = (event) => {

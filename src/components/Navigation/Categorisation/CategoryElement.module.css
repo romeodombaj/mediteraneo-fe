@@ -8,6 +8,7 @@
 }
 
 .name {
+  font-family: "Baloo Bhaijaan 2", sans-serif;
   color: black;
   text-align: left;
   font-size: 0.8em;
@@ -20,6 +21,7 @@
   align-items: center;
   flex-direction: row;
   justify-content: left;
+  font-weight: lighter;
 }
 
 .arrow-wrapper {

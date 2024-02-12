@@ -5,21 +5,17 @@ import ShowItem from "../UI/ShowItem";
 import SavedContext from "../store/saved-context";
 
 import exitIcon from "../../assets/navigation/menu-x.png";
+import useScrollStop from "../hooks/use-scroll-stop";
 
 const Saved = (props) => {
   const portalElement = document.getElementById("overlays");
   const saveCtx = useContext(SavedContext);
 
+  useScrollStop();
+
   const onClose = () => {
     props.onClose();
   };
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
 
   return (
     <Fragment>

@@ -73,6 +73,7 @@
   color: rgb(49, 49, 49);
   margin-bottom: 1rem;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .link {
