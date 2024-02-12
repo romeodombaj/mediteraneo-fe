@@ -67,7 +67,7 @@ const NavBar = (props) => {
         }`}
       >
         <div className={styles.container}>
-          <div
+          {/*<div
             className={`${styles.title} ${
               styles[
                 navigationTransparency &&
@@ -93,7 +93,7 @@ const NavBar = (props) => {
                 </div>
               );
             })}
-          </div>
+          </div>*/}
           <div className={styles[`left-section`]} onClick={goHome}>
             <img
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${

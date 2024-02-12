@@ -9,19 +9,18 @@ const CategoryElement = (props) => {
   };
 
   return (
-    <div
-      className={styles.wrapper}
-      onClick={
-        props.subcategories && props.subcategories.length > 0
-          ? openSubcategories
-          : props.onSelected
-      }
-    >
-      <div className={styles.name} value={props.category.id}>
+    <div className={styles.wrapper}>
+      <div
+        className={styles.name}
+        value={props.category.id}
+        onClick={props.onSelected}
+      >
         {props.category.name}
       </div>
       {props.subcategories && props.subcategories.length > 0 && (
-        <img src={backArrow} className={styles.arrow} />
+        <div className={styles["arrow-wrapper"]} onClick={openSubcategories}>
+          <img src={backArrow} className={styles.arrow} />
+        </div>
       )}
     </div>
   );
