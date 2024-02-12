@@ -101,7 +101,7 @@ const Navigation = (props) => {
               <hr className={styles.hr} />
               <div className={styles[`specials-wrapper`]}>
                 <div className={styles.special}>Insipiracije</div>
-                <div className={styles.special}>Specialprices</div>
+                <div className={styles.special}>Special prices</div>
                 <div className={styles.special}>Zanimljivosti</div>
                 <div className={styles.special}>Novo u ponudi</div>
                 <div className={styles.special}>Blog</div>

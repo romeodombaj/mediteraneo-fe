@@ -1,0 +1,24 @@
+.wrapper {
+  height: 70vh;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 90%;
+  gap: 1.5rem;
+}
+
+.show-item {
+  width: 30%;
+  height: 100%;
+  background-color: gray;
+}

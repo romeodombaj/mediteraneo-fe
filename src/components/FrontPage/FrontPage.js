@@ -5,9 +5,9 @@ import SelectedSection from "./main/Selected_section/SelectedSection";
 import CategoryShowcaseSection from "./main/Category_showcase_section/CategoryShowcaseSection";
 import FeaturedCategories from "./main/Featured_categories_section/FeaturedCategories";
 import NavigationContext from "../store/navigation-context";
+import SpecialSection from "./main/Special_section/SpecialSection";
 
 const FrontPage = () => {
-
   return (
     <Fragment>
       <div className={`${styles.wrapper}`}>
@@ -15,6 +15,7 @@ const FrontPage = () => {
         <SelectedSection />
         <FeaturedCategories />
         <CategoryShowcaseSection />
+        <SpecialSection />
       </div>
     </Fragment>
   );
