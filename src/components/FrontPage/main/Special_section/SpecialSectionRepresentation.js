@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import styles from "./SpecialSectionRepresentation.module.css";
 
-const SpecialSectionRepresentation = ({ image }) => {
-  const [isChanged, setIsChanged] = useState(false);
-
-  useEffect(() => {
-    setIsChanged(true);
-    setTimeout(() => {
-      setIsChanged(false);
-    }, [1]);
-  }, [image]);
-
+const SpecialSectionRepresentation = ({ image, name }) => {
   return (
     <div className={styles.wrapper}>
-      {image && !isChanged && <img className={styles.image} src={image} />}
+      {image && <img className={styles.image} src={image} />}
+
+      <div className={styles.description}>
+        <div className={styles["description-title"]}>{name}</div>
+        <div className={styles["description-show"]}>Pogledajte ponudu</div>
+        <div className={styles["description-more"]}>SAZNAJTE VIŠE</div>
+      </div>
     </div>
   );
 };

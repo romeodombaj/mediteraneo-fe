@@ -6,7 +6,9 @@ import useGetItems from "../../../hooks/use-get-items";
 import CategoryContext from "../../../store/category-context";
 
 const CategoryShowcaseSection = (props) => {
-  const [itemList, setItemList, getItemList] = useGetItems("showcase");
+  const [itemList, setItemList, getItemList] = useGetItems(
+    "special_collections"
+  );
   const catCtx = useContext(CategoryContext);
 
   useEffect(() => {

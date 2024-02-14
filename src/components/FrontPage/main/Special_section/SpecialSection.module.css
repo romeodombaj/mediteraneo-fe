@@ -1,11 +1,11 @@
 .wrapper {
-  height: 70vh;
   width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
   margin-top: 10vh;
   margin-bottom: 5vh;
+  min-height: 65vh;
 }
 
 .content-wrapper {
@@ -13,12 +13,42 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 90%;
+  height: 60vh;
   gap: 1.5rem;
+  animation: show-up 1s;
 }
 
 .show-item {
-  width: 30%;
+  width: 25%;
   height: 100%;
-  background-color: gray;
+}
+
+@keyframes show-up {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 95%;
+    height: 140vh;
+    min-height: 140vh;
+    margin-top: 8vh;
+    margin-bottom: 0;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    height: 128vh;
+    min-height: 128vh;
+  }
+
+  .show-item {
+    width: 100%;
+    min-height: 60vh;
+  }
 }
