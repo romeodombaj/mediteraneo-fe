@@ -85,7 +85,10 @@ const SpecialSection = () => {
               {options &&
                 options[selectionIndex] &&
                 options[selectionIndex].item && (
-                  <ShowItem item={options[selectionIndex].item} />
+                  <ShowItem
+                    item={options[selectionIndex].item}
+                    withDescription={true}
+                  />
                 )}
             </div>
           </Fragment>

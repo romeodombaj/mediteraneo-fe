@@ -9,55 +9,66 @@ import noImg from "../../assets/questionmarks.png";
 import saveIcon from "../../assets/heart-empty.png";
 import unsaveIcon from "../../assets/heart-filled.png";
 import NavigationContext from "../store/navigation-context";
-import { prettyDOM } from "@testing-library/react";
 
-const ShowItem = (props) => {
+const ShowItem = ({
+  withDescription = false,
+  item,
+  currentCategory,
+  refreshSaved,
+}) => {
   const navigate = useNavigate();
   const navCtx = useContext(NavigationContext);
   const saveCtx = useContext(SavedContext);
 
-  const [isSaved, setIsSaved] = useState(props.item.saved || false);
-
+  const [isSaved, setIsSaved] = useState(item.saved || false);
   const saveItem = (e) => {
     e.stopPropagation();
-    props.item.saved = true;
-    saveCtx.addItem(props.item);
+    item.saved = true;
+    saveCtx.addItem(item);
     setIsSaved(true);
   };
 
   const removeItem = (e) => {
     e.stopPropagation();
-    props.item.saved = false;
-    saveCtx.removeItem(props.item.id);
+    item.saved = false;
+    saveCtx.removeItem(item.id);
     setIsSaved(false);
   };
 
   const openItemHandler = () => {
-    if (props.currentCategory) {
-      navigate(`/${props.currentCategory}/${props.item.slug}`, {
-        state: { item: props.item },
+    if (currentCategory) {
+      navigate(`/${currentCategory}/${item.slug}`, {
+        state: { item: item },
       });
       return;
     }
     navCtx.closeCart();
     navCtx.closeSaved();
-    navigate(`/${props.item.categories[0].slug}/${props.item.slug}`, {
-      state: { item: props.item, refresh: props.refreshSaved },
+    navigate(`/${item.categories[0].slug}/${item.slug}`, {
+      state: { item: item, refresh: refreshSaved },
     });
   };
 
   useEffect(() => {
-    setIsSaved(props.item.saved);
-    saveCtx.checkIfSavedOne(props.item);
-  }, [props.item.saved, saveCtx.items]);
+    setIsSaved(item.saved);
+    saveCtx.checkIfSavedOne(item);
+  }, [item.saved, saveCtx.items]);
 
   return (
     <div onClick={openItemHandler} className={styles.wrapper}>
       <div className={styles[`content-wrapper`]}>
         <div className={styles["info-wrapper"]}>
           <div>
-            <div className={styles.title}>{props.item.name}</div>
-            <div className={styles.price}>{props.item.price} €</div>
+            <div className={styles.title}>{item.name}</div>
+            <div className={styles.price}>{item.price} €</div>
+            {withDescription && item.short_description && (
+              <div
+                className={styles["short-description"]}
+                dangerouslySetInnerHTML={{
+                  __html: item.short_description.substring(0, 150) + "...",
+                }}
+              ></div>
+            )}
           </div>
           {isSaved ? (
             <img
@@ -72,9 +83,7 @@ const ShowItem = (props) => {
 
         <img
           className={styles.image}
-          src={
-            (props.item.images.length > 0 && props.item.images[0].src) || noImg
-          }
+          src={(item.images.length > 0 && item.images[0].src) || noImg}
         />
         <div className={styles[`open-indicator`]}>DETALJI</div>
       </div>

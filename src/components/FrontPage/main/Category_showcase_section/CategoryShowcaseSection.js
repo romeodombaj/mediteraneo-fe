@@ -4,12 +4,19 @@ import ShowItem from "../../../UI/ShowItem";
 import LoadingAnimation from "../../../UI/LoadingAnimation";
 import useGetItems from "../../../hooks/use-get-items";
 import CategoryContext from "../../../store/category-context";
+import NavigationContext from "../../../store/navigation-context";
 
 const CategoryShowcaseSection = (props) => {
   const [itemList, setItemList, getItemList] = useGetItems(
     "special_collections"
   );
   const catCtx = useContext(CategoryContext);
+  const navCtx = useContext(NavigationContext);
+
+  // loading ručnici default
+  const categorySelectionHandler = (id = 253) => {
+    navCtx.loadCategory(253);
+  };
 
   useEffect(() => {
     getItemList(
@@ -19,7 +26,7 @@ const CategoryShowcaseSection = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div>
+      <div onClick={categorySelectionHandler}>
         <div className={styles.title}>Rasvjeta</div>
         <div className={styles.lookup}>POGLEDAJ SVE PROIZVODE</div>
       </div>

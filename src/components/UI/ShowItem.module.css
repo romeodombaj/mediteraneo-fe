@@ -35,6 +35,18 @@
   margin-top: 0.5rem;
 }
 
+.short-description {
+  color: var(--gray-text-color);
+  font-size: 0.9em;
+  margin-top: 0.5rem;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .image {
   width: 100%;
   aspect-ratio: 1;

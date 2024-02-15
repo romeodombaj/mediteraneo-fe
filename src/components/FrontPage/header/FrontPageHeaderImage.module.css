@@ -1,0 +1,37 @@
+.wrapper {
+}
+
+.background-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(80%) contrast(120%);
+  transition: 0.3s;
+}
+
+.image-out-animation {
+  opacity: 0;
+}
+
+.image-in-animation {
+  opacity: 1;
+}
+
+.actions {
+  position: absolute;
+  color: whitesmoke;
+  left: 5%;
+  bottom: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  font-size: 0.8em;
+}
+
+.action-button {
+  cursor: pointer;
+  user-select: none;
+}

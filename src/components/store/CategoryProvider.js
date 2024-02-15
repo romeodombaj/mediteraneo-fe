@@ -16,6 +16,9 @@ const CategoryProvider = (props) => {
           setCategoryList(categories);
           localStorage.setItem("categories", JSON.stringify(categories));
         }
+      })
+      .catch((error) => {
+        console.log("Fetch error: ", error.message);
       });
   };
 
