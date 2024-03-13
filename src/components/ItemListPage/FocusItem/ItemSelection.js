@@ -5,10 +5,13 @@ import RadioButton from "../../UI/RadioButton";
 import SelectionLabel from "../../UI/SelectionLabel";
 import SizeItem from "../../UI/SizeItem";
 import LoadingAnimation from "../../UI/LoadingAnimation";
+import useColorManagment from "../../hooks/use-color-managment";
 
 const ItemSelection = (props) => {
   const colors = props.color;
   const itemVariations = props.itemVariations;
+
+  const [colorNames, colorHashes] = useColorManagment(colors);
 
   const changeColorHandler = (e) => {
     props.setColorIndex(parseInt(e.currentTarget.getAttribute("index")));
@@ -20,28 +23,34 @@ const ItemSelection = (props) => {
     props.setItemVariations(tempVariations);
   };
 
+  useEffect(() => {
+    console.log("hash " + colorHashes);
+    console.log("name " + colorNames);
+  }, [colorHashes, colorNames]);
+
   return (
     <Fragment>
       <div className={styles[`wrapper`]}>
         <div className={styles[`selectors`]}>
-          <SelectionLabel text="Odaberi boju" />
+          <SelectionLabel
+            text="Odaberi boju: "
+            additionalText={colorNames && colorNames[props.selectedColorIndex]}
+          />
           <div className={styles[`color-list`]}>
-            {colors &&
-              colors.map((color, i) => {
+            {colorHashes &&
+              colorHashes.map((color, i) => {
                 return (
                   <RadioButton
                     active={i === props.selectedColorIndex ? true : false}
                     key={i}
-                    color={
-                      "#" +
-                      color.substr(color.lastIndexOf("#") + 1).split(" ")[0]
-                    }
+                    color={color}
                     index={i}
                     onClick={changeColorHandler}
                   />
                 );
               })}
           </div>
+
           <div className={styles[`size-selector`]}>
             <SelectionLabel text="Odaberi veličine" />
             {itemVariations && itemVariations.length > 0 ? (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CartItem.module.css";
 import { Fragment } from "react";
 
@@ -6,11 +6,19 @@ import { Fragment } from "react";
 import tempImg from "../../assets/coffe maker.png";
 import exitIcon from "../../assets/navigation/menu-x.png";
 import { scryRenderedComponentsWithType } from "react-dom/test-utils";
+import useColorManagment from "../hooks/use-color-managment";
 
 const CartItem = (props) => {
   const [totalPrice, setTotalPrice] = useState(22.21);
   const [quantity, setQuantity] = useState(props.item.quantity);
 
+  const [colorNames, colorHashes] = useColorManagment([
+    props.item.attributes[0].option,
+  ]);
+
+  useEffect(() => {
+    console.log(colorNames);
+  }, [colorNames]);
   const onIncreaseHandler = (value) => {
     for (let i = 0; i < value; i++) {
       props.addItem([props.item]);
@@ -66,7 +74,7 @@ const CartItem = (props) => {
           <div>
             <div className={styles.name}>{props.item.name}</div>
             <div className={styles.options}>
-              <div>Boja: {props.item.attributes[0].option}</div>
+              <div>Boja: {colorNames}</div>
               <div>Veličina: {props.item.attributes[1].option}</div>
             </div>
           </div>
