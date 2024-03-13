@@ -15,6 +15,12 @@
   gap: 0.5rem;
 }
 
+.blank-image {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: gray;
+}
+
 .image {
   width: 100%;
   aspect-ratio: 1;
@@ -36,8 +42,17 @@
   left: 0;
   width: 100%;
   aspect-ratio: 1;
-  opacity: 1;
   background-color: rgba(0, 0, 0, 0.543);
+  transition: 0.4s;
+  opacity: 0;
+}
+
+.image-wrapper:hover .open-more {
+  opacity: 1;
+}
+
+.image-wrapper:hover::after {
+  opacity: 1;
 }
 
 .open-more {
@@ -48,6 +63,8 @@
   color: white;
   z-index: 100;
   text-align: center;
+  opacity: 0;
+  transition: 0.4s;
 }
 
 .search {

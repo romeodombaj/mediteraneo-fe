@@ -20,6 +20,19 @@ const ShowItem = ({
   const navCtx = useContext(NavigationContext);
   const saveCtx = useContext(SavedContext);
 
+  const firstImage = item.images[0].src || lastImage || noImg;
+  const lastImage = item.images[item.images.length - 1].src || noImg;
+
+  const [image, setImage] = useState(firstImage || lastImage || noImg);
+
+  const onImageHoverEnter = () => {
+    setImage(lastImage || noImg);
+  };
+
+  const onImageHoverExit = () => {
+    setImage(firstImage || lastImage || noImg);
+  };
+
   const [isSaved, setIsSaved] = useState(item.saved || false);
   const saveItem = (e) => {
     e.stopPropagation();
@@ -55,7 +68,12 @@ const ShowItem = ({
   }, [item.saved, saveCtx.items]);
 
   return (
-    <div onClick={openItemHandler} className={styles.wrapper}>
+    <div
+      onClick={openItemHandler}
+      className={styles.wrapper}
+      onMouseOver={onImageHoverEnter}
+      onMouseOut={onImageHoverExit}
+    >
       <div className={styles[`content-wrapper`]}>
         <div className={styles["info-wrapper"]}>
           <div>
@@ -81,10 +99,7 @@ const ShowItem = ({
           )}
         </div>
 
-        <img
-          className={styles.image}
-          src={(item.images.length > 0 && item.images[0].src) || noImg}
-        />
+        <img className={styles.image} src={image || noImg} />
         <div className={styles[`open-indicator`]}>DETALJI</div>
       </div>
     </div>

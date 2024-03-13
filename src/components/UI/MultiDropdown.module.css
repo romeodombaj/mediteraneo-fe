@@ -32,6 +32,8 @@
   text-align: center;
   padding-top: 0.5rem;
   background-color: white;
+  height: 20rem;
+  overflow-y: scroll;
 }
 
 .option {

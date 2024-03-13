@@ -11,6 +11,11 @@ const ImagePortfolioSection = (props) => {
   const item = props.item;
   const selectedColorIndex = props.selectedColorIndex;
 
+  const [imageOneLoaded, setImageOneLoaded] = useState(false);
+  const [imageTwoLoaded, setImageTwoLoaded] = useState(false);
+  const [imageThreeLoaded, setImageThreeLoaded] = useState(false);
+  const [imageFourLoaded, setImageFourLoaded] = useState(false);
+
   const [slideShow, setSlideShow] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
 
@@ -24,6 +29,11 @@ const ImagePortfolioSection = (props) => {
       item.images.length > 0
     ) {
       let tempImageSet = [];
+
+      setImageOneLoaded(false);
+      setImageTwoLoaded(false);
+      setImageThreeLoaded(false);
+      setImageFourLoaded(false);
 
       let startIndex;
       let endIndex;
@@ -65,45 +75,127 @@ const ImagePortfolioSection = (props) => {
       <div className={styles.wrapper} onClick={openImageSlideShow}>
         {currentImages && currentImages.length > 0 ? (
           <div className={styles.grid}>
-            <img
-              className={`${styles.image}`}
-              src={
-                (currentImages[0] && currentImages[0].src) ||
-                (currentImages[0] && currentImages[0]) ||
-                noImg
+            <div
+              style={
+                imageOneLoaded &&
+                imageTwoLoaded &&
+                imageThreeLoaded &&
+                imageFourLoaded
+                  ? { backgroundColor: "transparent" }
+                  : { backgroundColor: "#f2f2f2" }
               }
-            />
-            <img
-              className={`${styles.image} ${styles.row1}`}
-              src={
-                (currentImages[1] && currentImages[1].src) ||
-                (currentImages[0] && currentImages[0].src) ||
-                (currentImages[0] && currentImages[0]) ||
-                noImg
-              }
-            />
-            <img
-              className={`${styles.image} ${styles.row1}`}
-              src={
-                (currentImages[2] && currentImages[2].src) ||
-                (currentImages[0] && currentImages[0].src) ||
-                (currentImages[0] && currentImages[0]) ||
-                noImg
-              }
-            />
-            <div className={styles[`image-wrapper`]}>
+            >
               <img
+                onLoad={() => setImageOneLoaded(true)}
+                style={
+                  imageOneLoaded &&
+                  imageTwoLoaded &&
+                  imageThreeLoaded &&
+                  imageFourLoaded
+                    ? {}
+                    : { display: "none" }
+                }
                 className={`${styles.image}`}
                 src={
-                  (currentImages[3] && currentImages[3].src) ||
                   (currentImages[0] && currentImages[0].src) ||
                   (currentImages[0] && currentImages[0]) ||
                   noImg
                 }
               />
-              <div className={styles[`open-more`]}>
-                <img src={search} className={styles.search}></img>
-                <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+            </div>
+            <div
+              style={
+                imageOneLoaded &&
+                imageTwoLoaded &&
+                imageThreeLoaded &&
+                imageFourLoaded
+                  ? { backgroundColor: "transparent" }
+                  : { backgroundColor: "#f2f2f2" }
+              }
+            >
+              <img
+                className={`${styles.image} ${styles.row1}`}
+                onLoad={() => setImageTwoLoaded(true)}
+                style={
+                  imageOneLoaded &&
+                  imageTwoLoaded &&
+                  imageThreeLoaded &&
+                  imageFourLoaded
+                    ? {}
+                    : { display: "none" }
+                }
+                src={
+                  (currentImages[1] && currentImages[1].src) ||
+                  (currentImages[0] && currentImages[0].src) ||
+                  (currentImages[0] && currentImages[0]) ||
+                  noImg
+                }
+              />
+            </div>
+
+            <div
+              style={
+                imageOneLoaded &&
+                imageTwoLoaded &&
+                imageThreeLoaded &&
+                imageFourLoaded
+                  ? { backgroundColor: "transparent" }
+                  : { backgroundColor: "#f2f2f2" }
+              }
+            >
+              <img
+                className={`${styles.image} ${styles.row1}`}
+                onLoad={() => setImageThreeLoaded(true)}
+                style={
+                  imageOneLoaded &&
+                  imageTwoLoaded &&
+                  imageThreeLoaded &&
+                  imageFourLoaded
+                    ? {}
+                    : { display: "none" }
+                }
+                src={
+                  (currentImages[2] && currentImages[2].src) ||
+                  (currentImages[0] && currentImages[0].src) ||
+                  (currentImages[0] && currentImages[0]) ||
+                  noImg
+                }
+              />
+            </div>
+            <div
+              style={
+                imageOneLoaded &&
+                imageTwoLoaded &&
+                imageThreeLoaded &&
+                imageFourLoaded
+                  ? { backgroundColor: "transparent" }
+                  : { backgroundColor: "#f2f2f2" }
+              }
+            >
+              <div className={styles[`image-wrapper`]}>
+                <img
+                  onLoad={() => setImageFourLoaded(true)}
+                  style={
+                    imageOneLoaded &&
+                    imageTwoLoaded &&
+                    imageThreeLoaded &&
+                    imageFourLoaded
+                      ? {}
+                      : { display: "none" }
+                  }
+                  className={`${styles.image}`}
+                  src={
+                    (currentImages[3] && currentImages[3].src) ||
+                    (currentImages[0] && currentImages[0].src) ||
+                    (currentImages[0] && currentImages[0]) ||
+                    noImg
+                  }
+                />
+
+                <div className={styles[`open-more`]}>
+                  <img src={search} className={styles.search}></img>
+                  <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+                </div>
               </div>
             </div>
           </div>
