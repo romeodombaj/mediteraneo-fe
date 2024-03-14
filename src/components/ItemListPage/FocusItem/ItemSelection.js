@@ -10,8 +10,8 @@ import useColorManagment from "../../hooks/use-color-managment";
 const ItemSelection = (props) => {
   const colors = props.color;
   const itemVariations = props.itemVariations;
-
   const [colorNames, colorHashes] = useColorManagment(colors);
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   const changeColorHandler = (e) => {
     props.setColorIndex(parseInt(e.currentTarget.getAttribute("index")));
@@ -23,10 +23,9 @@ const ItemSelection = (props) => {
     props.setItemVariations(tempVariations);
   };
 
-  useEffect(() => {
-    console.log("hash " + colorHashes);
-    console.log("name " + colorNames);
-  }, [colorHashes, colorNames]);
+  const mouseHoverLeave = () => {
+    setHoverIndex(-1);
+  };
 
   return (
     <Fragment>
@@ -35,13 +34,15 @@ const ItemSelection = (props) => {
           <SelectionLabel
             text="Odaberi boju: "
             additionalText={colorNames && colorNames[props.selectedColorIndex]}
+            hoverIndex={(colorNames && colorNames[hoverIndex]) || -1}
           />
-          <div className={styles[`color-list`]}>
+          <div className={styles[`color-list`]} onMouseLeave={mouseHoverLeave}>
             {colorHashes &&
               colorHashes.map((color, i) => {
                 return (
                   <RadioButton
                     active={i === props.selectedColorIndex ? true : false}
+                    setHoverIndex={setHoverIndex}
                     key={i}
                     color={color}
                     index={i}

@@ -7,7 +7,9 @@ const SelectionLabel = (props) => {
     <div className={styles[`wrapper`]}>
       <div className={styles[`text`]}>
         <strong>{props.text}</strong>{" "}
-        {(props.additionalText && props.additionalText) || ""}
+        {props.hoverIndex && props.hoverIndex !== -1
+          ? props.hoverIndex
+          : (props.additionalText && props.additionalText) || ""}
       </div>
       <div className={styles[`additional-text`]}></div>
       <img src={arrow} className={styles[`arrow`]} />

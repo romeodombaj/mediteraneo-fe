@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import styles from "./ItemDescription.module.css";
 
 const ItemDescription = (props) => {
@@ -36,16 +37,19 @@ const ItemDescription = (props) => {
               })
             : defaultText}
         </div>
-        <div className={styles.subtitle}>Njega:</div>
-        {item.attributes[5] && item.attributes[5].options
-          ? item.attributes[5].options.map((option, i) => {
+
+        {item.attributes[5] && item.attributes[5].options && (
+          <Fragment>
+            <div className={styles.subtitle}>Njega:</div>
+            {item.attributes[5].options.map((option, i) => {
               return (
                 <div key={i} className={styles.paragraph}>
                   {option}
                 </div>
               );
-            })
-          : defaultText}
+            })}
+          </Fragment>
+        )}
       </div>
     </div>
   );

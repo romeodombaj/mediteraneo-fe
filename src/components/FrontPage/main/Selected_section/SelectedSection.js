@@ -5,6 +5,8 @@ import LoadingAnimation from "../../../UI/LoadingAnimation";
 import useGetItems from "../../../hooks/use-get-items";
 import CategoryContext from "../../../store/category-context";
 
+const emptyArrayOfItems = [1, 2, 3, 4];
+
 const SelectedSection = (props) => {
   const [itemList, setItemList, getItemList] = useGetItems("selected");
   const catCtx = useContext(CategoryContext);
@@ -18,19 +20,23 @@ const SelectedSection = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>IZDVOJENI PROIZVODI</div>
-      {itemList && itemList.length === 0 ? (
-        <LoadingAnimation />
-      ) : (
-        <div className={styles.grid}>
-          {itemList.map((item, i) => {
-            return (
-              <div key={i} className={`${styles[i > 3 && `hidden`]}`}>
-                <ShowItem load={props.load} key={item.id} item={item} />
-              </div>
-            );
-          })}
-        </div>
-      )}
+      <div className={styles.grid}>
+        {itemList && itemList.length === 0
+          ? emptyArrayOfItems.map((item, i) => {
+              return (
+                <div key={i} className={`${styles[i > 3 && `hidden`]}`}>
+                  <ShowItem />
+                </div>
+              );
+            })
+          : itemList.map((item, i) => {
+              return (
+                <div key={i} className={`${styles[i > 3 && `hidden`]}`}>
+                  <ShowItem load={props.load} key={item.id} item={item} />
+                </div>
+              );
+            })}
+      </div>
     </div>
   );
 };

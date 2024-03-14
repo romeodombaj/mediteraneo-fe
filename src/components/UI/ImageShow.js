@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./ImageShow.module.css";
 import ReactDOM from "react-dom";
 
@@ -10,6 +10,10 @@ const ImageShow = (props) => {
   const portalElement = document.getElementById("overlays");
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    console.log(props.img);
+  }, [props.img]);
 
   const prevImage = () => {
     if (currentImageIndex === 0) {
@@ -49,10 +53,7 @@ const ImageShow = (props) => {
             src={arrow}
           />
           {props.img && (
-            <img
-              className={styles.image}
-              src={props.img[currentImageIndex].src}
-            />
+            <img className={styles.image} src={props.img[currentImageIndex]} />
           )}
         </Fragment>,
         portalElement

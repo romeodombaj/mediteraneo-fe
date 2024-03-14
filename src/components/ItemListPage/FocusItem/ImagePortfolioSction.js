@@ -10,16 +10,30 @@ import noImg from "../../../assets/questionmarks.png";
 const ImagePortfolioSection = (props) => {
   const item = props.item;
   const selectedColorIndex = props.selectedColorIndex;
+  const lastImage = item.images[item.images.length - 1].src;
 
   const [imageOneLoaded, setImageOneLoaded] = useState(false);
   const [imageTwoLoaded, setImageTwoLoaded] = useState(false);
   const [imageThreeLoaded, setImageThreeLoaded] = useState(false);
   const [imageFourLoaded, setImageFourLoaded] = useState(false);
+  const [imageRefresh, setImageRefresh] = useState(false);
 
   const [slideShow, setSlideShow] = useState(false);
   const [currentImages, setCurrentImages] = useState([]);
 
   const noImgSet = [noImg, noImg, noImg, noImg];
+
+  const imageRefreshHandler = () => {
+    setImageRefresh(true);
+    setImageOneLoaded(false);
+    setImageTwoLoaded(false);
+    setImageThreeLoaded(false);
+    setImageFourLoaded(false);
+
+    setTimeout(() => {
+      setImageRefresh(false);
+    }, [1]);
+  };
 
   useEffect(() => {
     if (
@@ -28,12 +42,8 @@ const ImagePortfolioSection = (props) => {
       item.attributes[1] &&
       item.images.length > 0
     ) {
+      imageRefreshHandler();
       let tempImageSet = [];
-
-      setImageOneLoaded(false);
-      setImageTwoLoaded(false);
-      setImageThreeLoaded(false);
-      setImageFourLoaded(false);
 
       let startIndex;
       let endIndex;
@@ -49,9 +59,11 @@ const ImagePortfolioSection = (props) => {
       }
 
       for (let i = startIndex; i < endIndex; i++) {
-        console.log(i);
-        tempImageSet.push(item.images[i]);
+        tempImageSet.push(item.images[i].src);
       }
+
+      tempImageSet.push(lastImage);
+
       setCurrentImages([...tempImageSet]);
     } else {
       setCurrentImages([...noImgSet]);
@@ -76,6 +88,7 @@ const ImagePortfolioSection = (props) => {
         {currentImages && currentImages.length > 0 ? (
           <div className={styles.grid}>
             <div
+              className={styles[`image-wrapper`]}
               style={
                 imageOneLoaded &&
                 imageTwoLoaded &&
@@ -85,55 +98,29 @@ const ImagePortfolioSection = (props) => {
                   : { backgroundColor: "#f2f2f2" }
               }
             >
-              <img
-                onLoad={() => setImageOneLoaded(true)}
-                style={
-                  imageOneLoaded &&
-                  imageTwoLoaded &&
-                  imageThreeLoaded &&
-                  imageFourLoaded
-                    ? {}
-                    : { display: "none" }
-                }
-                className={`${styles.image}`}
-                src={
-                  (currentImages[0] && currentImages[0].src) ||
-                  (currentImages[0] && currentImages[0]) ||
-                  noImg
-                }
-              />
-            </div>
-            <div
-              style={
-                imageOneLoaded &&
-                imageTwoLoaded &&
-                imageThreeLoaded &&
-                imageFourLoaded
-                  ? { backgroundColor: "transparent" }
-                  : { backgroundColor: "#f2f2f2" }
-              }
-            >
-              <img
-                className={`${styles.image} ${styles.row1}`}
-                onLoad={() => setImageTwoLoaded(true)}
-                style={
-                  imageOneLoaded &&
-                  imageTwoLoaded &&
-                  imageThreeLoaded &&
-                  imageFourLoaded
-                    ? {}
-                    : { display: "none" }
-                }
-                src={
-                  (currentImages[1] && currentImages[1].src) ||
-                  (currentImages[0] && currentImages[0].src) ||
-                  (currentImages[0] && currentImages[0]) ||
-                  noImg
-                }
-              />
-            </div>
+              {!imageRefresh && (
+                <img
+                  onLoad={() => setImageOneLoaded(true)}
+                  style={
+                    imageOneLoaded &&
+                    imageTwoLoaded &&
+                    imageThreeLoaded &&
+                    imageFourLoaded
+                      ? {}
+                      : { display: "none" }
+                  }
+                  className={`${styles.image}`}
+                  src={(currentImages[0] && currentImages[0]) || noImg}
+                />
+              )}
 
+              <div className={styles[`open-more`]}>
+                <img src={search} className={styles.search}></img>
+                <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+              </div>
+            </div>
             <div
+              className={styles[`image-wrapper`]}
               style={
                 imageOneLoaded &&
                 imageTwoLoaded &&
@@ -143,24 +130,67 @@ const ImagePortfolioSection = (props) => {
                   : { backgroundColor: "#f2f2f2" }
               }
             >
-              <img
-                className={`${styles.image} ${styles.row1}`}
-                onLoad={() => setImageThreeLoaded(true)}
-                style={
-                  imageOneLoaded &&
-                  imageTwoLoaded &&
-                  imageThreeLoaded &&
-                  imageFourLoaded
-                    ? {}
-                    : { display: "none" }
-                }
-                src={
-                  (currentImages[2] && currentImages[2].src) ||
-                  (currentImages[0] && currentImages[0].src) ||
-                  (currentImages[0] && currentImages[0]) ||
-                  noImg
-                }
-              />
+              {!imageRefresh && (
+                <img
+                  className={`${styles.image} ${styles.row1}`}
+                  onLoad={() => setImageTwoLoaded(true)}
+                  style={
+                    imageOneLoaded &&
+                    imageTwoLoaded &&
+                    imageThreeLoaded &&
+                    imageFourLoaded
+                      ? {}
+                      : { display: "none" }
+                  }
+                  src={
+                    (currentImages[1] && currentImages[1]) ||
+                    (currentImages[0] && currentImages[0]) ||
+                    noImg
+                  }
+                />
+              )}
+
+              <div className={styles[`open-more`]}>
+                <img src={search} className={styles.search}></img>
+                <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+              </div>
+            </div>
+            <div
+              className={styles[`image-wrapper`]}
+              style={
+                imageOneLoaded &&
+                imageTwoLoaded &&
+                imageThreeLoaded &&
+                imageFourLoaded
+                  ? { backgroundColor: "transparent" }
+                  : { backgroundColor: "#f2f2f2" }
+              }
+            >
+              {!imageRefresh && (
+                <img
+                  className={`${styles.image} ${styles.row1}`}
+                  onLoad={() => setImageThreeLoaded(true)}
+                  style={
+                    imageOneLoaded &&
+                    imageTwoLoaded &&
+                    imageThreeLoaded &&
+                    imageFourLoaded
+                      ? {}
+                      : { display: "none" }
+                  }
+                  src={
+                    (currentImages[2] && currentImages[2]) ||
+                    (currentImages[1] && currentImages[1]) ||
+                    (currentImages[0] && currentImages[0]) ||
+                    noImg
+                  }
+                />
+              )}
+
+              <div className={styles[`open-more`]}>
+                <img src={search} className={styles.search}></img>
+                <div>POGLEDAJTE SVE FOTOGRAFIJE</div>
+              </div>
             </div>
             <div
               style={
@@ -173,24 +203,26 @@ const ImagePortfolioSection = (props) => {
               }
             >
               <div className={styles[`image-wrapper`]}>
-                <img
-                  onLoad={() => setImageFourLoaded(true)}
-                  style={
-                    imageOneLoaded &&
-                    imageTwoLoaded &&
-                    imageThreeLoaded &&
-                    imageFourLoaded
-                      ? {}
-                      : { display: "none" }
-                  }
-                  className={`${styles.image}`}
-                  src={
-                    (currentImages[3] && currentImages[3].src) ||
-                    (currentImages[0] && currentImages[0].src) ||
-                    (currentImages[0] && currentImages[0]) ||
-                    noImg
-                  }
-                />
+                {!imageRefresh && (
+                  <img
+                    onLoad={() => setImageFourLoaded(true)}
+                    style={
+                      imageOneLoaded &&
+                      imageTwoLoaded &&
+                      imageThreeLoaded &&
+                      imageFourLoaded
+                        ? {}
+                        : { display: "none" }
+                    }
+                    className={`${styles.image}`}
+                    src={
+                      (currentImages[3] && currentImages[3]) ||
+                      (currentImages[0] && currentImages[0]) ||
+                      (currentImages[1] && currentImages[1]) ||
+                      noImg
+                    }
+                  />
+                )}
 
                 <div className={styles[`open-more`]}>
                   <img src={search} className={styles.search}></img>

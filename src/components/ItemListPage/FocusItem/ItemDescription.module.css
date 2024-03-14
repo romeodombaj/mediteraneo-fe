@@ -20,10 +20,15 @@
 }
 
 .material-section {
+  min-height: 40vh;
   width: 35%;
   padding-bottom: 7.5vh;
   padding-left: 7.5%;
   padding-right: 7.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: left;
 }
 
 .title {

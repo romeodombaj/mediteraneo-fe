@@ -1,6 +1,6 @@
 import styles from "./ShowItem.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import SavedContext from "../store/saved-context";
 
 // temp
@@ -12,28 +12,18 @@ import NavigationContext from "../store/navigation-context";
 
 const ShowItem = ({
   withDescription = false,
-  item,
+  item = undefined,
   currentCategory,
   refreshSaved,
 }) => {
   const navigate = useNavigate();
   const navCtx = useContext(NavigationContext);
   const saveCtx = useContext(SavedContext);
+  const [firstImage, setFirstImage] = useState();
+  const [lastImage, setLastImage] = useState();
 
-  const firstImage = item.images[0].src || lastImage || noImg;
-  const lastImage = item.images[item.images.length - 1].src || noImg;
+  const [isSaved, setIsSaved] = useState(item ? item.saved : false);
 
-  const [image, setImage] = useState(firstImage || lastImage || noImg);
-
-  const onImageHoverEnter = () => {
-    setImage(lastImage || noImg);
-  };
-
-  const onImageHoverExit = () => {
-    setImage(firstImage || lastImage || noImg);
-  };
-
-  const [isSaved, setIsSaved] = useState(item.saved || false);
   const saveItem = (e) => {
     e.stopPropagation();
     item.saved = true;
@@ -63,46 +53,59 @@ const ShowItem = ({
   };
 
   useEffect(() => {
-    setIsSaved(item.saved);
-    saveCtx.checkIfSavedOne(item);
-  }, [item.saved, saveCtx.items]);
+    if (item) {
+      setIsSaved(item.saved);
+      saveCtx.checkIfSavedOne(item);
+
+      setLastImage(item.images[item.images.length - 1].src || noImg);
+      setFirstImage(item.images[0].src || lastImage || noImg);
+    }
+  }, [item && item.saved, saveCtx.items]);
 
   return (
-    <div
-      onClick={openItemHandler}
-      className={styles.wrapper}
-      onMouseOver={onImageHoverEnter}
-      onMouseOut={onImageHoverExit}
-    >
-      <div className={styles[`content-wrapper`]}>
-        <div className={styles["info-wrapper"]}>
-          <div>
-            <div className={styles.title}>{item.name}</div>
-            <div className={styles.price}>{item.price} €</div>
-            {withDescription && item.short_description && (
-              <div
-                className={styles["short-description"]}
-                dangerouslySetInnerHTML={{
-                  __html: item.short_description.substring(0, 150) + "...",
-                }}
-              ></div>
-            )}
-          </div>
-          {isSaved ? (
-            <img
-              onClick={removeItem}
-              className={styles.save}
-              src={unsaveIcon}
-            />
-          ) : (
-            <img onClick={saveItem} className={styles.save} src={saveIcon} />
-          )}
-        </div>
+    <Fragment>
+      {!item ? (
+        <div className={styles["loading-item"]}></div>
+      ) : (
+        <div onClick={openItemHandler} className={styles.wrapper}>
+          <div className={styles[`content-wrapper`]}>
+            <div className={styles["info-wrapper"]}>
+              <div>
+                <div className={styles.title}>{item.name}</div>
+                <div className={styles.price}>{item.price} €</div>
+                {withDescription && item.short_description && (
+                  <div
+                    className={styles["short-description"]}
+                    dangerouslySetInnerHTML={{
+                      __html: item.short_description.substring(0, 150) + "...",
+                    }}
+                  ></div>
+                )}
+              </div>
+              {isSaved ? (
+                <img
+                  onClick={removeItem}
+                  className={styles.save}
+                  src={unsaveIcon}
+                />
+              ) : (
+                <img
+                  onClick={saveItem}
+                  className={styles.save}
+                  src={saveIcon}
+                />
+              )}
+            </div>
 
-        <img className={styles.image} src={image || noImg} />
-        <div className={styles[`open-indicator`]}>DETALJI</div>
-      </div>
-    </div>
+            <div className={styles[`image-wrapper`]}>
+              <img className={styles.image} src={firstImage || noImg} />
+              <img className={styles[`last-image`]} src={lastImage || noImg} />
+            </div>
+            <div className={styles[`open-indicator`]}>DETALJI</div>
+          </div>
+        </div>
+      )}
+    </Fragment>
   );
 };
 
