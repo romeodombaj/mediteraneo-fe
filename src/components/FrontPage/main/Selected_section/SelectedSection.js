@@ -5,7 +5,7 @@ import LoadingAnimation from "../../../UI/LoadingAnimation";
 import useGetItems from "../../../hooks/use-get-items";
 import CategoryContext from "../../../store/category-context";
 
-const emptyArrayOfItems = [1, 2, 3, 4];
+const emptyArrayOfItems = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const SelectedSection = (props) => {
   const [itemList, setItemList, getItemList] = useGetItems("selected");

@@ -6,6 +6,7 @@ import cartIcon from "../../../assets/navigation/cart.png";
 import like from "../../../assets/heart-empty.png";
 import unlike from "../../../assets/heart-filled.png";
 import SavedContext from "../../store/saved-context";
+import AddedToBasketAlert from "../../UI/AddedToBasketAlert";
 
 const ToBasketSection = (props) => {
   const item = props.item;
@@ -14,6 +15,7 @@ const ToBasketSection = (props) => {
   const saveCtx = useContext(SavedContext);
   const [saved, setSaved] = useState(item.saved);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [toBasketAnimate, setToBasketAnimate] = useState(false);
 
   const saveItem = () => {
     saveCtx.addItem(item);
@@ -46,6 +48,7 @@ const ToBasketSection = (props) => {
       if (variation.quantity && variation.quantity > 0) {
         tempVariations.push({ name, ...variation });
         variation.quantity = 0;
+        setToBasketAnimate(true);
       }
     });
 
@@ -55,6 +58,7 @@ const ToBasketSection = (props) => {
 
   return (
     <Fragment>
+      {toBasketAnimate && <AddedToBasketAlert setOff={setToBasketAnimate} />}
       <div className={styles.divider} />
       <div className={styles[`wrapper`]}>
         <div className={styles[`total-section`]}>
