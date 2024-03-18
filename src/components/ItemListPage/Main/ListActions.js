@@ -106,7 +106,8 @@ const ListActions = (props) => {
       />
       <MultiDropdown
         title="Boja"
-        options={colorNames}
+        options={colorFilteredList}
+        optionNames={colorNames}
         value={colorValue}
         setValue={setColorValue}
       />

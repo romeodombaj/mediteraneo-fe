@@ -132,7 +132,7 @@ const ImagePortfolioSection = (props) => {
             >
               {!imageRefresh && (
                 <img
-                  className={`${styles.image} ${styles.row1}`}
+                  className={`${styles.image}`}
                   onLoad={() => setImageTwoLoaded(true)}
                   style={
                     imageOneLoaded &&
@@ -202,7 +202,7 @@ const ImagePortfolioSection = (props) => {
                   : { backgroundColor: "#f2f2f2" }
               }
             >
-              <div className={styles[`image-wrapper`]}>
+              <div className={`${styles.image} ${styles.row1}`}>
                 {!imageRefresh && (
                   <img
                     onLoad={() => setImageFourLoaded(true)}

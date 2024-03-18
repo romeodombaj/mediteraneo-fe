@@ -3,6 +3,7 @@ import arrowDown from "../../assets/Arrow-down.svg";
 
 const MultiDropdown = (props) => {
   const value = props.value;
+  const optionNames = props.optionNames;
 
   const onValueChangeHandler = (e) => {
     let tempArray = [...value];
@@ -35,7 +36,7 @@ const MultiDropdown = (props) => {
                   onClick={onValueChangeHandler}
                   value={option}
                 />
-                {option}
+                {(optionNames && optionNames[i]) || option}
               </label>
             );
           })}
