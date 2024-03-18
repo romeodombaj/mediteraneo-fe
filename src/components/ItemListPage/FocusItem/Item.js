@@ -38,6 +38,7 @@ const Item = () => {
     getItemVariations,
   ] = useGetItem();
 
+
   useScrollStop();
 
   const scrollToTop = () => {

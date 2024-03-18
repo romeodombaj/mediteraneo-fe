@@ -29,9 +29,9 @@ const UseCreateOrder = (props) => {
     },
     line_items: [
       {
-        product_id: 11769,
-        variation_id: 11773,
-        quantity: 2,
+        product_id: 13737,
+        variation_id: 13741,
+        quantity: 5,
       },
     ],
     shipping_lines: [
@@ -56,6 +56,8 @@ const UseCreateOrder = (props) => {
         mode: "cors",
       }
     );
+
+    console.log(response);
     return response;
   };
 

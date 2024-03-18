@@ -3,6 +3,7 @@ import MultiDropdown from "../../UI/MultiDropdown";
 import ItemList from "../ItemList";
 import styles from "./ListActions.module.css";
 import { Fragment, useEffect, useState } from "react";
+import useColorManagment from "../../hooks/use-color-managment";
 
 const ListActions = (props) => {
   const sortingValueList = ["Price Up", "Price Down"];
@@ -17,6 +18,8 @@ const ListActions = (props) => {
   const [sizeFilteredList, setSizeFilteredList] = useState([]);
 
   let itemList = props.itemList;
+
+  const [colorNames, colorHashes] = useColorManagment(colorFilteredList);
 
   // geting unique values for filters
   const getUniqueFilterValues = (array, optionIndex) => {
@@ -103,7 +106,7 @@ const ListActions = (props) => {
       />
       <MultiDropdown
         title="Boja"
-        options={colorFilteredList}
+        options={colorNames}
         value={colorValue}
         setValue={setColorValue}
       />

@@ -79,7 +79,12 @@ const Cart = (props) => {
             </div>
             <div className={styles.details}>
               <Coupon />
-              <Total price={cartCtx.totalAmount.toFixed(2)} />
+              <Total
+                price={
+                  (cartCtx.totalAmount && cartCtx.totalAmount.toFixed(2)) ||
+                  "0.00"
+                }
+              />
             </div>
 
             <div className={styles.actions}>

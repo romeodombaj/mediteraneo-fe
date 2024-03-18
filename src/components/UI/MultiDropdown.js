@@ -25,18 +25,20 @@ const MultiDropdown = (props) => {
       </div>
 
       <div className={styles[`options-wrapper`]}>
-        {props.options.map((option, i) => {
-          return (
-            <label key={i} className={styles.option}>
-              <input
-                type="checkbox"
-                onClick={onValueChangeHandler}
-                value={option}
-              />
-              {option}
-            </label>
-          );
-        })}
+        {props.options &&
+          props.options.length > 0 &&
+          props.options.map((option, i) => {
+            return (
+              <label key={i} className={styles.option}>
+                <input
+                  type="checkbox"
+                  onClick={onValueChangeHandler}
+                  value={option}
+                />
+                {option}
+              </label>
+            );
+          })}
       </div>
     </div>
   );
