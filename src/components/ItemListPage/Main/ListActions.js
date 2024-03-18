@@ -42,6 +42,8 @@ const ListActions = (props) => {
       setColorFilteredList(getUniqueFilterValues(itemList, 0));
       setSizeFilteredList(getUniqueFilterValues(itemList, 2));
       props.setFilteredItemList(itemList);
+    } else {
+      props.setFilteredItemList([]);
     }
   }, [itemList]);
 

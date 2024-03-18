@@ -1,6 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import SubcategoryItem from "./SubcategoryItem";
 import styles from "./SubcategoryList.module.css";
+import { useActionData } from "react-router-dom";
 
 const SubcategoryList = ({ subcategories }) => {
   return (
