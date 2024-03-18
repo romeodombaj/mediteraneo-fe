@@ -10,25 +10,39 @@ import useGetItems from "../hooks/use-get-items";
 import SubcategoryList from "./Main/SubcategoryList";
 
 const ItemList = () => {
+  const cartCtx = useContext(CartContext);
+  const categoryCtx = useContext(CategoryContext);
+  const params = useParams().categorySlug;
+
   const [sortingValue, setSortingValue] = useState("Price Up");
   const [gridStyleValue, setGridStyleValue] = useState("0");
 
-  const cartCtx = useContext(CartContext);
-  const categoryCtx = useContext(CategoryContext);
+  const [currentCategory, setCurrentCategory] = useState(
+    categoryCtx.getCategory(params)
+  );
 
-  const params = useParams().categorySlug;
+  const [subcategories, setSubCategories] = useState(
+    ...categoryCtx.categories.filter((el) => el.parent === currentCategory.id)
+  );
+
   const [itemList, setItemList, getItemList] = useGetItems();
   const [filteredItemList, setFilteredItemList] = useState([]);
-
-  const currentCategory = categoryCtx.getCategory(params);
-
-  const subcategories = [
-    ...categoryCtx.categories.filter((el) => el.parent === currentCategory.id),
-  ];
 
   const changeGridStyleValue = (val) => {
     setGridStyleValue(val);
   };
+
+  useEffect(() => {
+    if (categoryCtx) {
+      setCurrentCategory(categoryCtx.getCategory(params));
+
+      setSubCategories(
+        ...categoryCtx.categories.filter(
+          (el) => el.parent === currentCategory.id
+        )
+      );
+    }
+  }, [currentCategory, categoryCtx, params]);
 
   useEffect(() => {
     setItemList([]);

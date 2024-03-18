@@ -22,7 +22,7 @@ const FeaturedCategories = () => {
             <div
               className={styles.category}
               onClick={openCategory}
-              value={catCtx.categories[2].id}
+              value={catCtx.categories[1].id}
             >
               <img
                 className={styles.image}
