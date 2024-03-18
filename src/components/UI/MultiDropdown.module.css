@@ -26,14 +26,17 @@
   position: absolute;
   top: 3rem;
   width: 100%;
-  display: none;
+  display: flex;
+  visibility: hidden;
   flex-direction: column;
   z-index: 200;
   text-align: center;
   padding-top: 0.5rem;
   background-color: white;
-  height: 20rem;
+  max-height: 20rem;
   overflow-y: scroll;
+  opacity: 0;
+  transition: 0.2s;
 }
 
 .option {
@@ -58,5 +61,7 @@ input[type="checkbox"]:checked {
 }
 
 .wrapper:hover .options-wrapper {
+  visibility: visible;
   display: flex;
+  opacity: 1;
 }
