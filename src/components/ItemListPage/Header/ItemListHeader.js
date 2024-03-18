@@ -3,6 +3,9 @@ import { Fragment, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 const ItemListHeader = (props) => {
+  const defaultText =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
   return (
     <Fragment>
       <div className={styles.wrapper}>
@@ -19,10 +22,7 @@ const ItemListHeader = (props) => {
             <div className={styles[`info-wrapper`]}>
               <div className={styles.title}>{props.category.name}</div>
               <div className={styles.description}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                {props.category.description || defaultText}
               </div>
             </div>
           </Fragment>

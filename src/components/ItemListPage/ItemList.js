@@ -49,7 +49,7 @@ const ItemList = () => {
     getItemList(
       `?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
     );
-  }, [params, cartCtx.items.length, categoryCtx.categories]);
+  }, [currentCategory.id, cartCtx.items.length, categoryCtx.categories]);
 
   useEffect(() => {
     let temp = [...itemList];
