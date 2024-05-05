@@ -11,6 +11,7 @@ const useGetItems = (storageValue = undefined) => {
   const saveCtx = useContext(SavedContext);
 
   const getData = async (path) => {
+
     try {
       if (catCtx.categories && catCtx.categories.length > 0) {
         let response = await fetch(

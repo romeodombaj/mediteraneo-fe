@@ -45,7 +45,6 @@ const CartItem = (props) => {
         onDecreaseHandler(props.item.quantity - value);
       }
     }
-    setQuantity(value);
   };
 
   const onFocusOut = (e) => {

@@ -49,6 +49,8 @@ const ItemList = () => {
   }, [currentCategory, currentCategory.id]);
 
   useEffect(() => {
+    console.log("REFECH");
+
     if (currentCategory && currentCategory.id) {
       setItemList([]);
       getItemList(

@@ -22,7 +22,7 @@ const CategoryShowcaseSection = (props) => {
 
   useEffect(() => {
     getItemList(
-      `?per_page=4&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+      `?per_page=4&category=340&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
     );
   }, [catCtx.categories]);
 
