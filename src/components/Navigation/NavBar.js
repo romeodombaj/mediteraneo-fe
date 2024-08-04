@@ -13,6 +13,7 @@ import savedIcon from "../../assets/heart-filled.png";
 import unsavedIcon from "../../assets/heart-empty.png";
 import SavedContext from "../store/saved-context";
 import CartContext from "../store/cart-context";
+import Search from "./Search";
 
 const title = ["M", "E", "D", "I", "T", "E", "R", "A", "N", "E", "O"];
 
@@ -24,10 +25,6 @@ const NavBar = (props) => {
 
   const changeNavigationStateHandler = () => {
     navCtx.changeNavigationState();
-  };
-
-  const goHome = () => {
-    navCtx.loadCategory();
   };
 
   useEffect(() => {
@@ -53,7 +50,7 @@ const NavBar = (props) => {
       {navCtx.isNavigating && (
         <Navigation onClose={changeNavigationStateHandler} />
       )}
-      {navCtx.cartOpen && <Cart onClose={navCtx.closeCart}></Cart>}
+      {navCtx.cartOpen && <Cart onClose={navCtx.closeCart} />}
 
       {navCtx.savedOpen && <Saved onClose={navCtx.closeSaved} />}
       <div
@@ -67,35 +64,15 @@ const NavBar = (props) => {
         }`}
       >
         <div className={styles.container}>
-          {/*<div
-            className={`${styles.title} ${
-              styles[
-                navigationTransparency &&
-                  !navCtx.cartOpen &&
-                  !navCtx.savedOpen &&
-                  `title-inverted`
-              ]
-            }`}
-          >
-            {title.map((letter) => {
-              return (
-                <div
-                  className={`${styles["title-letter"]} ${
-                    styles[
-                      navigationTransparency &&
-                        !navCtx.cartOpen &&
-                        !navCtx.savedOpen &&
-                        `title-letter-inverted`
-                    ]
-                  }`}
-                >
-                  {letter}
-                </div>
-              );
-            })}
-          </div>*/}
-          <div className={styles[`left-section`]} onClick={goHome}>
+          {
+            // HOME BUTTON
+          }
+
+          <div className={styles[`left-section`]}>
             <img
+              onClick={() => {
+                navCtx.loadCategory();
+              }}
               className={`${styles[`nav-logo`]} ${styles[`nav-item`]} ${
                 styles[
                   navigationTransparency &&
@@ -107,26 +84,14 @@ const NavBar = (props) => {
               src={navLogo}
             />
             {
-              // language PART
-              /*<div
-              className={`${styles[`nav-item`]} ${styles.language} ${
-                styles[
-                  !(
-                    navigationTransparency &&
-                    !navCtx.cartOpen &&
-                    !navCtx.savedOpen
-                  ) && `nav-img-item`
-                ]
-              }`}
-            >
-              ENG
-            </div>*/
-            }
-
-            {
               // SEARCH
             }
-            <img
+            <Search
+              navigationTransparency={navigationTransparency}
+              navCtx={navCtx}
+            />
+
+            {/*<img
               className={`${styles[`nav-item`]} ${styles.search} ${
                 styles[
                   !(
@@ -137,7 +102,7 @@ const NavBar = (props) => {
                 ]
               }`}
               src={searcIcon}
-            ></img>
+            ></img>*/}
           </div>
 
           <div className={styles[`action-wrapper`]}>

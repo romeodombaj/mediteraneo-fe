@@ -12,13 +12,17 @@ import SubcategoryList from "./Main/SubcategoryList";
 const ItemList = () => {
   const cartCtx = useContext(CartContext);
   const categoryCtx = useContext(CategoryContext);
-  const params = useParams().categorySlug;
+  let params = useParams().categorySlug;
+  let searchParams = useParams().searchTerm;
+
+  console.log(params);
+  console.log(searchParams);
 
   const [sortingValue, setSortingValue] = useState("Price Up");
   const [gridStyleValue, setGridStyleValue] = useState("0");
 
   const [currentCategory, setCurrentCategory] = useState(
-    categoryCtx.getCategory(params)
+    params !== undefined ? categoryCtx.getCategory(params) : false
   );
 
   const [subcategories, setSubCategories] = useState(
@@ -33,10 +37,15 @@ const ItemList = () => {
   };
 
   useEffect(() => {
-    if (categoryCtx) {
+    if (categoryCtx && params !== undefined) {
+      searchParams = undefined;
       setCurrentCategory(categoryCtx.getCategory(params));
     }
   }, [categoryCtx, params]);
+
+  useEffect(() => {
+   
+  }, [params, searchParams]);
 
   useEffect(() => {
     if (currentCategory && currentCategory.id) {
@@ -51,13 +60,25 @@ const ItemList = () => {
   useEffect(() => {
     console.log("REFECH");
 
-    if (currentCategory && currentCategory.id) {
+    if (params !== undefined) {
+      searchParams = undefined;
+      if (currentCategory && currentCategory.id) {
+        setItemList([]);
+        getItemList(
+          `?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+        );
+      }
+    } else if (searchParams !== undefined) {
+      params = undefined;
+      setCurrentCategory(false);
       setItemList([]);
       getItemList(
-        `?per_page=100&category=${currentCategory.id}&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
+        `?${
+          searchParams !== "*" ? `search=${searchParams}&` : ""
+        }&per_page=100&consumer_key=ck_a270e588788fe749560568f37f4d9ab9663f48ca&consumer_secret=cs_892dc7028829da5c035079fd9e64da11a9ac9bc4`
       );
     }
-  }, [currentCategory, cartCtx.items.length]);
+  }, [currentCategory, cartCtx.items.length, searchParams]);
 
   useEffect(() => {
     let temp = [...itemList];
